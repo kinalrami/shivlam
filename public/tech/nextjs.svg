@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="84" viewBox="0 0 300 84" role="img" aria-label="Next.js">
+  <g fill="none">
+    <circle cx="42" cy="42" r="28" fill="#000000" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="3"/>
+    <path d="M34 52V30h4l12 16V30h4v22h-4L38 36v16z" fill="#FFFFFF" fill-opacity=".95"/>
+    <text x="84" y="54" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="44" font-weight="800" fill="#FFFFFF">Next.js</text>
+  </g>
+</svg>
+
