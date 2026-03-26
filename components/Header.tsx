@@ -89,15 +89,15 @@ export function Header() {
 
   return (
     <>
-      <header className="relative z-30 w-full">
-        <div className="mx-auto flex w-full items-center justify-between px-5 py-4 sm:px-8 lg:px-14">
+      <header className="sticky top-0 z-40 w-full bg-default/70 backdrop-blur ">
+        <div className="mx-auto flex w-full items-center justify-between px-5 sm:px-8 lg:px-14">
           <Link href="/" className="flex min-w-0 shrink items-center">
             <Image
               src="/logo.svg"
               alt="Shivlam — Scalable tech services for everyone"
               width={260}
               height={142}
-              className="h-14 w-auto max-w-[70vw] md:h-28"
+              className="h-14 w-auto max-w-[70vw] md:h-26"
               priority
               unoptimized
             />
