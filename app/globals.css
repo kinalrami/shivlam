@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Brand palette (spatial / deep navy theme) */
   --sl-bg: #060e1c;

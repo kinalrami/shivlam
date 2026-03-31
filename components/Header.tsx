@@ -109,7 +109,14 @@ export function Header() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setIsMenuOpen(true)}
           >
-            <Menu className="size-8 lg:size-10" aria-hidden />
+            <Image
+              src="/burger.svg"
+              alt="Menu"
+              width={40}
+              height={40}
+              priority
+              unoptimized
+            />
           </button>
         </div>
       </header>
@@ -128,9 +135,9 @@ export function Header() {
             onClick={() => setIsMenuOpen(false)}
             aria-label="Close menu"
           >
-            <X className="size-8 lg:size-10" aria-hidden />
+            <X className="size-8 lg:size-10" style={{ strokeWidth: 1 }} aria-hidden />
           </button>
-        <div className="relative mx-auto flex h-full w-full max-w-[800px] flex-col px-5 md:px-10">
+        <div className="relative mx-auto flex h-full w-full max-w-200 flex-col px-5 md:px-10">
          
 
           <div className="flex min-h-0 flex-1 flex-col md:h-full md:flex-row md:items-stretch">
@@ -146,7 +153,7 @@ export function Header() {
                             type="button"
                             className={`flex shrink-0 items-center gap-2 transition-colors ${
                               isActive
-                                ? "text-[#F89938]"
+                                ? "text-orange-400"
                                 : "text-gray-300 hover:text-white"
                             }`}
                             onClick={() => {
@@ -164,7 +171,7 @@ export function Header() {
                           >
                             {isActive && (
                               <span
-                                className="size-1.5 shrink-0 rounded-full bg-[#F89938]"
+                                className="size-1.5 shrink-0 rounded-full bg-orange-400"
                                 aria-hidden
                               />
                             )}
@@ -172,7 +179,7 @@ export function Header() {
                           </button>
                           {isActive && (
                             <span
-                              className="hidden h-[0.5px] min-h-[0.5px] min-w-0 flex-1 bg-linear-to-r from-[#000000] to-[#F89938] md:-mr-8 md:block"
+                              className="hidden h-[0.5px] min-h-[0.5px] min-w-0 flex-1 bg-linear-to-r from-black to-orange-400 md:-mr-8 md:block"
                               aria-hidden
                             />
                           )}
@@ -185,7 +192,7 @@ export function Header() {
             </div>
 
             <div
-              className="h-px w-full shrink-0 bg-linear-to-b from-[#313131] via-[#925A21] to-[#313131] md:h-auto md:min-h-0 md:w-px md:self-stretch"
+              className="h-px w-full shrink-0 bg-linear-to-b from-gray-900 via-orange-400 to-gray-800 md:h-auto md:min-h-0 md:w-px md:self-stretch"
               aria-hidden
             />
 
@@ -201,7 +208,7 @@ export function Header() {
                         type="button"
                         className={`w-full text-left text-sm lg:text-base transition-colors ${
                           isActive
-                            ? "text-[#F89938]"
+                            ? "text-orange-400"
                             : "text-gray-400 hover:text-white"
                         }`}
                         onClick={() => setActiveItem(item.label)}
@@ -212,12 +219,12 @@ export function Header() {
 
                       {isActive && hasSubmenu && (
                         <div
-                          className="mt-3 flex max-w-[380px] overflow-hidden rounded-lg bg-surface shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+                          className="mt-3 flex max-w-95 overflow-hidden rounded-lg bg-surface shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
                           role="region"
                           aria-label={`${item.label} options`}
                         >
                           <div
-                            className="w-0.5 shrink-0 self-stretch bg-linear-to-b from-[#000000] via-[#F89938] to-[#020202]"
+                            className="w-0.5 shrink-0 self-stretch bg-linear-to-b from-black via-orange-400 to-[#020202]"
                             aria-hidden
                           />
                           <div className="min-w-0 flex-1 py-4 pl-4 pr-3">

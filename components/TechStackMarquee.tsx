@@ -74,7 +74,7 @@ export default function TechStackMarquee({
   return (
     <section aria-label="Tech Stack" className="px-12 pb-12 md:pb-20">
       <div className="mb-4 flex items-center justify-between gap-4">
-        <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.18em] text-sl-saffron">
+        <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
           Tech Stack
         </p>
         <div className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block" />

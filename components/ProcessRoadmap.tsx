@@ -39,14 +39,14 @@ export default function ProcessRoadmap() {
       className="relative scroll-mt-24 px-12 pb-12 md:pb-20"
     >
       <div className="mb-4 flex items-center justify-between gap-4">
-        <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.18em] text-sl-saffron">
+        <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
           How we work
         </p>
         <div className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block" />
       </div>
 
       <div className="relative overflow-hidden rounded-lg md:p-5">
-        <p className="mb-6 max-w-2xl font-sans text-[0.95rem] font-light leading-relaxed text-gray-400">
+        <p className="mb-6 max-w-2xl font-sans text-base font-light leading-relaxed text-gray-400">
           De-risk the project for the client by showing a clear path.
         </p>
 
@@ -54,7 +54,7 @@ export default function ProcessRoadmap() {
           <div className="relative" aria-hidden>
             <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gray-800" />
             <motion.div
-              className="absolute inset-y-0 left-1/2 -ml-[1.5px] w-[3px] rounded-full bg-linear-to-b from-sl-cyan via-sl-cyan-2 to-sl-saffron"
+              className="absolute inset-y-0 left-1/2 -ml-[1.5px] w-0.75 rounded-full bg-linear-to-b from-sl-cyan via-sl-cyan-2 to-sl-saffron"
               style={{
                 transformOrigin: "top",
                 scaleY: reducedMotion ? 1 : scrollYProgress,
@@ -76,7 +76,7 @@ export default function ProcessRoadmap() {
                     {step.title}
                   </h3>
                 </div>
-                <p className="mt-2 max-w-xl font-sans text-[0.95rem] font-light leading-relaxed text-gray-400">
+                <p className="mt-2 max-w-xl font-sans text-base font-light leading-relaxed text-gray-400">
                   {step.description}
                 </p>
               </li>

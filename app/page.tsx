@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import PowerTrio from "@/components/PowerTrio";
 import TechStackMarquee from "@/components/TechStackMarquee";
 import ProcessRoadmap from "@/components/ProcessRoadmap";
+import ContactFormSection from "@/components/ContactFormSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <PowerTrio />
       <TechStackMarquee speedSeconds={10} />
       <ProcessRoadmap />
+      <ContactFormSection />
     </>
   );
 }
