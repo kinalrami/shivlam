@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Space_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ChatAssistant } from "@/components/ChatAssistant";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ChatAssistant />
       </body>
     </html>
   );

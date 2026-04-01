@@ -32,7 +32,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="font-mono relative z-10 mx-5 mb-7 rounded-2xl bg-gray-900 md:mx-14 md:mb-11 md:rounded-4xl">
+    <footer className="font-mono relative z-10 mx-5 mb-7 rounded-2xl bg-gray-900 md:mx-12 md:mb-11 md:rounded-4xl">
       <div className="flex flex-col gap-6 px-5 py-5 sm:px-7 sm:py-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
         <Link href="/" className="flex min-w-0 shrink items-center">
           <Image

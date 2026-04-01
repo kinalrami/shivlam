@@ -29,7 +29,7 @@ function ContactFormField({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="font-sans text-xs font-medium text-gray-300">
+      <label htmlFor={id} className="font-sans text-sm font-medium text-gray-300">
         {label}
         {required ? <span className="text-sl-saffron">*</span> : null}
       </label>
@@ -152,7 +152,7 @@ export default function ContactFormSection() {
             <div className="mt-5 flex flex-col gap-2">
               <label
                 htmlFor={detailsId}
-                className="font-sans text-xs font-medium text-gray-300"
+                className="font-sans text-sm font-medium text-gray-300"
               >
                 Details
               </label>
@@ -166,7 +166,7 @@ export default function ContactFormSection() {
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-sans text-xs text-gray-500">
+              <p className="font-sans text-sm text-gray-500">
                 By submitting, you agree to be contacted about your request.
               </p>
               <button
