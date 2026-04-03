@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { DM_Sans, Space_Mono } from "next/font/google";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ChatAssistant } from "@/components/ChatAssistant";
-import "./globals.css";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { ChatAssistant } from "@/components/layout/ChatAssistant";
+import "@/styles/globals.css";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",

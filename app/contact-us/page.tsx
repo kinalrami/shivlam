@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import HeroCanvas from "@/components/HeroCanvas";
+import HeroCanvas from "@/components/views/home/Canvas";
 
 export const metadata: Metadata = {
   title: "Contact Us | Shivlam",

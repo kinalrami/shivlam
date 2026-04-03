@@ -1,0 +1,31 @@
+<svg viewBox="0 0 270 230" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="200" x2="270" y2="200" stroke="rgba(29,207,207,.12)" stroke-width=".5"/>
+  <line x1="30" y1="220" x2="135" y2="200" stroke="rgba(29,207,207,.08)" stroke-width=".5"/>
+  <line x1="75" y1="228" x2="135" y2="200" stroke="rgba(29,207,207,.08)" stroke-width=".5"/>
+  <line x1="170" y1="228" x2="135" y2="200" stroke="rgba(29,207,207,.08)" stroke-width=".5"/>
+  <line x1="215" y1="220" x2="135" y2="200" stroke="rgba(29,207,207,.08)" stroke-width=".5"/>
+  <rect x="95" y="58" width="65" height="142" fill="none" stroke="rgba(245,138,11,.6)" stroke-width=".8"/>
+  <rect x="106" y="47" width="65" height="142" fill="none" stroke="rgba(245,138,11,.22)" stroke-width=".5" stroke-dasharray="3,3"/>
+  <line x1="95" y1="58" x2="106" y2="47" stroke="rgba(245,138,11,.32)" stroke-width=".5"/>
+  <line x1="160" y1="58" x2="171" y2="47" stroke="rgba(245,138,11,.32)" stroke-width=".5"/>
+  <line x1="95" y1="200" x2="106" y2="189" stroke="rgba(245,138,11,.28)" stroke-width=".5"/>
+  <line x1="160" y1="200" x2="171" y2="189" stroke="rgba(245,138,11,.28)" stroke-width=".5"/>
+  <line x1="95" y1="86" x2="160" y2="86" stroke="rgba(245,138,11,.18)" stroke-width=".5"/>
+  <line x1="95" y1="114" x2="160" y2="114" stroke="rgba(245,138,11,.18)" stroke-width=".5"/>
+  <line x1="95" y1="142" x2="160" y2="142" stroke="rgba(245,138,11,.18)" stroke-width=".5"/>
+  <line x1="95" y1="170" x2="160" y2="170" stroke="rgba(245,138,11,.18)" stroke-width=".5"/>
+  <line x1="127" y1="58" x2="127" y2="18" stroke="rgba(245,138,11,.75)" stroke-width=".9"/>
+  <polygon points="124,18 127,10 130,18" fill="#F58A0B" opacity=".9"/>
+  <rect x="55" y="115" width="32" height="85" fill="none" stroke="rgba(245,138,11,.3)" stroke-width=".5"/>
+  <line x1="55" y1="143" x2="87" y2="143" stroke="rgba(245,138,11,.12)" stroke-width=".5"/>
+  <line x1="55" y1="171" x2="87" y2="171" stroke="rgba(245,138,11,.12)" stroke-width=".5"/>
+  <rect x="160" y="130" width="37" height="70" fill="none" stroke="rgba(245,138,11,.3)" stroke-width=".5"/>
+  <line x1="160" y1="155" x2="197" y2="155" stroke="rgba(245,138,11,.12)" stroke-width=".5"/>
+  <rect x="30" y="160" width="20" height="40" fill="none" stroke="rgba(245,138,11,.18)" stroke-width=".5"/>
+  <circle cx="95" cy="58" r="2.2" fill="#F58A0B" opacity=".75"/>
+  <circle cx="160" cy="58" r="2.2" fill="#F58A0B" opacity=".75"/>
+  <circle cx="127" cy="86" r="1.8" fill="rgba(29,207,207,.85)"/>
+  <circle cx="127" cy="114" r="1.8" fill="rgba(29,207,207,.85)"/>
+  <circle cx="127" cy="142" r="1.8" fill="rgba(29,207,207,.85)"/>
+  <text x="18" y="215" fill="rgba(245,138,11,.35)" font-family="ui-monospace, monospace" font-size="7" letter-spacing="1">BHARAT BUILD // ACTIVE</text>
+</svg>
