@@ -43,7 +43,7 @@ function ContactFormField({
         inputMode={inputMode}
         pattern={pattern}
         title={title}
-        className="h-11 w-full rounded-xl border border-white/10 bg-white/3 px-4 font-sans text-sm text-white outline-hidden backdrop-blur-2xl transition-[border-color,box-shadow] placeholder:text-gray-500 focus:border-sl-saffron/60 focus:shadow-[0_0_0_3px_rgba(255,168,0,0.18)]"
+        className="h-11 w-full rounded-xl border border-white/10 bg-white/3 px-4 font-sans text-sm text-white outline-hidden backdrop-blur-2xl transition-[border-color,box-shadow] placeholder:text-gray-500 focus:border-sl-saffron/60 focus:ring-2 focus:ring-sl-saffron/35 focus:ring-offset-0"
       />
     </div>
   );
@@ -65,7 +65,7 @@ export default function ContactFormSection() {
           </p>
           <h2
             id="contact-heading"
-            className="mb-4 font-sans text-[clamp(1.9rem,4.2vw,3rem)] font-semibold leading-[1.12] text-white"
+            className="mb-4 font-sans text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl"
           >
             Accelerate Your Growth:
             <br />
@@ -74,13 +74,13 @@ export default function ContactFormSection() {
             </span>
           </h2>
 
-          <p className="max-w-[62ch] font-sans text-base font-light leading-[1.75] text-gray-400">
+          <p className="max-w-prose font-sans text-base font-light leading-relaxed text-gray-400">
             Are you seeking a reliable partner to unlock the full potential of your
             business? From modern websites and mobile apps to SEO and digital
             marketing, we can help you ship faster and grow sustainably.
           </p>
 
-          <p className="mt-5 max-w-[62ch] font-sans text-base font-light leading-[1.75] text-gray-400">
+          <p className="mt-5 max-w-prose font-sans text-base font-light leading-relaxed text-gray-400">
             Tell us a bit about what you’re building and we’ll get back with next
             steps.
           </p>
@@ -95,7 +95,7 @@ export default function ContactFormSection() {
             className="pointer-events-none absolute inset-0 -z-10 rounded-3xl opacity-70"
             style={{
               boxShadow:
-                "0 0 0 2px color-mix(in srgb, var(--sl-saffron) 35%, transparent), 0 0 80px color-mix(in srgb, var(--sl-saffron) 18%, transparent)",
+                "0 0 0 1px color-mix(in srgb, var(--sl-saffron) 35%, transparent), 0 0 80px color-mix(in srgb, var(--sl-saffron) 18%, transparent)",
             }}
             aria-hidden
           />
@@ -161,7 +161,7 @@ export default function ContactFormSection() {
                 name="details"
                 rows={5}
                 placeholder="What are you looking to build?"
-                className="w-full resize-none rounded-2xl border border-white/10 bg-white/3 px-4 py-3 font-sans text-sm text-white outline-hidden backdrop-blur-2xl transition-[border-color,box-shadow] placeholder:text-gray-500 focus:border-sl-saffron/60 focus:shadow-[0_0_0_3px_rgba(255,168,0,0.18)]"
+                className="w-full resize-none rounded-2xl border border-white/10 bg-white/3 px-4 py-3 font-sans text-sm text-white outline-hidden backdrop-blur-2xl transition-[border-color,box-shadow] placeholder:text-gray-500 focus:border-sl-saffron/60 focus:ring-2 focus:ring-sl-saffron/35 focus:ring-offset-0"
               />
             </div>
 
