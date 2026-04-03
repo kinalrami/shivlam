@@ -1,0 +1,28 @@
+<svg viewBox="0 0 270 230" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="68" x2="270" y2="68" stroke="rgba(29,207,207,.07)" stroke-width=".5"/>
+  <line x1="0" y1="88" x2="270" y2="88" stroke="rgba(29,207,207,.05)" stroke-width=".5"/>
+  <line x1="0" y1="108" x2="270" y2="108" stroke="rgba(29,207,207,.07)" stroke-width=".5"/>
+  <line x1="0" y1="128" x2="270" y2="128" stroke="rgba(29,207,207,.05)" stroke-width=".5"/>
+  <line x1="0" y1="148" x2="270" y2="148" stroke="rgba(29,207,207,.07)" stroke-width=".5"/>
+  <line x1="0" y1="168" x2="270" y2="168" stroke="rgba(29,207,207,.04)" stroke-width=".5"/>
+  <path d="M 20 98 Q 55 93 78 98 Q 100 103 118 98" fill="none" stroke="rgba(29,207,207,.18)" stroke-width=".5"/>
+  <path d="M 20 118 Q 55 113 78 118 Q 100 123 118 118" fill="none" stroke="rgba(29,207,207,.18)" stroke-width=".5"/>
+  <path d="M 20 108 Q 55 103 78 108 Q 100 113 118 108" fill="none" stroke="rgba(29,207,207,.1)" stroke-width=".5"/>
+  <path d="M 230 108 L 82 93 L 38 108 L 82 123 Z" fill="none" stroke="rgba(245,138,11,.72)" stroke-width=".9"/>
+  <line x1="230" y1="108" x2="252" y2="108" stroke="rgba(245,138,11,.85)" stroke-width="1.1" stroke-linecap="round"/>
+  <ellipse cx="205" cy="106" rx="13" ry="5.5" fill="none" stroke="rgba(29,207,207,.6)" stroke-width=".7"/>
+  <path d="M 145 103 L 112 60 L 90 71 L 132 108 Z" fill="none" stroke="rgba(245,138,11,.45)" stroke-width=".6"/>
+  <path d="M 145 113 L 112 156 L 90 145 L 132 108 Z" fill="none" stroke="rgba(245,138,11,.45)" stroke-width=".6"/>
+  <path d="M 68 108 L 50 76 L 62 76 L 80 106 Z" fill="none" stroke="rgba(245,138,11,.5)" stroke-width=".6"/>
+  <path d="M 72 112 L 50 127 L 56 130 L 76 118 Z" fill="none" stroke="rgba(245,138,11,.32)" stroke-width=".5"/>
+  <ellipse cx="40" cy="108" rx="7" ry="4.5" fill="rgba(29,207,207,.12)" stroke="rgba(29,207,207,.4)" stroke-width=".7"/>
+  <ellipse cx="30" cy="108" rx="3.5" ry="2.5" fill="rgba(29,207,207,.22)"/>
+  <line x1="8" y1="108" x2="32" y2="108" stroke="rgba(29,207,207,.35)" stroke-width=".5" stroke-dasharray="4,3"/>
+  <circle cx="112" cy="60" r="2.2" fill="#F58A0B" opacity=".75"/>
+  <circle cx="112" cy="156" r="2.2" fill="#F58A0B" opacity=".75"/>
+  <circle cx="252" cy="108" r="2.8" fill="#F58A0B" opacity=".9"/>
+  <circle cx="132" cy="108" r="1.8" fill="rgba(29,207,207,.85)"/>
+  <circle cx="82" cy="108" r="1.8" fill="rgba(29,207,207,.85)"/>
+  <text x="18" y="55" fill="rgba(29,207,207,.4)" font-family="ui-monospace, monospace" font-size="7.5" letter-spacing="1">MACH 2.1 // ALTITUDE 12,000m</text>
+  <text x="18" y="218" fill="rgba(245,138,11,.35)" font-family="ui-monospace, monospace" font-size="7" letter-spacing="1">WIND TUNNEL SIM // ACTIVE</text>
+</svg>
