@@ -60,7 +60,7 @@ export default function Services() {
 
 function ServiceCard({ service }: { service: Service }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_18px_70px_rgba(0,0,0,0.55)] group-hover:border-white/20">
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20">
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
         style={{
@@ -82,7 +82,7 @@ function ServiceCard({ service }: { service: Service }) {
           <h3 className="font-sans text-2xl font-semibold tracking-tight text-white">
             {service.title}
           </h3>
-          <p className="mt-3 max-w-[42ch] font-sans text-base font-light leading-relaxed text-gray-400">
+          <p className="mt-3 max-w-xl font-sans text-base font-light leading-relaxed text-gray-400">
             {service.description}
           </p>
         </div>

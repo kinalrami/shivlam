@@ -6,6 +6,7 @@ html {
 
 :root {
   /* Brand palette (spatial / deep navy theme) */
+  --default: #060606;
   --sl-bg: #060e1c;
   --sl-panel: #0d1d38;
   --sl-line: #1b3055;
@@ -30,6 +31,7 @@ html {
 }
 
 @theme inline {
+  --color-default: var(--default);
   --color-sl-bg: var(--sl-bg);
   --color-sl-panel: var(--sl-panel);
   --color-sl-line: var(--sl-line);
@@ -936,5 +938,57 @@ body {
   .new-dot,
   .read-dot-new-post {
     animation: none;
+  }
+}
+
+/* About Us section — keyframes used by Tailwind arbitrary animations */
+@keyframes about-us-ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes about-us-lidar-scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+@keyframes about-us-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.28;
+  }
+}
+@keyframes about-us-pulse-pin {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px rgb(29 207 207 / 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgb(29 207 207 / 0.08);
+  }
+}
+@keyframes about-us-seal-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

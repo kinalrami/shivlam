@@ -227,15 +227,15 @@ export default function WorkPortfolio() {
               onClick={() => setFilter(key)}
               className={
                 filter === key
-                  ? "relative cursor-pointer overflow-hidden rounded px-[18px] py-[7px] font-mono text-[10px] uppercase tracking-[0.14em] transition-[color,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border border-[#1a1e2e] bg-transparent text-[#2a3555] border-sl-saffron text-sl-saffron shadow-[0_0_16px_rgba(245,138,11,0.18),inset_0_0_0_1px_rgba(245,138,11,0.12)] before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-[rgba(245,138,11,0.08)] before:to-transparent before:opacity-100 before:content-['']"
-                  : "relative cursor-pointer overflow-hidden rounded px-[18px] py-[7px] font-mono text-[10px] uppercase tracking-[0.14em] transition-[color,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border border-[#1a1e2e] bg-transparent text-[#2a3555] hover:border-[#2a3555] hover:text-[#3a4a6a] before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-[rgba(245,138,11,0.08)] before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
+                  ? "relative cursor-pointer overflow-hidden rounded border border-sl-saffron bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-sl-saffron shadow-md ring-2 ring-sl-saffron/20 transition-[color,box-shadow,border-color] duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-100 before:content-['']"
+                  : "relative cursor-pointer overflow-hidden rounded border border-slate-800 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-slate-600 transition-[color,box-shadow,border-color] duration-300 ease-out hover:border-slate-600 hover:text-slate-500 before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
               }
             >
               {label}
             </button>
           </Fragment>
         ))}
-        <span className="ml-auto font-mono text-[9px] uppercase tracking-[0.12em] text-gray-500">
+        <span className="ml-auto font-mono text-xs uppercase tracking-wider text-gray-500">
           {visibleCount} BUILD{visibleCount !== 1 ? "S" : ""} LOADED
         </span>
       </div>
@@ -278,7 +278,7 @@ export default function WorkPortfolio() {
                       ref={(el) => {
                         scanLineEls.current[i] = el;
                       }}
-                      className="pointer-events-none absolute left-0 right-0 top-[-2px] z-[5] h-0.5 bg-linear-to-r from-transparent via-sl-saffron to-sl-cyan opacity-0 shadow-[0_0_12px_var(--sl-saffron),0_0_24px_rgba(245,138,11,0.3)]"
+                      className="pointer-events-none absolute left-0 right-0 -top-0.5 z-50 h-0.5 bg-linear-to-r from-transparent via-sl-saffron to-sl-cyan opacity-0 shadow-lg shadow-amber-500/30"
                       aria-hidden
                     />
                     <div className="pointer-events-none absolute left-3 top-2.5 z-[4] rounded border-l border-sl-cyan/30 bg-[rgba(6,8,16,0.6)] px-2 py-1.5 font-mono text-[8px] leading-[1.7] tracking-[0.06em] text-sl-cyan/55">
@@ -288,7 +288,7 @@ export default function WorkPortfolio() {
                       <br />
                       LATENCY: {p.latency}
                     </div>
-                    <div className="pointer-events-none absolute right-3 top-2.5 z-[4] rounded border border-sl-saffron/30 bg-sl-saffron/[0.06] px-[7px] py-0.5 font-mono text-[8px] uppercase tracking-[0.14em] text-sl-saffron">
+                    <div className="pointer-events-none absolute right-3 top-2.5 z-40 rounded border border-sl-saffron/30 bg-sl-saffron/10 px-2 py-0.5 font-mono text-xs uppercase tracking-widest text-sl-saffron">
                       {p.catLabel}
                     </div>
                   </div>
@@ -345,7 +345,7 @@ export default function WorkPortfolio() {
                     }
                   }}
                   className={[
-                    "group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_18px_70px_rgba(0,0,0,0.55)] group-hover:border-white/20",
+                    "group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20",
                     revealed[i]
                       ? "translate-y-0 opacity-100"
                       : "translate-y-7 opacity-0",
@@ -364,16 +364,16 @@ export default function WorkPortfolio() {
                     className="pointer-events-none absolute inset-0 opacity-60 mask-[radial-gradient(70%_50%_at_50%_0%,black,transparent)]"
                     aria-hidden
                   >
-                    <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/[0.07] blur-2xl" />
+                    <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/10 blur-2xl" />
                   </div>
 
-                  <div className="relative z-[1] -mx-6 -mt-7 mb-5 h-[168px] overflow-hidden bg-[#0a0d18]">
+                  <div className="relative z-10 -mx-6 -mt-7 mb-5 h-42 overflow-hidden bg-slate-950">
                     <PortfolioThumb project={p} />
                     <div
                       ref={(el) => {
                         scanLineEls.current[i] = el;
                       }}
-                      className="pointer-events-none absolute left-0 right-0 top-[-2px] z-[5] h-0.5 bg-linear-to-r from-transparent via-sl-saffron to-sl-cyan opacity-0 shadow-[0_0_12px_var(--sl-saffron),0_0_24px_rgba(245,138,11,0.3)]"
+                      className="pointer-events-none absolute left-0 right-0 -top-0.5 z-50 h-0.5 bg-linear-to-r from-transparent via-sl-saffron to-sl-cyan opacity-0 shadow-lg shadow-amber-500/30"
                       aria-hidden
                     />
                     <div className="pointer-events-none absolute left-3 top-2.5 z-[4] rounded border-l border-sl-cyan/30 bg-[rgba(6,8,16,0.6)] px-2 py-1.5 font-mono text-[8px] leading-[1.7] tracking-[0.06em] text-sl-cyan/55">
@@ -383,38 +383,38 @@ export default function WorkPortfolio() {
                       <br />
                       LATENCY: {p.latency}
                     </div>
-                    <div className="pointer-events-none absolute right-3 top-2.5 z-[4] rounded border border-sl-saffron/30 bg-sl-saffron/[0.06] px-[7px] py-0.5 font-mono text-[8px] uppercase tracking-[0.14em] text-sl-saffron">
+                    <div className="pointer-events-none absolute right-3 top-2.5 z-40 rounded border border-sl-saffron/30 bg-sl-saffron/10 px-2 py-0.5 font-mono text-xs uppercase tracking-widest text-sl-saffron">
                       {p.catLabel}
                     </div>
                   </div>
 
-                  <div className="relative z-[1]">
-                    <span className="mb-2 block font-mono text-[8px] uppercase tracking-[0.2em] text-[#1a2535]">
+                  <div className="relative z-10">
+                    <span className="mb-2 block font-mono text-xs uppercase tracking-widest text-slate-800">
                       {p.num}
                     </span>
-                    <h3 className="mb-1.5 font-sans text-base font-bold tracking-[-0.015em] text-[#c8d4e8] transition-colors duration-300 group-hover:text-white">
+                    <h3 className="mb-1.5 font-sans text-base font-bold tracking-tight text-slate-300 transition-colors duration-300 group-hover:text-white">
                       {p.title}
                     </h3>
                     <div className="mb-3.5 flex flex-wrap gap-1.5">
                       {p.stack.map((s) => (
                         <span
                           key={s}
-                          className="rounded border border-[#0f1525] px-[7px] py-0.5 font-mono text-[8.5px] uppercase tracking-[0.1em] text-[#1a2535] transition-all duration-300 group-hover:border-sl-cyan/20 group-hover:text-sl-cyan/40"
+                          className="rounded border border-slate-900 px-2 py-0.5 font-mono text-xs uppercase tracking-wide text-slate-800 transition-all duration-300 group-hover:border-sl-cyan/20 group-hover:text-sl-cyan/40"
                         >
                           {s}
                         </span>
                       ))}
                     </div>
-                    <p className="mb-3.5 font-mono text-[10.5px] leading-[1.75] text-[#2a3a50] transition-colors duration-300 group-hover:text-[#3a5060]">
+                    <p className="mb-3.5 font-mono text-sm leading-relaxed text-slate-600 transition-colors duration-300 group-hover:text-slate-500">
                       {p.desc}
                     </p>
-                    <div className="flex items-center justify-between border-t border-white/[0.04] pt-3">
-                      <span className="portfolio-cta-shine relative inline-block cursor-pointer overflow-hidden rounded border border-sl-saffron/25 bg-sl-saffron/5 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.12em] text-sl-saffron transition-[color,box-shadow,border-color] duration-300 hover:bg-sl-saffron/10 hover:text-white hover:shadow-[0_0_16px_rgba(245,138,11,0.2)] hover:border-sl-saffron/60">
+                    <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                      <span className="portfolio-cta-shine relative inline-block cursor-pointer overflow-hidden rounded border border-sl-saffron/25 bg-sl-saffron/5 px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-sl-saffron transition-[color,box-shadow,border-color] duration-300 hover:border-sl-saffron/60 hover:bg-sl-saffron/10 hover:text-white hover:shadow-lg hover:shadow-amber-500/20">
                         {p.cta}
                       </span>
-                      <div className="flex items-center gap-1.5 font-mono text-[8px] uppercase tracking-[0.12em] text-[#0f1a20]">
+                      <div className="flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-slate-900">
                         <span
-                          className="size-[5px] rounded-full bg-sl-cyan shadow-[0_0_6px_var(--sl-cyan)] animate-sl-pip"
+                          className="size-1.5 rounded-full bg-sl-cyan ring-2 ring-sl-cyan/40 animate-sl-pip"
                           aria-hidden
                         />
                         {p.metric}
@@ -450,7 +450,7 @@ export default function WorkPortfolio() {
           role={expanded ? "dialog" : undefined}
           aria-modal={expanded ? "true" : undefined}
           aria-labelledby={expanded ? "portfolio-exp-title" : undefined}
-          className={`relative max-h-[85vh] w-[min(680px,90vw)] scale-90 overflow-y-auto rounded-[14px] border border-sl-saffron/20 bg-[#0a0d18] p-9 transition-transform duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] [scrollbar-color:#1a1e2e_transparent] [scrollbar-width:thin] ${
+          className={`relative max-h-[85vh] w-full max-w-2xl scale-90 overflow-y-auto rounded-xl border border-sl-saffron/20 bg-slate-950 p-9 transition-transform duration-500 ease-out ${
             expanded ? "scale-100" : ""
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -460,7 +460,7 @@ export default function WorkPortfolio() {
               <button
                 type="button"
                 onClick={() => setExpandedIndex(null)}
-                className="absolute right-5 top-[18px] cursor-pointer border-none bg-transparent font-mono text-[11px] uppercase tracking-[0.1em] text-[#2a3555] transition-colors hover:text-sl-cyan"
+                className="absolute right-5 top-5 cursor-pointer border-none bg-transparent font-mono text-xs uppercase tracking-wide text-slate-600 transition-colors hover:text-sl-cyan"
               >
                 [ CLOSE ✕ ]
               </button>
@@ -469,14 +469,14 @@ export default function WorkPortfolio() {
               </p>
               <h3
                 id="portfolio-exp-title"
-                className="mb-4 font-sans text-[26px] font-extrabold tracking-[-0.025em] text-white"
+                className="mb-4 font-sans text-3xl font-extrabold tracking-tight text-white"
               >
                 {expanded.title}
               </h3>
               <div className="relative mb-5 h-[200px] w-full overflow-hidden rounded-lg">
                 <PortfolioThumb project={expanded} className="size-full object-cover" />
               </div>
-              <p className="mb-5 font-mono text-[11px] leading-[1.85] text-[#3a5060]">
+              <p className="mb-5 font-mono text-sm leading-relaxed text-slate-500">
                 {expanded.desc}
               </p>
               <div className="mb-5 grid grid-cols-2 gap-3">
@@ -490,12 +490,12 @@ export default function WorkPortfolio() {
                 ).map(([label, val]) => (
                   <div
                     key={label}
-                    className="rounded-md border border-[#0f1525] bg-white/[0.02] px-3.5 py-3"
+                    className="rounded-md border border-slate-900 bg-white/5 px-3.5 py-3"
                   >
-                    <div className="mb-1 font-mono text-[8px] uppercase tracking-[0.14em] text-[#1a2535]">
+                    <div className="mb-1 font-mono text-xs uppercase tracking-widest text-slate-800">
                       {label}
                     </div>
-                    <div className="font-mono text-[11px] tracking-[0.06em] text-sl-saffron">
+                    <div className="font-mono text-xs tracking-wide text-sl-saffron">
                       {val}
                     </div>
                   </div>
@@ -515,7 +515,7 @@ export default function WorkPortfolio() {
                 href={expanded.link ?? "#"}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block cursor-pointer rounded border border-sl-saffron/40 bg-sl-saffron/6 px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-sl-saffron no-underline transition-[background,box-shadow] duration-300 hover:bg-sl-saffron/15 hover:shadow-[0_0_20px_rgba(245,138,11,0.2)]"
+                className="inline-block cursor-pointer rounded border border-sl-saffron/40 bg-sl-saffron/10 px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-sl-saffron no-underline transition-[background,box-shadow] duration-300 hover:bg-sl-saffron/15 hover:shadow-lg hover:shadow-amber-500/20"
               >
                 {expanded.cta}
               </a>

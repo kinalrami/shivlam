@@ -43,7 +43,7 @@ export default function Feedback() {
         {CLIENT_CARDS.map((card) => (
           <article
             key={card.client}
-            className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_18px_70px_rgba(0,0,0,0.55)] group-hover:border-white/20"
+            className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20"
           >
             <div
               className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
@@ -57,11 +57,11 @@ export default function Feedback() {
               className="pointer-events-none absolute inset-0 opacity-60 mask-[radial-gradient(70%_50%_at_50%_0%,black,transparent)]"
               aria-hidden
             >
-              <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/[0.07] blur-2xl" />
+              <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/10 blur-2xl" />
             </div>
 
             <div className="relative flex items-start justify-between gap-3">
-              <p className="inline-flex max-w-[85%] rounded border border-sl-cyan/30 bg-sl-cyan/5 px-2 py-1 font-mono text-[9px] font-medium uppercase tracking-[0.16em] text-sl-cyan">
+              <p className="inline-flex max-w-sm rounded border border-sl-cyan/30 bg-sl-cyan/5 px-2 py-1 font-mono text-xs font-medium uppercase tracking-widest text-sl-cyan">
                 {card.tag}
               </p>
             </div>
@@ -69,12 +69,12 @@ export default function Feedback() {
             <h3 className="relative mt-5 font-sans text-lg font-bold leading-snug tracking-tight text-white sm:text-xl">
               {card.client}
             </h3>
-            <p className="relative mt-4 flex-1 border-l-2 border-sl-saffron/80 pl-3 font-mono text-[11px] leading-[1.75] text-gray-300 sm:text-xs">
+            <p className="relative mt-4 flex-1 border-l-2 border-sl-saffron/80 pl-3 font-mono text-xs leading-relaxed text-gray-300 sm:text-sm">
               &ldquo;{card.quote}&rdquo;
             </p>
 
-            <div className="relative mt-6 flex items-center gap-2 font-mono text-[11px] font-medium tracking-wide text-sl-saffron sm:text-xs">
-              <span className="text-[8px] text-sl-text opacity-80" aria-hidden>
+            <div className="relative mt-6 flex items-center gap-2 font-mono text-xs font-medium tracking-wide text-sl-saffron sm:text-sm">
+              <span className="text-xs text-sl-text opacity-80" aria-hidden>
                 ▶
               </span>
               {card.metric}
