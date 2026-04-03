@@ -231,7 +231,7 @@ export default function ProcessRoadmap() {
       ref={sectionRef}
       id="process"
       aria-labelledby="process-roadmap-heading"
-      className="relative scroll-mt-24 pb-12 px-12 md:pb-20"
+      className="relative scroll-mt-24 pb-12 px-5 sm:px-8 lg:px-12 md:pb-20"
     >
       <h2 id="process-roadmap-heading" className="sr-only">
         How we work — development timeline

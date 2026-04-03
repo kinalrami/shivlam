@@ -83,7 +83,7 @@ export default function AboutUs() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative scroll-mt-24 px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
     >
       <SectionIntro
         id="about-heading"

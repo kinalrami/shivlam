@@ -31,7 +31,7 @@ export default function Feedback() {
     <section
       id="clients"
       aria-labelledby="network-feedback-heading"
-      className="relative scroll-mt-24 px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
     >
       <SectionIntro
         id="network-feedback-heading"

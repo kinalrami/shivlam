@@ -41,7 +41,7 @@ export default function Services() {
     <section
       id="services"
       aria-labelledby="power-trio-heading"
-      className="relative scroll-mt-24 px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
     >
       <SectionIntro
         id="power-trio-heading"

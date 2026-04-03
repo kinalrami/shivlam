@@ -210,7 +210,7 @@ export default function WorkPortfolio() {
     <section
       id="work-portfolio"
       aria-labelledby="work-portfolio-heading"
-      className="relative scroll-mt-24 px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
     >
       <SectionIntro
         id="work-portfolio-heading"

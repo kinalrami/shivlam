@@ -56,7 +56,7 @@ export default function ContactFormSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative scroll-mt-24 pb-12 sm:pb-20 px-12"
+      className="relative scroll-mt-24 pb-12 sm:pb-20 px-5 sm:px-8 lg:px-12"
     >
       <div className="mx-auto grid w-full gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="flex flex-col justify-center">
