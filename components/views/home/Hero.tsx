@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <main className="relative z-10 min-h-0 flex-1">
       <section
-        className="flex max-w-225 flex-col justify-center font-sans md:min-h-[75vh] px-5 pt-8 pb-12 text-sm sm:min-h-[70vh] sm:px-8 sm:pt-10 sm:text-base lg:px-12"
+        className="flex max-w-225 min-h-96 flex-col justify-center px-5 pt-8 pb-12 font-sans text-sm sm:min-h-screen sm:px-8 sm:pt-10 sm:text-base lg:px-12"
       >
         {/* <div
           className="font-mono mb-6 flex items-center gap-3 text-xs font-medium uppercase text-sl-saffron"
@@ -13,7 +13,7 @@ export default function Hero() {
         </div> */}
 
         <h1
-          className="mb-6 max-w-225 font-sans text-[clamp(2rem,5vw,4.2rem)] font-light leading-[1.1] text-sl-text"
+          className="mb-6 max-w-225 font-sans text-4xl font-light leading-tight text-sl-text sm:text-5xl md:text-6xl lg:text-7xl"
         >
           Engineering the Future
           <br />
@@ -22,7 +22,7 @@ export default function Hero() {
           </span>
         </h1>
 
-        <p className="mb-10 max-w-135 font-sans font-light leading-[1.75] text-gray-400">
+        <p className="mb-10 max-w-135 font-sans font-light leading-relaxed text-gray-400">
           From high-performance AR solutions to scalable web ecosystems, we build the complex tech that moves industries forward.
         </p>
 

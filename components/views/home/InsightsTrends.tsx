@@ -218,8 +218,8 @@ export default function InsightsTrends() {
                 type="button"
                 className={
                   filter === key
-                    ? "relative cursor-pointer overflow-hidden rounded px-[18px] py-[7px] font-mono text-[10px] uppercase tracking-[0.14em] transition-[color,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border border-[#1a1e2e] bg-transparent text-[#2a3555] border-sl-saffron text-sl-saffron shadow-[0_0_16px_rgba(245,138,11,0.18),inset_0_0_0_1px_rgba(245,138,11,0.12)] before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-[rgba(245,138,11,0.08)] before:to-transparent before:opacity-100 before:content-['']"
-                    : "relative cursor-pointer overflow-hidden rounded px-[18px] py-[7px] font-mono text-[10px] uppercase tracking-[0.14em] transition-[color,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] border border-[#1a1e2e] bg-transparent text-[#2a3555] hover:border-[#2a3555] hover:text-[#3a4a6a] before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-[rgba(245,138,11,0.08)] before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
+                    ? "relative cursor-pointer overflow-hidden rounded border border-sl-saffron bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-sl-saffron shadow-md ring-2 ring-sl-saffron/20 transition-[color,box-shadow,border-color] duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-100 before:content-['']"
+                    : "relative cursor-pointer overflow-hidden rounded border border-slate-800 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-slate-600 transition-[color,box-shadow,border-color] duration-300 ease-out hover:border-slate-600 hover:text-slate-500 before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
                 }
                 onClick={() => setFilter(key)}
               >
@@ -227,7 +227,7 @@ export default function InsightsTrends() {
               </button>
             </Fragment>
           ))}
-          <span className="ml-auto font-mono text-[9px] uppercase tracking-[0.12em] text-gray-500">
+          <span className="ml-auto font-mono text-xs uppercase tracking-wider text-gray-500">
             {countLabel}
           </span>
         </div>
@@ -244,7 +244,7 @@ export default function InsightsTrends() {
             return (
               <div
                 key={p.id}
-                className="ins-card group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 shadow-none backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_18px_70px_rgba(0,0,0,0.55)] group-hover:border-white/20 motion-reduce:transition-opacity motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
+                className="ins-card group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 shadow-none backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20 motion-reduce:transition-opacity motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
                 data-cat={p.catKey}
                 data-idx={i}
                 role="button"
@@ -265,7 +265,7 @@ export default function InsightsTrends() {
                 >
                   <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/[0.07] blur-2xl" />
                 </div>
-                <div className="card-img-wrap relative z-[1] -mx-6 -mt-7 mb-5 h-[168px]">
+                <div className="card-img-wrap relative z-10 -mx-6 -mt-7 mb-5 h-42">
                   <div className="card-img-inner relative">
                     <img
                       src={thumbSrc}
@@ -282,7 +282,7 @@ export default function InsightsTrends() {
                     </div>
                   ) : null}
                 </div>
-                <div className="card-body relative z-[1]">
+                <div className="card-body relative z-10">
                   <div className="card-meta">
                     <div
                       className={
