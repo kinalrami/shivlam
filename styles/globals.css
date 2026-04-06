@@ -992,3 +992,146 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* Network feedback map — clients section (NetworkFeedbackMap.tsx) */
+.nf-root .nf-scan {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(245 138 11 / 0.1),
+    transparent
+  );
+  animation: nf-scan-line 9s linear infinite;
+}
+
+@keyframes nf-scan-line {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.nf-root .nf-node-pulse-wrap {
+  transform-origin: 0 0;
+  animation: nf-node-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes nf-node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.48);
+    opacity: 0.9;
+  }
+}
+
+.nf-root .nf-hq-pulse-wrap {
+  transform-origin: 0 0;
+  animation: nf-hq-pulse 1.85s ease-in-out infinite;
+}
+
+@keyframes nf-hq-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.32);
+    opacity: 1;
+  }
+}
+
+.nf-root .nf-tag-blink {
+  animation: nf-tag-blink 3s ease-in-out infinite;
+}
+
+@keyframes nf-tag-blink {
+  0%,
+  88%,
+  100% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 0.2;
+  }
+}
+
+.nf-root .nf-status-dot {
+  animation: nf-status-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nf-status-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-root .nf-scan,
+  .nf-root .nf-node-pulse-wrap,
+  .nf-root .nf-hq-pulse-wrap,
+  .nf-root .nf-tag-blink,
+  .nf-root .nf-status-dot {
+    animation: none;
+  }
+}
+
+/* CTA banner — Engineer CTA (CtaBanner.tsx) */
+.cta-root .cta-scan {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(245 138 11 / 0.1),
+    transparent
+  );
+  animation: cta-scan-line 10s linear infinite;
+}
+
+.cta-root .cta-scan-delayed {
+  animation-delay: -5s;
+  opacity: 0.5;
+}
+
+@keyframes cta-scan-line {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.cta-root .cta-hq-dot {
+  box-shadow: 0 0 8px var(--sl-saffron);
+  animation: cta-hq-dot-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes cta-hq-dot-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px var(--sl-saffron);
+  }
+  50% {
+    box-shadow:
+      0 0 22px var(--sl-saffron),
+      0 0 40px rgb(245 138 11 / 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-root .cta-scan,
+  .cta-root .cta-scan-delayed,
+  .cta-root .cta-hq-dot {
+    animation: none;
+  }
+}

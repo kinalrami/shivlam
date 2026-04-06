@@ -51,33 +51,67 @@ export function SectionIntro({
   title,
   lead,
   className,
+  align = "left",
 }: {
   id: string;
-  eyebrow: ReactNode;
+  eyebrow?: ReactNode;
   title?: ReactNode;
   lead: ReactNode;
   className?: string;
+  align?: "left" | "center";
 }) {
+  const isCenter = align === "center";
+
   return (
     <header className={["mb-8 space-y-4", className].filter(Boolean).join(" ")}>
-      <div className="flex items-center justify-between gap-4">
-        <h2
-          id={id}
-          className="font-label text-xs font-medium uppercase text-sl-saffron"
-        >
-          {eyebrow}
-        </h2>
-        <div
-          className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block"
-          aria-hidden
-        />
-      </div>
+      {eyebrow != null ? (
+        isCenter ? (
+          <div className="flex items-center justify-center gap-3">
+            <div
+              className="hidden h-px w-10 shrink-0 bg-linear-to-r from-transparent to-gray-800 sm:block"
+              aria-hidden
+            />
+            <h2
+              id={id}
+              className="font-label text-xs font-medium uppercase text-sl-saffron"
+            >
+              {eyebrow}
+            </h2>
+            <div
+              className="hidden h-px w-10 shrink-0 bg-linear-to-l from-transparent to-gray-800 sm:block"
+              aria-hidden
+            />
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-4">
+            <h2
+              id={id}
+              className="font-label text-xs font-medium uppercase text-sl-saffron"
+            >
+              {eyebrow}
+            </h2>
+            <div
+              className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block"
+              aria-hidden
+            />
+          </div>
+        )
+      ) : null}
       {title != null ? (
-        <h3 className="max-w-4xl font-sans text-[clamp(1.65rem,4vw,2.5rem)] font-extrabold leading-[1.12] tracking-tight text-sl-text">
+        <h3
+          className={[
+            "max-w-4xl font-sans text-[clamp(1.65rem,4vw,2.5rem)] font-extrabold leading-[1.12] tracking-tight text-sl-text",
+            isCenter ? "mx-auto text-center" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           {title}
         </h3>
       ) : null}
-      <SectionLead>{lead}</SectionLead>
+      <SectionLead className={isCenter ? "mx-auto text-center" : undefined}>
+        {lead}
+      </SectionLead>
     </header>
   );
 }

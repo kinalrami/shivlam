@@ -1,3 +1,4 @@
+import { SectionIntro } from "@/components/shared/section-chrome";
 import Link from "next/link";
 
 export default function Hero() {
@@ -11,7 +12,6 @@ export default function Hero() {
         >
           Spatial Computing Studio
         </div> */}
-
         <h1
           className="mb-6 max-w-225 font-sans text-4xl font-light leading-tight text-sl-text sm:text-5xl md:text-6xl lg:text-7xl"
         >

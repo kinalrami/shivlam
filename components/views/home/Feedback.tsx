@@ -1,37 +1,14 @@
 "use client";
 
 import { SectionIntro } from "@/components/shared/section-chrome";
-
-const CLIENT_CARDS = [
-  {
-    tag: "[ VERIFIED PARTNER ]",
-    client: "TechNexus Solutions",
-    quote:
-      "Shivlam didn't just build an app; they engineered a scalable ecosystem. Their expertise in Complex Architecture transformed our delivery pipeline.",
-    metric: "+140% Performance Increase",
-  },
-  {
-    tag: "[ SYSTEM INTEGRATED ]",
-    client: "UrbanBuild AR",
-    quote:
-      "The integration of AR and BIM data was flawless. Shivlam's ability to overlay complex dreams onto clean code is unmatched in the industry.",
-    metric: "40% Reduction in On-site Errors",
-  },
-  {
-    tag: "[ NODE ACTIVE ]",
-    client: "Global Retail Dynamics",
-    quote:
-      "From Full-Stack Web Dev to a complete Brand Reboot, the speed of execution was incredible. They ship faster than any team we've worked with.",
-    metric: "2M+ Active Users Onboarded",
-  },
-] as const;
+import NetworkFeedbackMap from "@/components/views/home/NetworkFeedbackMap";
 
 export default function Feedback() {
   return (
     <section
       id="clients"
       aria-labelledby="network-feedback-heading"
-      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 px-5 pb-12 sm:px-8 md:pb-20 lg:px-12"
     >
       <SectionIntro
         id="network-feedback-heading"
@@ -39,57 +16,18 @@ export default function Feedback() {
         lead="Our Client's are Celebrating Success with Sharing Joy."
       />
 
-      <div className="grid gap-5 lg:grid-cols-3">
-        {CLIENT_CARDS.map((card) => (
-          <article
-            key={card.client}
-            className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20"
-          >
-            <div
-              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-              style={{
-                boxShadow:
-                  "0 0 0 2px color-mix(in srgb, var(--sl-saffron) 95%, transparent), 0 0 38px color-mix(in srgb, var(--sl-saffron) 45%, transparent), 0 0 130px color-mix(in srgb, var(--sl-saffron) 22%, transparent)",
-              }}
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-60 mask-[radial-gradient(70%_50%_at_50%_0%,black,transparent)]"
-              aria-hidden
-            >
-              <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/10 blur-2xl" />
-            </div>
-
-            <div className="relative flex items-start justify-between gap-3">
-              <p className="inline-flex max-w-sm rounded border border-sl-cyan/30 bg-sl-cyan/5 px-2 py-1 font-mono text-xs font-medium uppercase tracking-widest text-sl-cyan">
-                {card.tag}
-              </p>
-            </div>
-
-            <h3 className="relative mt-5 font-sans text-lg font-bold leading-snug tracking-tight text-white sm:text-xl">
-              {card.client}
-            </h3>
-            <p className="relative mt-4 flex-1 border-l-2 border-sl-saffron/80 pl-3 font-mono text-xs leading-relaxed text-gray-300 sm:text-sm">
-              &ldquo;{card.quote}&rdquo;
-            </p>
-
-            <div className="relative mt-6 flex items-center gap-2 font-mono text-xs font-medium tracking-wide text-sl-saffron sm:text-sm">
-              <span className="text-xs text-sl-text opacity-80" aria-hidden>
-                ▶
-              </span>
-              {card.metric}
-            </div>
-
-            <div
-              className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-              style={{
-                boxShadow:
-                  "0 0 0 2px color-mix(in srgb, var(--sl-saffron) 85%, transparent), 0 0 48px color-mix(in srgb, var(--sl-saffron) 18%, transparent)",
-              }}
-              aria-hidden
-            />
-          </article>
-        ))}
+      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-2xl backdrop-blur-2xl transition-[border-color,box-shadow] duration-200 hover:border-white/15">
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+          style={{
+            boxShadow:
+              "0 0 0 2px color-mix(in srgb, var(--sl-saffron) 85%, transparent), 0 0 48px color-mix(in srgb, var(--sl-saffron) 18%, transparent)",
+          }}
+          aria-hidden
+        />
+        <div className="relative p-1 sm:p-1.5">
+          <NetworkFeedbackMap />
+        </div>
       </div>
     </section>
   );
