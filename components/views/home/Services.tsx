@@ -2,7 +2,7 @@
 
 import { SectionIntro } from "@/components/shared/section-chrome";
 import Link from "next/link";
-import { Code2, Globe, Sparkles } from "lucide-react";
+import { Code2, Gamepad2, Globe, Sparkles } from "lucide-react";
 
 type Service = {
   title: string;
@@ -34,6 +34,14 @@ const services: Service[] = [
     href: "/",
     meta: "Design • Motion • Story",
   },
+  {
+    title: "Game Development",
+    description:
+      "Unity based game development for the PC, mobile device and AR.",
+    icon: <Gamepad2 className="size-5" aria-hidden />,
+    href: "/",
+    meta: "Unity • PC • Mobile • AR",
+  },
 ];
 
 export default function Services() {
@@ -46,10 +54,10 @@ export default function Services() {
       <SectionIntro
         id="power-trio-heading"
         eyebrow="Services"
-        lead="Quick navigation to the three core pillars we ship best."
+        lead="Quick navigation to the core pillars we ship best."
       />
 
-      <div className="grid gap-5 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {services.map((service) => (
           <ServiceCard key={service.title} service={service} />
         ))}
