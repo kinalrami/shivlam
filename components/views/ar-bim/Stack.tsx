@@ -25,8 +25,8 @@ export default function Stack({ stackCvRef }: Props) {
   ] as const;
 
   return (
-    <section id="arbim-stack" className="scroll-mt-14 bg-[#060606] py-24 md:py-28">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-12">
+    <section id="arbim-stack" className="scroll-mt-14 bg-[#060606] py-12 md:py-20">
+      <div className="mx-auto max-w-325 px-5 md:px-12">
         <ArbimReveal delayStep={1}>
           <div className="mb-3.5 flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
             <span className="h-0.5 w-5 bg-orange-400" aria-hidden />
@@ -35,7 +35,7 @@ export default function Stack({ stackCvRef }: Props) {
         </ArbimReveal>
 
         <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] md:mb-[52px]">
+          <h2 className="mb-12 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] md:mb-13">
             <span className="text-white">
               Scalable Tech Services <br />
               <span className="text-orange-400">for Bharat</span>
@@ -43,7 +43,7 @@ export default function Stack({ stackCvRef }: Props) {
           </h2>
         </ArbimReveal>
 
-        <div className="grid items-start gap-16 md:grid-cols-2 md:gap-[72px]">
+        <div className="grid items-start gap-16 md:grid-cols-2 md:gap-18">
           <ArbimReveal delayStep={3}>
             <div className="flex flex-col">
               {points.map((p) => (
@@ -51,7 +51,7 @@ export default function Stack({ stackCvRef }: Props) {
                   key={p.text}
                   className="flex items-center gap-4 border-b border-white/5 py-5 last:border-b-0"
                 >
-                  <div className="min-w-[5rem] font-sans text-[32px] leading-none font-extrabold text-orange-400">
+                  <div className="min-w-20 font-sans text-[32px] leading-none font-extrabold text-orange-400">
                     {p.value}
                   </div>
                   <p className="text-sm leading-snug text-white/55">{p.text}</p>
@@ -72,7 +72,7 @@ export default function Stack({ stackCvRef }: Props) {
                   <span
                     key={pill}
                     data-arbim-cursor
-                    className="cursor-default rounded-md border border-white/10 bg-white/[0.03] px-5 py-2.5 font-mono text-[11px] tracking-[0.1em] text-white/70 transition-[border-color,color,background,transform] hover:-translate-y-0.5 hover:border-orange-400/50 hover:bg-orange-400/[0.05] hover:text-orange-400"
+                    className="cursor-default rounded-md border border-white/10 bg-white/3 px-5 py-2.5 font-mono text-[11px] tracking-widest text-white/70 transition-[border-color,color,background,transform] hover:-translate-y-0.5 hover:border-orange-400/50 hover:bg-orange-400/5 hover:text-orange-400"
                   >
                     <span className="mr-1.5 inline-block size-1.5 rounded-full bg-orange-400/70" />
                     {pill}
@@ -83,7 +83,7 @@ export default function Stack({ stackCvRef }: Props) {
             <canvas
               id="arbim-stack-cv"
               ref={stackCvRef}
-              className="block h-[260px] w-full rounded-[10px] border border-[#1b3055]/55 bg-[#0d1d38]/90"
+              className="block h-65 w-full rounded-[10px] border border-[#1b3055]/55 bg-[#0d1d38]/90"
             />
           </div>
         </div>

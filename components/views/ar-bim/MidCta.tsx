@@ -16,12 +16,12 @@ export default function MidCta({ midCvRef }: Props) {
   return (
     <section
       id="arbim-mid-cta"
-      className="relative scroll-mt-14 overflow-hidden bg-[#060606] py-20 md:py-[88px]"
+      className="relative scroll-mt-14 overflow-hidden bg-[#060606] py-12 md:py-20"
     >
       <canvas className="absolute inset-0 z-0 h-full w-full" id="arbim-mid-cv" ref={midCvRef} />
-      <div className="relative z-[5] mx-auto max-w-[800px] px-5 text-center md:px-12">
+      <div className="relative z-5 mx-auto max-w-200 px-5 text-center md:px-12">
         <ArbimReveal delayStep={1}>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-orange-400/30 bg-orange-400/[0.06] px-3.5 py-1.5 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-orange-400/30 bg-orange-400/6 px-3.5 py-1.5 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
             <span
               className="size-1.5 rounded-full bg-orange-400 animate-[arbim-landing-bpulse_1.8s_ease-in-out_infinite]"
               aria-hidden
@@ -31,7 +31,7 @@ export default function MidCta({ midCvRef }: Props) {
         </ArbimReveal>
 
         <ArbimReveal delayStep={2}>
-          <h2 className="mb-4 font-sans text-[clamp(1.625rem,3.5vw,3rem)] leading-tight font-extrabold tracking-[-0.03em] text-white md:mb-[18px]">
+          <h2 className="mb-4 font-sans text-2xl md:text-5xl leading-tight font-bold text-white md:mb-4.5">
             Overlay Your Dream
             <br />
             above your code,
@@ -42,11 +42,11 @@ export default function MidCta({ midCvRef }: Props) {
 
         <ArbimReveal delayStep={3}>
           <div className="mb-9 flex items-center justify-center gap-4">
-            <span className="h-px max-w-[120px] flex-1 bg-gradient-to-r from-transparent to-orange-400/30" />
+            <span className="h-px max-w-30 flex-1 bg-linear-to-r from-transparent to-orange-400/30" />
             <span className="flex size-8 items-center justify-center rounded-full border border-orange-400/30">
               <Phone className="size-3.5 stroke-orange-400 stroke-2" aria-hidden />
             </span>
-            <span className="h-px max-w-[120px] flex-1 bg-gradient-to-l from-transparent to-orange-400/30" />
+            <span className="h-px max-w-30 flex-1 bg-linear-to-l from-transparent to-orange-400/30" />
           </div>
         </ArbimReveal>
 
@@ -78,7 +78,7 @@ export default function MidCta({ midCvRef }: Props) {
             href="https://deltaarbim.tech/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-md border-[1.5px] border-white/30 bg-transparent px-6 py-3.5 text-xs font-semibold tracking-[0.08em] text-white uppercase transition-[border-color,background,transform] hover:-translate-y-0.5 hover:border-orange-400 hover:bg-orange-400/[0.08]"
+            className="inline-block rounded-md border-[1.5px] border-white/30 bg-transparent px-6 py-3.5 text-xs font-semibold tracking-[0.08em] text-white uppercase transition-[border-color,background,transform] hover:-translate-y-0.5 hover:border-orange-400 hover:bg-orange-400/8"
           >
             View Deltaarbim
           </a>

@@ -25,9 +25,9 @@ export default function Hero({ heroBgRef, heroArRef }: Props) {
       <canvas
         id="arbim-hero-canvas"
         ref={heroBgRef}
-        className="absolute inset-0 z-[1] h-full w-full"
+        className="absolute inset-0 z-1 h-full w-full"
       />
-      <div className="relative z-10 mx-auto grid max-w-[1200px] items-center gap-16 px-5 pt-[clamp(4.5rem,10vh,6.5rem)] pb-16 md:grid-cols-2 md:gap-16 md:px-12">
+      <div className="relative z-10 mx-auto grid max-w-325 items-center gap-16 px-5 pt-[clamp(4.5rem,10vh,6.5rem)] pb-16 md:grid-cols-2 md:gap-16 md:px-12">
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-orange-400/35 bg-orange-400/[0.07] px-3 py-1.5 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
             <span
@@ -40,7 +40,7 @@ export default function Hero({ heroBgRef, heroArRef }: Props) {
             Engineering the <span className="text-orange-400">future of </span>AR BIM
             Development.
           </h1>
-          <p className="mb-9 max-w-[460px] text-[15px] leading-[1.78] font-light text-white/48">
+          <p className="mb-9 max-w-115 text-[15px] leading-[1.78] font-light text-white/48">
             Digitizing physical sites into actionable IFC and Revit data with iOS LiDAR
             precision.
           </p>

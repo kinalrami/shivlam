@@ -6,7 +6,7 @@ type Props = {
 
 export default function Marquee({ items }: Props) {
   return (
-    <div className="overflow-hidden border-t-[2px] border-orange-400 bg-[#060606] py-3">
+    <div className="overflow-hidden border-t-2 border-orange-400 bg-[#060606] py-3">
       <div className="flex w-max animate-[arbim-dev-marquee_24s_linear_infinite]">
         {items.map((t, i) => (
           <div

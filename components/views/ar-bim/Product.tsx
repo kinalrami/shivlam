@@ -1,15 +1,10 @@
 "use client";
 
-import type { RefObject } from "react";
 import Image from "next/image";
 import { CircleCheckBig, MoveRight, TrendingUp } from "lucide-react";
 import { ArbimReveal } from "./Motion";
 
-type Props = {
-  productCvRef: RefObject<HTMLCanvasElement | null>;
-};
-
-export default function Product({ productCvRef }: Props) {
+export default function Product() {
   const results = [
     {
       title: "Detect clashes",
@@ -30,9 +25,9 @@ export default function Product({ productCvRef }: Props) {
   return (
     <section
       id="arbim-product"
-      className="scroll-mt-14 overflow-hidden bg-[#060606] py-24 md:py-28"
+      className="scroll-mt-14 overflow-hidden bg-[#060606] py-12 md:py-20"
     >
-      <div className="mx-auto max-w-[1200px] px-5 md:px-12">
+      <div className="mx-auto max-w-325 px-5 md:px-12">
         <ArbimReveal delayStep={1}>
           <div className="mb-3.5 flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
             <span className="h-0.5 w-5 bg-orange-400" aria-hidden />
@@ -40,17 +35,17 @@ export default function Product({ productCvRef }: Props) {
           </div>
         </ArbimReveal>
         <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] text-[var(--sl-text)] md:mb-[52px]">
+          <h2 className="mb-12 font-sans text-4xl leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-13">
             DeltaARBIM:
             <br />
             <em className="text-orange-400 not-italic">One of the Best Products We Built.</em>
           </h2>
         </ArbimReveal>
 
-        <div className="grid items-center gap-16 md:grid-cols-2 md:gap-[72px]">
+        <div className="grid items-center gap-16 md:grid-cols-2 md:gap-18">
           <div>
             <ArbimReveal delayStep={3}>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-sm border border-orange-400/35 bg-orange-400/[0.06] px-3 py-1 font-mono text-[8.5px] tracking-[0.18em] text-orange-400 uppercase">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-sm border border-orange-400/35 bg-orange-400/6 px-3 py-1 font-mono text-[8.5px] tracking-[0.18em] text-orange-400 uppercase">
                 <span
                   className="size-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#22c55e] animate-[arbim-landing-bpulse_1.4s_ease-in-out_infinite]"
                   aria-hidden
@@ -60,7 +55,7 @@ export default function Product({ productCvRef }: Props) {
             </ArbimReveal>
 
             <ArbimReveal delayStep={3}>
-              <p className="mb-7 text-sm leading-[1.82] text-[var(--sl-text)]/82">
+              <p className="mb-7 text-sm leading-[1.82] text-sl-text/82">
                 An AI-powered BIM viewer that overlays live 3D building models — including structure,
                 walls, and MEP pipes — directly onto real construction sites through your device
                 camera.
@@ -86,10 +81,10 @@ export default function Product({ productCvRef }: Props) {
                       )}
                     </div>
                     <div>
-                      <div className="mb-0.5 font-sans text-sm font-bold text-[var(--sl-text)]">
+                      <div className="mb-0.5 font-sans text-sm font-bold text-sl-text">
                         {r.title}
                       </div>
-                      <p className="text-xs leading-snug text-[var(--sl-muted)]">{r.body}</p>
+                      <p className="text-xs leading-snug text-sl-muted">{r.body}</p>
                     </div>
                   </div>
                 ))}
@@ -102,23 +97,47 @@ export default function Product({ productCvRef }: Props) {
                 href="https://deltaarbim.tech"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-md border border-[#1b3055]/55 px-5 py-2.5 font-mono text-[10px] tracking-[0.16em] text-[var(--sl-text)] uppercase transition-all duration-300 hover:border-orange-400 hover:text-orange-400 hover:shadow-[0_0_16px_rgb(245_138_11/0.15)]"
+                className="group inline-flex items-center gap-2 rounded-md border border-[#1b3055]/55 px-5 py-2.5 font-mono text-[10px] tracking-[0.16em] text-sl-text uppercase transition-all duration-300 hover:border-orange-400 hover:text-orange-400 hover:shadow-[0_0_16px_rgb(245_138_11/0.15)]"
               >
                 explore deltaarbim.tech <MoveRight/>
               </a>
             </ArbimReveal>
           </div>  
 
-          <ArbimReveal delayStep={3} className="relative">
-            <div className="overflow-hidden rounded-xl border border-[#1b3055]/60 bg-[#060606] shadow-[0_16px_52px_rgb(0_0_0/0.35)] ring-1 ring-cyan-400/10">
-              <canvas id="arbim-product-cv" ref={productCvRef} className="block h-[360px] w-full" />
-            </div>
+          <ArbimReveal delayStep={3} className="relative min-w-0">
+            <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-[#1b3055]/60 bg-[#060606] shadow-[0_16px_52px_rgb(0_0_0/0.35)] ring-1 ring-cyan-400/10">
+              <div className="relative aspect-16/10 w-full min-h-65 overflow-hidden bg-[#040e1e] max-md:min-h-70">
+                <Image
+                  src="/delta-full.jpeg"
+                  alt="DeltaARBIM product preview"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority={false}
+                />
 
-            <div className="pointer-events-none absolute -top-4 -right-4 hidden flex-col gap-2 md:flex">
+                <div className="pointer-events-none absolute bottom-3 left-3">
+                  <div className="flex items-center gap-2 rounded-full border border-[#1b3055]/45 bg-[#0a0f18]/92 px-3 py-1 font-mono text-[8px] tracking-[0.14em] text-sl-muted uppercase">
+                    <Image
+                      src="/delta-logo.png"
+                      alt=""
+                      width={72}
+                      height={20}
+                      className="h-4.5 w-auto opacity-75"
+                      unoptimized
+                    />
+                    built by Shivlam
+                  </div>
+                </div>
+              </div>
+            </div>
+            </ArbimReveal>
+
+            {/* <div className="pointer-events-none absolute -top-4 -right-4 z-10 hidden flex-col items-end gap-2 md:flex">
               {chips.map((c, i) => (
                 <div
                   key={c}
-                  className="font-mono text-[8px] tracking-[0.1em] whitespace-nowrap rounded-md border border-orange-400/30 bg-[#0d1d38]/90 px-3 py-1.5 text-orange-400 shadow-[0_4px_14px_rgb(0_0_0/0.3)]"
+                  className="font-mono text-[8px] tracking-widest whitespace-nowrap rounded-md border border-orange-400/30 bg-[#0d1d38]/90 px-3 py-1.5 text-orange-400 shadow-[0_4px_14px_rgb(0_0_0/0.3)]"
                   style={{
                     animation: `arbim-landing-chip-float 3s ease-in-out infinite`,
                     animationDelay: `${i * 0.9}s`,
@@ -127,22 +146,21 @@ export default function Product({ productCvRef }: Props) {
                   {c}
                 </div>
               ))}
-            </div>
+            </div> */}
 
-            <div className="absolute -bottom-3.5 left-0 right-0 flex justify-center">
-              <div className="flex items-center gap-2 rounded-full border border-[#1b3055]/45 bg-[#0a0f18]/95 px-3.5 py-1 font-mono text-[8px] tracking-[0.14em] text-[var(--sl-muted)] uppercase">
+            {/* <div className="pointer-events-none absolute -bottom-3.5 left-0 right-0 z-10 flex justify-center px-2">
+              <div className="flex items-center gap-2 rounded-full border border-[#1b3055]/45 bg-[#0a0f18]/95 px-3.5 py-1 font-mono text-[8px] tracking-[0.14em] text-sl-muted uppercase">
                 <Image
-                  src="/logo.svg"
+                  src="/delta-logo.png"
                   alt=""
                   width={72}
                   height={20}
-                  className="h-[18px] w-auto opacity-70"
+                  className="h-4.5 w-auto opacity-70"
                   unoptimized
                 />
                 built by Shivlam
               </div>
-            </div>
-          </ArbimReveal>
+            </div> */}
         </div>
       </div>
     </section>

@@ -3,9 +3,9 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <main className="relative z-10 flex-1">
-      <section
-        className="flex max-w-225 w-full flex-col items-start justify-start px-5 pt-8 pb-8 font-sans text-sm sm:px-8 sm:pt-12 sm:pb-20 sm:text-base lg:px-12"
-      >
+      <section className="font-sans text-sm sm:text-base">
+        <div className="mx-auto flex w-full max-w-325 flex-col items-start justify-start px-5 pt-8 pb-8 sm:pt-12 sm:pb-20 md:px-12">
+          <div className="flex max-w-225 w-full flex-col items-start justify-start">
         {/* <div
           className="font-mono mb-6 flex items-center gap-3 text-xs font-medium uppercase text-sl-saffron"
         >
@@ -39,6 +39,8 @@ export default function Hero() {
           >
             ↓ Explore services
           </Link> */}
+        </div>
+          </div>
         </div>
       </section>
     </main>

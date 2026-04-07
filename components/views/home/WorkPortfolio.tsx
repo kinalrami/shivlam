@@ -6,6 +6,7 @@ import {
   SectionIntro,
 } from "@/components/shared/section-chrome";
 import { portfolioThumbSrc } from "@/lib/illustration-src";
+import Image from "next/image";
 import {
   Fragment,
   useCallback,
@@ -113,10 +114,13 @@ function PortfolioThumb({
   className?: string;
 }) {
   return (
-    <img
+    <Image
       src={portfolioThumbSrc(project.svgPattern, project.accent)}
       alt=""
-      className={className ?? "absolute inset-0 size-full object-cover"}
+      fill
+      unoptimized
+      sizes="100vw"
+      className={className ?? "object-cover"}
     />
   );
 }
@@ -210,8 +214,9 @@ export default function WorkPortfolio() {
     <section
       id="work-portfolio"
       aria-labelledby="work-portfolio-heading"
-      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 pb-12 md:pb-20"
     >
+      <div className="mx-auto max-w-325 px-5 md:px-12">
       <SectionIntro
         id="work-portfolio-heading"
         eyebrow="Work portfolio"
@@ -376,7 +381,7 @@ export default function WorkPortfolio() {
                       className="pointer-events-none absolute left-0 right-0 -top-0.5 z-50 h-0.5 bg-linear-to-r from-transparent via-sl-saffron to-sl-cyan opacity-0 shadow-lg shadow-amber-500/30"
                       aria-hidden
                     />
-                    <div className="pointer-events-none absolute left-3 top-2.5 z-[4] rounded border-l border-sl-cyan/30 bg-[rgba(6,8,16,0.6)] px-2 py-1.5 font-mono text-[8px] leading-[1.7] tracking-[0.06em] text-sl-cyan/55">
+                    <div className="pointer-events-none absolute left-3 top-2.5 z-4 rounded border-l border-sl-cyan/30 bg-[rgba(6,8,16,0.6)] px-2 py-1.5 font-mono text-[8px] leading-[1.7] tracking-[0.06em] text-sl-cyan/55">
                       PROJECT_ID: {p.id}
                       <br />
                       STATUS: {p.status}
@@ -435,10 +440,11 @@ export default function WorkPortfolio() {
             );
           })}
         </div>
+      </div>
 
       <div
         role="presentation"
-        className={`fixed inset-0 z-[1000] flex items-center justify-center bg-[rgba(4,6,12,0.95)] backdrop-blur-md transition-opacity duration-[400ms] ${
+        className={`fixed inset-0 z-1000 flex items-center justify-center bg-[rgba(4,6,12,0.95)] backdrop-blur-md transition-opacity duration-400 ${
           expanded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={(e) => {
@@ -473,7 +479,7 @@ export default function WorkPortfolio() {
               >
                 {expanded.title}
               </h3>
-              <div className="relative mb-5 h-[200px] w-full overflow-hidden rounded-lg">
+              <div className="relative mb-5 h-50 w-full overflow-hidden rounded-lg">
                 <PortfolioThumb project={expanded} className="size-full object-cover" />
               </div>
               <p className="mb-5 font-mono text-sm leading-relaxed text-slate-500">
@@ -505,7 +511,7 @@ export default function WorkPortfolio() {
                 {expanded.stack.map((s) => (
                   <span
                     key={s}
-                    className="rounded border border-sl-saffron/20 px-[7px] py-0.5 font-mono text-[8.5px] uppercase tracking-[0.1em] text-sl-saffron/50"
+                    className="rounded border border-sl-saffron/20 px-1.75 py-0.5 font-mono text-[8.5px] uppercase tracking-widest text-sl-saffron/50"
                   >
                     {s}
                   </span>
