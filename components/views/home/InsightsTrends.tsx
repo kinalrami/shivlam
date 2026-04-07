@@ -6,6 +6,7 @@ import {
   FilterRailSeparator,
   SectionIntro,
 } from "@/components/shared/section-chrome";
+import Image from "next/image";
 import {
   Fragment,
   useEffect,
@@ -201,8 +202,9 @@ export default function InsightsTrends() {
     <section
       id="insights-trends"
       aria-labelledby="insights-heading"
-      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 pb-12 md:pb-20"
     >
+      <div className="mx-auto max-w-325 px-5 md:px-12">
       <SectionIntro
         id="insights-heading"
         eyebrow="Insights & trends"
@@ -267,10 +269,13 @@ export default function InsightsTrends() {
                 </div>
                 <div className="card-img-wrap relative z-10 -mx-6 -mt-7 mb-5 h-42">
                   <div className="card-img-inner relative">
-                    <img
+                    <Image
                       src={thumbSrc}
                       alt=""
-                      className="absolute inset-0 size-full object-cover"
+                      fill
+                      unoptimized
+                      sizes="100vw"
+                      className="object-cover"
                     />
                   </div>
                   <div className="card-grain" aria-hidden />
@@ -313,6 +318,7 @@ export default function InsightsTrends() {
             );
           })}
         </div>
+      </div>
       </div>
     </section>
   );

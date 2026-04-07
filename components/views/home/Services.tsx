@@ -49,8 +49,9 @@ export default function Services() {
     <section
       id="services"
       aria-labelledby="power-trio-heading"
-      className="relative scroll-mt-24 px-5 sm:px-8 lg:px-12 pb-12 md:pb-20"
+      className="relative scroll-mt-24 pb-12 md:pb-20"
     >
+      <div className="mx-auto max-w-325 px-5 md:px-12">
       <SectionIntro
         id="power-trio-heading"
         eyebrow="Services"
@@ -61,6 +62,7 @@ export default function Services() {
         {services.map((service) => (
           <ServiceCard key={service.title} service={service} />
         ))}
+      </div>
       </div>
     </section>
   );

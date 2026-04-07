@@ -6,7 +6,6 @@ import {
   attachHeroArCanvas,
   attachHeroBgParticles,
   attachMidCtaParticles,
-  attachProductCanvas,
   attachSpecCanvas,
   attachStackCanvas,
 } from "./landingCanvas";
@@ -25,7 +24,6 @@ export default function Landing() {
 
   const heroBgRef = useRef<HTMLCanvasElement>(null);
   const heroArRef = useRef<HTMLCanvasElement>(null);
-  const productCvRef = useRef<HTMLCanvasElement>(null);
   const midCvRef = useRef<HTMLCanvasElement>(null);
   const specCvRef = useRef<HTMLCanvasElement>(null);
   const stackCvRef = useRef<HTMLCanvasElement>(null);
@@ -104,16 +102,6 @@ export default function Landing() {
     return attachHeroArCanvas(c);
   }, []);
   useEffect(() => {
-    const c = productCvRef.current;
-    const probe = monoProbeRef.current;
-    if (!c) return;
-    const fontStack =
-      probe && typeof getComputedStyle !== "undefined"
-        ? getComputedStyle(probe).fontFamily
-        : "ui-monospace, monospace";
-    return attachProductCanvas(c, fontStack);
-  }, []);
-  useEffect(() => {
     const c = midCvRef.current;
     if (!c) return;
     return attachMidCtaParticles(c);
@@ -137,11 +125,11 @@ export default function Landing() {
   return (
     <div
       ref={rootRef}
-      className="cursor-none overflow-x-hidden bg-[#060606] font-sans text-[var(--sl-text)] antialiased selection:bg-orange-400/30"
+      className="cursor-none overflow-x-hidden bg-[#060606] font-sans text-sl-text antialiased selection:bg-orange-400/30"
     >
       <span
         ref={monoProbeRef}
-        className="font-mono pointer-events-none absolute -left-[9999px] top-0 opacity-0"
+        className="font-mono pointer-events-none absolute -left-2499.75 top-0 opacity-0"
         aria-hidden
       >
         probe
@@ -150,19 +138,19 @@ export default function Landing() {
       <div
         id="arbim-cr"
         ref={crRef}
-        className="pointer-events-none fixed z-[9999] size-[30px] rounded-full border-[1.5px] border-[#00d4cc]/55 opacity-55 transition-[width,height,border-color,opacity] duration-150"
+        className="pointer-events-none fixed z-9999 size-7.5 rounded-full border-[1.5px] border-[#00d4cc]/55 opacity-55 transition-[width,height,border-color,opacity] duration-150"
         style={{ transform: "translate(-50%, -50%)" }}
       />
       <div
         id="arbim-cd"
         ref={cdRef}
-        className="pointer-events-none fixed z-[9999] size-[5px] rounded-full bg-orange-400"
+        className="pointer-events-none fixed z-9999 size-1.25 rounded-full bg-orange-400"
         style={{ transform: "translate(-50%, -50%)" }}
       />
 
       <Hero heroBgRef={heroBgRef} heroArRef={heroArRef} />
       <Marquee items={mqTrack} />
-      <Product productCvRef={productCvRef} />
+      <Product />
       <MidCta midCvRef={midCvRef} />
       <Spec specCvRef={specCvRef} />
       <Stack stackCvRef={stackCvRef} />

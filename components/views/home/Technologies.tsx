@@ -72,7 +72,8 @@ export default function Technologies({
   );
 
   return (
-    <section aria-label="Tech Stack" className="px-5 sm:px-8 lg:px-12 pb-12 md:pb-20">
+    <section aria-label="Tech Stack" className="pb-12 md:pb-20">
+      <div className="mx-auto max-w-325 px-5 md:px-12">
       <div className="mb-4 flex items-center justify-between gap-4">
         <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
           Tech Stack
@@ -118,6 +119,7 @@ export default function Technologies({
             ))}
           </div>
         </motion.div>
+      </div>
       </div>
     </section>
   );
