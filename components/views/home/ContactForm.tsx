@@ -56,9 +56,10 @@ export default function ContactFormSection() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="relative scroll-mt-24 pb-12 sm:pb-20 px-5 sm:px-8 lg:px-12"
+      className="relative scroll-mt-24 pb-12 sm:pb-20"
     >
-      <div className="mx-auto grid w-full gap-10 lg:grid-cols-2 lg:gap-14">
+      <div className="mx-auto max-w-325 px-5 md:px-12">
+      <div className="grid w-full gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="flex flex-col justify-center">
           <p className="font-mono mb-4 text-xs font-medium uppercase text-sl-saffron">
             Let’s Construct!
@@ -164,18 +165,19 @@ export default function ContactFormSection() {
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-sans text-sm text-gray-500">
+              <p className="font-sans text-sm text-gray-500 max-w-xs">
                 By submitting, you agree to be contacted about your request.
               </p>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-xl border border-sl-saffron bg-transparent px-6 py-3 font-mono text-sm font-bold text-sl-saffron transition-[filter,transform] hover:brightness-110 active:translate-y-px"
+                className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-xl border border-sl-saffron bg-transparent px-6 py-3 font-mono text-sm font-bold text-sl-saffron transition-[filter,transform] hover:brightness-110 active:translate-y-px"
               >
                 Send message
               </button>
             </div>
           </form>
         </div>
+      </div>
       </div>
     </section>
   );

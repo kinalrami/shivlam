@@ -305,11 +305,11 @@ export default function NetworkFeedbackMap() {
         {!reduceMotion ? (
           <>
             <div
-              className="nf-scan pointer-events-none absolute inset-x-0 z-[3] h-px"
+              className="nf-scan pointer-events-none absolute inset-x-0 z-3 h-px"
               aria-hidden
             />
             <div
-              className="nf-scan pointer-events-none absolute inset-x-0 z-[3] h-px opacity-50"
+              className="nf-scan pointer-events-none absolute inset-x-0 z-3 h-px opacity-50"
               style={{ animationDelay: "-3s" }}
               aria-hidden
             />
@@ -495,7 +495,7 @@ export default function NetworkFeedbackMap() {
         <div
           ref={cardRef}
           className={[
-            "absolute z-40 w-[210px] rounded-[9px] border border-sl-cyan/30 bg-[rgb(7_10_20/0.96)] p-3 pb-3.5 shadow-[0_0_24px_rgb(0_212_204/0.08),0_8px_32px_rgb(0_0_0/0.7)] backdrop-blur-xl transition-[opacity,transform] duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+            "absolute z-40 w-52.5 rounded-[9px] border border-sl-cyan/30 bg-[rgb(7_10_20/0.96)] p-3 pb-3.5 shadow-[0_0_24px_rgb(0_212_204/0.08),0_8px_32px_rgb(0_0_0/0.7)] backdrop-blur-xl transition-[opacity,transform] duration-450 ease-[cubic-bezier(0.16,1,0.3,1)]",
             cardShow && client != null
               ? "translate-y-0 scale-100 opacity-100"
               : "pointer-events-none translate-y-1.5 scale-90 opacity-0",
@@ -531,14 +531,14 @@ export default function NetworkFeedbackMap() {
       </div>
 
       <div
-        className="flex items-center justify-center gap-[7px] py-2.5 pb-5 sm:pb-6"
+        className="flex items-center justify-center gap-1.75 py-2.5 pb-5 sm:pb-6"
         aria-hidden
       >
         {CLIENTS.map((_, i) => (
           <span
             key={i}
             className={[
-              "h-[5px] w-[5px] rounded-full transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+              "h-1.25 w-1.25 rounded-full transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]",
               currentIndex >= 0 && i === currentIndex
                 ? "scale-[1.4] bg-sl-saffron shadow-[0_0_8px_var(--sl-saffron)]"
                 : "bg-[#1a2030]",

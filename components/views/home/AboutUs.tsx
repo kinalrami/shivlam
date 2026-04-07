@@ -99,7 +99,7 @@ export default function AboutUs() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative scroll-mt-24 overflow-x-clip px-5 pb-12 pt-12 text-left sm:px-8 md:pb-20 lg:px-12"
+      className="relative scroll-mt-24 overflow-x-clip pb-12 pt-12 text-left md:pb-20"
     >
       <div className="relative w-full">
         <div
@@ -107,6 +107,7 @@ export default function AboutUs() {
           aria-hidden
         />
 
+        <div className="mx-auto max-w-325 px-5 md:px-12">
         {/* <div className="relative z-2 w-full max-w-240"> */}
           <div className="w-full text-left">
             <SectionIntro
@@ -194,7 +195,7 @@ export default function AboutUs() {
           </div>
 
         <div
-          className="relative left-1/2 box-border w-screen max-w-[93vw] -translate-x-1/2"
+          className="relative w-full"
           aria-label="Delta-ARBIM interactive preview"
         >
           <div className="mb-9 grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
@@ -246,11 +247,11 @@ export default function AboutUs() {
                       ALIGN SCORE
                     </div>
                   </div>
-                  <div className="min-w-0 flex-1 border-r border-white/[0.06] px-2.5 py-2.5 text-center last:border-r-0">
+                  <div className="min-w-0 flex-1 border-r border-white/6 px-2.5 py-2.5 text-center last:border-r-0">
                     <div className="mb-0.5 font-mono text-[13px] font-medium leading-none text-[#1dcfcf]">
                       1.1ms
                     </div>
-                    <div className="font-mono text-[8px] tracking-[0.1em] text-[#8a9bba]">
+                    <div className="font-mono text-[8px] tracking-widest text-[#8a9bba]">
                       SYNC LAG
                     </div>
                   </div>
@@ -312,8 +313,8 @@ export default function AboutUs() {
                   </div>
                 </div>
               </div>
-              <div className="h-px bg-white/[0.05]" />
-              <div className="flex items-start gap-[11px]">
+              <div className="h-px bg-white/5" />
+              <div className="flex items-start gap-2.75">
                 <ArrowIcon stroke="#94a3b8" />
                 <div>
                   <div className="mb-1 text-sm font-bold leading-snug text-[#f0f4ff]">
@@ -375,7 +376,7 @@ export default function AboutUs() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto w-full max-w-[93vw] pb-2">
+        <div className="relative z-20 w-full pb-2">
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-5">
             {BENTO.map((item) => (
               <div key={item.label} className={`${GLASS_CARD} px-3.5 pb-4 pt-4`}>
@@ -391,6 +392,7 @@ export default function AboutUs() {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

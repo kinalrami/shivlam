@@ -276,27 +276,28 @@ export default function CtaBanner() {
     <section
       id="cta"
       aria-labelledby="cta-heading"
-      className="relative scroll-mt-24 px-5 pb-12 sm:px-8 md:pb-20 lg:px-12"
+      className="relative scroll-mt-24 pb-12 md:pb-20"
     >
+      <div className="mx-auto max-w-325 px-5 md:px-12">
       <div
         ref={rootRef}
         className="cta-root relative w-full overflow-hidden rounded-[14px] font-mono"
       >
         {/* Corner brackets only — keeps the tech frame without a full box border */}
         <span
-          className="pointer-events-none absolute left-4 top-4 z-[6] size-5 border-l border-t border-sl-saffron/40"
+          className="pointer-events-none absolute left-4 top-4 z-6 size-5 border-l border-t border-sl-saffron/40"
           aria-hidden
         />
         <span
-          className="pointer-events-none absolute right-4 top-4 z-[6] size-5 border-r border-t border-sl-saffron/40"
+          className="pointer-events-none absolute right-4 top-4 z-6 size-5 border-r border-t border-sl-saffron/40"
           aria-hidden
         />
         <span
-          className="pointer-events-none absolute bottom-4 left-4 z-[6] size-5 border-b border-l border-sl-saffron/40"
+          className="pointer-events-none absolute bottom-4 left-4 z-6 size-5 border-b border-l border-sl-saffron/40"
           aria-hidden
         />
         <span
-          className="pointer-events-none absolute bottom-4 right-4 z-[6] size-5 border-b border-r border-sl-saffron/40"
+          className="pointer-events-none absolute bottom-4 right-4 z-6 size-5 border-b border-r border-sl-saffron/40"
           aria-hidden
         />
 
@@ -310,17 +311,17 @@ export default function CtaBanner() {
           <>
             {/* Horizontal scan lines — travel top→bottom; read as “active frame” with the canvas ring */}
             <div
-              className="cta-scan pointer-events-none absolute inset-x-0 z-[2] h-px"
+              className="cta-scan pointer-events-none absolute inset-x-0 z-2 h-px"
               aria-hidden
             />
             <div
-              className="cta-scan cta-scan-delayed pointer-events-none absolute inset-x-0 z-[2] h-px"
+              className="cta-scan cta-scan-delayed pointer-events-none absolute inset-x-0 z-2 h-px"
               aria-hidden
             />
           </>
         ) : null}
 
-        <div className="relative z-[5] flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-16 md:px-12 md:py-[4.25rem]">
+        <div className="relative z-5 flex flex-col items-center px-6 py-14 text-center sm:px-10 sm:py-16 md:px-12 md:py-17">
           <div className="mb-6 flex flex-wrap items-center justify-center gap-2 text-balance sm:mb-7">
             <span
               className="cta-hq-dot size-2 shrink-0 rounded-full bg-sl-saffron"
@@ -332,21 +333,21 @@ export default function CtaBanner() {
           </div>
 
           <p className="mb-5 flex items-center justify-center gap-2 font-mono text-[0.5625rem] font-medium uppercase tracking-[0.22em] text-sl-saffron">
-            <span className="h-px w-[22px] bg-sl-saffron" aria-hidden />
+            <span className="h-px w-5.5 bg-sl-saffron" aria-hidden />
             Initiate contact
-            <span className="h-px w-[22px] bg-sl-saffron" aria-hidden />
+            <span className="h-px w-5.5 bg-sl-saffron" aria-hidden />
           </p>
 
           <h2
             id="cta-heading"
-            className="mb-4 max-w-[40rem] font-sans text-[clamp(1.5rem,4vw,2.625rem)] font-extrabold leading-[1.12] tracking-[-0.035em] text-white"
+            className="mb-4 max-w-160 font-sans text-[clamp(1.5rem,4vw,2.625rem)] font-extrabold leading-[1.12] tracking-[-0.035em] text-white"
           >
             Ready to <em className="not-italic text-sl-saffron">Engineer</em>
             <br />
             Something Extraordinary?
           </h2>
 
-          <p className="mb-10 max-w-[30rem] font-mono text-[11.5px] leading-[1.8] tracking-wide text-gray-400 sm:mb-11">
+          <p className="mb-10 max-w-120 font-mono text-[11.5px] leading-[1.8] tracking-wide text-gray-400 sm:mb-11">
             From complex architectures to immersive mobile experiences — we build systems
             that scale. Let&apos;s discuss your next project.
           </p>
@@ -354,7 +355,7 @@ export default function CtaBanner() {
           <div className="mb-7 flex flex-wrap items-center justify-center gap-3.5 sm:gap-3.5">
             <Link
               href="/#contact"
-              className="cta-btn-primary relative z-0 inline-flex items-center justify-center overflow-hidden rounded border border-sl-saffron bg-sl-saffron px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_0_24px_rgb(245_138_11/0.3),0_4px_20px_rgb(245_138_11/0.2)] transition-[box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] before:pointer-events-none before:absolute before:inset-0 before:z-0 before:bg-linear-to-br before:from-white/12 before:to-transparent after:pointer-events-none after:absolute after:left-[-100%] after:top-0 after:z-0 after:h-full after:w-[60%] after:bg-linear-to-r after:from-transparent after:via-white/15 after:to-transparent after:transition-[left] after:duration-[550ms] hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgb(245_138_11/0.55),0_8px_32px_rgb(245_138_11/0.3)] hover:after:left-[150%] active:translate-y-0 active:scale-[0.98] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sl-saffron/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="cta-btn-primary relative z-0 inline-flex items-center justify-center overflow-hidden rounded border border-sl-saffron bg-sl-saffron px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_0_24px_rgb(245_138_11/0.3),0_4px_20px_rgb(245_138_11/0.2)] transition-[box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] before:pointer-events-none before:absolute before:inset-0 before:z-0 before:bg-linear-to-br before:from-white/12 before:to-transparent after:pointer-events-none after:absolute after:left-full after:top-0 after:z-0 after:h-full after:w-[60%] after:bg-linear-to-r after:from-transparent after:via-white/15 after:to-transparent after:transition-[left] after:duration-550 hover:-translate-y-0.5 hover:shadow-[0_0_40px_rgb(245_138_11/0.55),0_8px_32px_rgb(245_138_11/0.3)] hover:after:left-[150%] active:translate-y-0 active:scale-[0.98] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sl-saffron/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               <span className="relative z-10">[ Start a project → ]</span>
             </Link>
@@ -363,15 +364,15 @@ export default function CtaBanner() {
             </span>
             <Link
               href="mailto:hi@shivlam.com"
-              className="cta-btn-secondary relative z-0 inline-flex items-center justify-center overflow-hidden rounded border border-sl-saffron/35 bg-transparent px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-sl-saffron transition-[border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-0 after:z-0 after:bg-sl-saffron/[0.06] after:transition-transform after:duration-[400ms] after:ease-[cubic-bezier(0.16,1,0.3,1)] after:content-[''] after:[transform:translateX(-105%)] hover:-translate-y-0.5 hover:border-sl-saffron/75 hover:shadow-[0_0_20px_rgb(245_138_11/0.15)] hover:after:translate-x-0 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sl-saffron/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="cta-btn-secondary relative z-0 inline-flex items-center justify-center overflow-hidden rounded border border-sl-saffron/35 bg-transparent px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-sl-saffron transition-[border-color,box-shadow,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-0 after:z-0 after:bg-sl-saffron/6 after:transition-transform after:duration-400 after:ease-[cubic-bezier(0.16,1,0.3,1)] after:content-[''] after:transform-[translateX(-105%)] hover:-translate-y-0.5 hover:border-sl-saffron/75 hover:shadow-[0_0_20px_rgb(245_138_11/0.15)] hover:after:translate-x-0 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sl-saffron/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
               <span className="relative z-10">[ Send a brief ]</span>
             </Link>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.1em] text-gray-400">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 font-mono text-[10px] uppercase tracking-widest text-gray-400">
             <svg
-              className="size-[18px] shrink-0 opacity-45"
+              className="size-4.5 shrink-0 opacity-45"
               viewBox="0 0 18 18"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -402,6 +403,7 @@ export default function CtaBanner() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
