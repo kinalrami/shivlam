@@ -33,7 +33,7 @@ export function SectionLead({
   return (
     <p
       className={[
-        "max-w-4xl font-sans text-base font-light leading-relaxed text-gray-400",
+        "max-w-4xl! font-sans text-base font-light leading-relaxed text-gray-400",
         className,
       ]
         .filter(Boolean)
@@ -44,7 +44,6 @@ export function SectionLead({
   );
 }
 
-/** Eyebrow + optional large title + lead as one semantic block (matches home sections). */
 export function SectionIntro({
   id,
   eyebrow,
@@ -52,6 +51,7 @@ export function SectionIntro({
   lead,
   className,
   align = "left",
+  fullWidth = false,
 }: {
   id: string;
   eyebrow?: ReactNode;
@@ -59,8 +59,14 @@ export function SectionIntro({
   lead: ReactNode;
   className?: string;
   align?: "left" | "center";
+  fullWidth?: boolean;
 }) {
   const isCenter = align === "center";
+  const titleWidth = fullWidth ? "max-w-none" : "max-w-4xl";
+  const leadExtra =
+    [isCenter && "mx-auto text-center", fullWidth && "max-w-none"]
+      .filter(Boolean)
+      .join(" ") || undefined;
 
   return (
     <header className={["mb-8 space-y-4", className].filter(Boolean).join(" ")}>
@@ -100,7 +106,8 @@ export function SectionIntro({
       {title != null ? (
         <h3
           className={[
-            "max-w-4xl font-sans text-[clamp(1.65rem,4vw,2.5rem)] font-extrabold leading-[1.12] tracking-tight text-sl-text",
+            "font-sans text-[clamp(1.65rem,4vw,2.5rem)] font-extrabold leading-[1.12] tracking-tight text-sl-text",
+            titleWidth,
             isCenter ? "mx-auto text-center" : "",
           ]
             .filter(Boolean)
@@ -109,7 +116,7 @@ export function SectionIntro({
           {title}
         </h3>
       ) : null}
-      <SectionLead className={isCenter ? "mx-auto text-center" : undefined}>
+      <SectionLead className={leadExtra}>
         {lead}
       </SectionLead>
     </header>

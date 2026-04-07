@@ -15,21 +15,21 @@ type Service = {
 const services: Service[] = [
   {
     title: "Mobile App Dev",
-    description: "iOS-first builds with strong architecture and clean UX.",
+    description: "Scalable architecture cross-platform iOS and Android applications with high-performance and smooth UX.",
     icon: <Code2 className="size-5" aria-hidden />,
     href: "https://shivlam.com/mobile-app-development/",
     meta: "Swift • ARKit • LiDAR",
   },
   {
     title: "Web Dev",
-    description: "Modern dashboards and platforms that stay fast at scale.",
+    description: "Enterprise-grade, high-speed, high-security, and global optimised custom Full-Stack ecosystems.",
     icon: <Globe className="size-5" aria-hidden />,
     href: "https://shivlam.com/custom-web-development-services/",
     meta: "Next.js • Node.js • AWS",
   },
   {
     title: "Brand Building",
-    description: "Identity systems and product polish that earn trust.",
+    description: "Digital Growth plans and identity systems that are data-driven and that are crafted to conquer the modern online market.",
     icon: <Sparkles className="size-5" aria-hidden />,
     href: "/",
     meta: "Design • Motion • Story",
@@ -68,7 +68,7 @@ export default function Services() {
 
 function ServiceCard({ service }: { service: Service }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20">
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
         style={{
@@ -85,7 +85,7 @@ function ServiceCard({ service }: { service: Service }) {
         <div className="absolute -bottom-28 -right-24 h-64 w-64 rounded-full bg-sl-cyan-2/10 blur-2xl" />
       </div>
 
-      <div className="relative flex items-start justify-between gap-5">
+      <div className="relative flex min-h-0 flex-1 flex-col gap-5">
         <div className="min-w-0">
           <h3 className="font-sans text-2xl font-semibold tracking-tight text-white">
             {service.title}
@@ -94,9 +94,8 @@ function ServiceCard({ service }: { service: Service }) {
             {service.description}
           </p>
         </div>
-      </div>
 
-      <div className="relative mt-6 flex items-center justify-between">
+        <div className="relative mt-auto flex items-center justify-between pt-6">
         {service.href ? (
           <Link
             href={service.href}
@@ -113,6 +112,7 @@ function ServiceCard({ service }: { service: Service }) {
           </span>
         )}
         <span className="h-px w-24 bg-linear-to-r from-transparent via-white/15 to-transparent" />
+        </div>
       </div>
 
       <div

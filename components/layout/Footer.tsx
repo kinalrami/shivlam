@@ -154,39 +154,50 @@ export function Footer() {
 
           <div className="mt-7 flex items-center justify-between rounded-xl bg-gray-950 px-4 py-3">
             <p className="text-sm flex items-center gap-2 text-white"><Copyright size={14}/> {new Date().getFullYear()} shivlam</p>
-            <div className="flex items-center gap-3 text-zinc-500">
-              <Image
-                src="/facebook.svg"
-                alt="Facebook"
-                width={16}
-                height={16}
-                priority
-                unoptimized
-              />
-              <Image
-                src="/instagram.svg"
-                alt="Instagram"
-                width={16}
-                height={16}
-                priority
-                unoptimized
-              />
-              <Image
-                src="/linkedin.svg"
-                alt="Linkedin"
-                width={16}
-                height={16}
-                priority
-                unoptimized
-              />
-              <Image
-                src="/youtube.svg"
-                alt="Youtube"
-                width={16}
-                height={16}
-                priority
-                unoptimized
-              />
+            <div className="flex items-center gap-3">
+              {(
+                [
+                  {
+                    href: "https://www.facebook.com/theshivlam",
+                    src: "/facebook.svg",
+                    label: "Facebook",
+                  },
+                  {
+                    href: "https://www.instagram.com/theshivlam/",
+                    src: "/instagram.svg",
+                    label: "Instagram",
+                  },
+                  {
+                    href: "https://www.linkedin.com/company/shivlamtech/",
+                    src: "/linkedin.svg",
+                    label: "LinkedIn",
+                  },
+                  {
+                    href: "https://www.youtube.com/@TheShivlam",
+                    src: "/youtube.svg",
+                    label: "YouTube",
+                  },
+                ] as const
+              ).map(({ href, src, label }) => (
+                <a
+                  key={src}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="group inline-flex text-zinc-500 transition-colors hover:text-orange-400"
+                >
+                  <Image
+                    src={src}
+                    alt=""
+                    width={16}
+                    height={16}
+                    priority
+                    unoptimized
+                    className="opacity-80 transition-[filter,opacity] duration-200 group-hover:opacity-100 group-hover:[filter:brightness(0)_saturate(100%)_invert(51%)_sepia(98%)_saturate(2875%)_hue-rotate(359deg)_brightness(103%)_contrast(105%)]"
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>

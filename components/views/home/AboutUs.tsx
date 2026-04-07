@@ -99,7 +99,7 @@ export default function AboutUs() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="relative scroll-mt-24 overflow-x-clip px-5 pb-12 text-left sm:px-8 md:pb-20 lg:px-12"
+      className="relative scroll-mt-24 overflow-x-clip px-5 pb-12 pt-12 text-left sm:px-8 md:pb-20 lg:px-12"
     >
       <div className="relative w-full">
         <div
@@ -108,10 +108,11 @@ export default function AboutUs() {
         />
 
         {/* <div className="relative z-2 w-full max-w-240"> */}
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="w-full text-left">
             <SectionIntro
               id="about-heading"
-              align="center"
+              align="left"
+              fullWidth
               eyebrow="The core engine"
               title={
                 <>
@@ -124,7 +125,7 @@ export default function AboutUs() {
               lead="Shivlam is a Bharat-based technology powerhouse specializing in complex development ecosystems. With 10+ years of corporate leadership and 3+ years of focused innovation, we bridge the gap between legacy stability and next-gen agility."
             />
 
-            <div className="mb-11 flex flex-wrap items-center justify-center gap-2.5">
+            <div className="mb-11 flex flex-wrap items-center justify-start gap-2.5">
             <div
               className={`${GLASS_CORE} flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4.5`}
             >
@@ -155,33 +156,31 @@ export default function AboutUs() {
           </div>
 
           <div className="mb-10 text-left">
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
-              <div className="min-w-0">
-                <div className="mb-2.5 font-mono text-xs font-medium tracking-widest text-sl-saffron">
-                  FLAGSHIP PRODUCT // SHIVLAM BUILD TECH
-                </div>
-                <h4 className="mb-2.5 text-2xl font-extrabold leading-snug tracking-tight text-slate-100 sm:text-3xl md:text-4xl">
-                  <span className="text-sl-saffron">Delta-ARBIM</span> — One of the Best
-                  Products We Built
-                </h4>
-                <p className="max-w-155 text-base leading-relaxed text-slate-400">
-                  An AR-powered BIM viewer that overlays live 3D building models — structure,
-                  walls, MEP pipes — directly onto real construction sites through your device
-                  camera. Walk the site before a brick is laid. Detect clashes. Validate every
-                  layer. Cut rework by up to 40%.
-                </p>
-                <div className="mt-3.5 flex flex-wrap gap-1.5">
-                  {FEAT_CHIPS.map((c) => (
-                    <div
-                      key={c}
-                      className="relative isolate rounded-md border border-white/10 bg-white/3 px-2.25 py-1 font-mono text-xs tracking-wide text-sl-saffron backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-px hover:border-white/20 hover:shadow-lg hover:shadow-black/30"
-                    >
-                      {c}
-                    </div>
-                  ))}
-                </div>
+            <div className="min-w-0">
+              <div className="mb-2.5 font-mono text-xs font-medium tracking-widest text-sl-saffron">
+                FLAGSHIP PRODUCT // SHIVLAM BUILD TECH
               </div>
-              <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col lg:pt-8 lg:pr-8">
+              <h4 className="mb-2.5 text-2xl font-extrabold leading-snug tracking-tight text-slate-100 sm:text-3xl md:text-4xl">
+                <span className="text-sl-saffron">Delta-ARBIM</span> — One of the Best
+                Products We Built
+              </h4>
+              <p className="max-w-3xl text-base leading-relaxed text-slate-400">
+                An AR-powered BIM viewer that overlays live 3D building models — structure,
+                walls, MEP pipes — directly onto real construction sites through your device
+                camera. Walk the site before a brick is laid. Detect clashes. Validate every
+                layer. Cut rework by up to 40%.
+              </p>
+              <div className="mt-3.5 flex flex-wrap gap-1.5">
+                {FEAT_CHIPS.map((c) => (
+                  <div
+                    key={c}
+                    className="relative isolate rounded-md border border-white/10 bg-white/3 px-2.25 py-1 font-mono text-xs tracking-wide text-sl-saffron backdrop-blur-2xl transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-px hover:border-white/20 hover:shadow-lg hover:shadow-black/30"
+                  >
+                    {c}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6">
                 <Link
                   href="https://deltaarbim.tech/"
                   target="_blank"
@@ -195,7 +194,7 @@ export default function AboutUs() {
           </div>
 
         <div
-          className="relative left-1/2 box-border w-screen max-w-[90vw] -translate-x-1/2"
+          className="relative left-1/2 box-border w-screen max-w-[93vw] -translate-x-1/2"
           aria-label="Delta-ARBIM interactive preview"
         >
           <div className="mb-9 grid grid-cols-1 items-start gap-4 lg:grid-cols-2">
@@ -376,7 +375,7 @@ export default function AboutUs() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto w-full max-w-[90vw] pb-2">
+        <div className="relative z-20 mx-auto w-full max-w-[93vw] pb-2">
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-5">
             {BENTO.map((item) => (
               <div key={item.label} className={`${GLASS_CARD} px-3.5 pb-4 pt-4`}>
