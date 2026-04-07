@@ -1,11 +1,10 @@
-import { SectionIntro } from "@/components/shared/section-chrome";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <main className="relative z-10 min-h-0 flex-1">
+    <main className="relative z-10 flex-1">
       <section
-        className="flex max-w-225 min-h-96 flex-col justify-center px-5 pt-8 pb-12 font-sans text-sm sm:min-h-screen sm:px-8 sm:pt-10 sm:text-base lg:px-12"
+        className="flex max-w-225 w-full flex-col items-start justify-start px-5 pt-8 pb-8 font-sans text-sm sm:px-8 sm:pt-12 sm:pb-20 sm:text-base lg:px-12"
       >
         {/* <div
           className="font-mono mb-6 flex items-center gap-3 text-xs font-medium uppercase text-sl-saffron"
@@ -13,25 +12,26 @@ export default function Hero() {
           Spatial Computing Studio
         </div> */}
         <h1
-          className="mb-6 max-w-225 font-sans text-4xl font-light leading-tight text-sl-text sm:text-5xl md:text-6xl lg:text-7xl"
+          className="mb-4 max-w-225 font-sans text-4xl font-light leading-tight text-sl-text sm:text-5xl md:text-6xl"
         >
-          Engineering the Future
+          Sustainable Retrofitting
           <br />
           <span className="font-normal text-sl-saffron">
-            of Immersive Tech.
+          Engineering the Future.
           </span>
         </h1>
 
-        <p className="mb-10 max-w-135 font-sans font-light leading-relaxed text-gray-400">
-          From high-performance AR solutions to scalable web ecosystems, we build the complex tech that moves industries forward.
+        <p className="mb-6 max-w-2xl font-sans font-light leading-relaxed text-gray-400">
+        Re-creating the current infrastructure with Retrofit BIM and AI-controlled accuracy. To the sophisticated District Cooling optimisation, to the AR solution that can make cities smarter and greener, we develop the technology to make things work.
         </p>
 
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center justify-start gap-4">
           <Link
-            href="/#work"
+            href="https://deltaarbim.tech/"
+            target="_blank"
             className="rounded-sm border border-sl-saffron px-7 py-3 font-mono text-sm font-bold text-sl-saffron transition-[filter] hover:brightness-110"
           >
-            Explore Our Solutions
+            See BIM in Action
           </Link>
           {/* <Link
             href="/#services"

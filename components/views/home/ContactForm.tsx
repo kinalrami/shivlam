@@ -61,33 +61,31 @@ export default function ContactFormSection() {
       <div className="mx-auto grid w-full gap-10 lg:grid-cols-2 lg:gap-14">
         <div className="flex flex-col justify-center">
           <p className="font-mono mb-4 text-xs font-medium uppercase text-sl-saffron">
-            Let’s talk
+            Let’s Construct!
           </p>
           <h2
             id="contact-heading"
             className="mb-4 font-sans text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl"
           >
-            Accelerate Your Growth:
+            Write Your Dream on
             <br />
             <span className="font-normal text-gray-200">
-              Join Forces for Success, Now!
+            Top of our code, Take Now!
             </span>
           </h2>
 
           <p className="max-w-prose font-sans text-base font-light leading-relaxed text-gray-400">
-            Are you seeking a reliable partner to unlock the full potential of your
-            business? From modern websites and mobile apps to SEO and digital
-            marketing, we can help you ship faster and grow sustainably.
+          Are you in need of a serious partner in order to maximise the potential of your business? Whether it is high-performance mobile applications, web and web-to-brand build!, we can assist you to ship faster and grow sustainably.
           </p>
 
-          <p className="mt-5 max-w-prose font-sans text-base font-light leading-relaxed text-gray-400">
+          {/* <p className="mt-5 max-w-prose font-sans text-base font-light leading-relaxed text-gray-400">
             Tell us a bit about what you’re building and we’ll get back with next
             steps.
           </p>
 
           <p className="mt-6 font-sans text-sm font-medium text-gray-300">
             Contact us today.
-          </p>
+          </p> */}
         </div>
 
         <div className="relative">
