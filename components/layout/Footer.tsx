@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const optionHref: Partial<Record<string, string>> = {
   "AR BIM development": "/services/ar-bim",
+  "Contact Us": "/contact-us",
 };
 
 export function Footer() {
@@ -103,17 +104,6 @@ export function Footer() {
                             >
                               {option}
                             </button>
-                          ) : option === "Contact Us" ? (
-                            <Link
-                              href="/#contact"
-                              onClick={() => setSelectedOption(optionId)}
-                              className={`block cursor-pointer text-left transition-colors ${isSelected
-                                ? "text-orange-400"
-                                : "text-gray-400 hover:text-orange-400"
-                                }`}
-                            >
-                              {option}
-                            </Link>
                           ) : optionHref[option] ? (
                             <Link
                               href={optionHref[option]!}

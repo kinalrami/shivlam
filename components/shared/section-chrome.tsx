@@ -52,14 +52,20 @@ export function SectionIntro({
   className,
   align = "left",
   fullWidth = false,
+  eyebrowStyle = "rule",
 }: {
   id: string;
   eyebrow?: ReactNode;
   title?: ReactNode;
-  lead: ReactNode;
+  lead?: ReactNode;
   className?: string;
   align?: "left" | "center";
   fullWidth?: boolean;
+  /**
+   * - `rule` (default): shows the grey gradient rule around/after eyebrow (your 2nd screenshot)
+   * - `dash`: compact orange dash + eyebrow (your 1st screenshot)
+   */
+  eyebrowStyle?: "rule" | "dash";
 }) {
   const isCenter = align === "center";
   const titleWidth = fullWidth ? "max-w-none" : "max-w-4xl";
@@ -72,35 +78,59 @@ export function SectionIntro({
     <header className={["mb-8 space-y-4", className].filter(Boolean).join(" ")}>
       {eyebrow != null ? (
         isCenter ? (
-          <div className="flex items-center justify-center gap-3">
-            <div
-              className="hidden h-px w-10 shrink-0 bg-linear-to-r from-transparent to-gray-800 sm:block"
-              aria-hidden
-            />
-            <h2
-              id={id}
-              className="font-label text-xs font-medium uppercase text-sl-saffron"
-            >
-              {eyebrow}
-            </h2>
-            <div
-              className="hidden h-px w-10 shrink-0 bg-linear-to-l from-transparent to-gray-800 sm:block"
-              aria-hidden
-            />
-          </div>
+          eyebrowStyle === "dash" ? (
+            <div className="flex items-center justify-center gap-2">
+              <span className="h-0.5 w-5 bg-sl-saffron" aria-hidden />
+              <h2
+                id={id}
+                className="font-label text-xs font-medium uppercase text-sl-saffron"
+              >
+                {eyebrow}
+              </h2>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center gap-3">
+              <div
+                className="hidden h-px w-10 shrink-0 bg-linear-to-r from-transparent to-gray-800 sm:block"
+                aria-hidden
+              />
+              <h2
+                id={id}
+                className="font-label text-xs font-medium uppercase text-sl-saffron"
+              >
+                {eyebrow}
+              </h2>
+              <div
+                className="hidden h-px w-10 shrink-0 bg-linear-to-l from-transparent to-gray-800 sm:block"
+                aria-hidden
+              />
+            </div>
+          )
         ) : (
-          <div className="flex items-center justify-between gap-4">
-            <h2
-              id={id}
-              className="font-label text-xs font-medium uppercase text-sl-saffron"
-            >
-              {eyebrow}
-            </h2>
-            <div
-              className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block"
-              aria-hidden
-            />
-          </div>
+          eyebrowStyle === "dash" ? (
+            <div className="flex items-center gap-2">
+              <span className="h-0.5 w-5 bg-sl-saffron" aria-hidden />
+              <h2
+                id={id}
+                className="font-label text-xs font-medium uppercase text-sl-saffron"
+              >
+                {eyebrow}
+              </h2>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between gap-4">
+              <h2
+                id={id}
+                className="font-label text-xs font-medium uppercase text-sl-saffron"
+              >
+                {eyebrow}
+              </h2>
+              <div
+                className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block"
+                aria-hidden
+              />
+            </div>
+          )
         )
       ) : null}
       {title != null ? (
@@ -116,9 +146,7 @@ export function SectionIntro({
           {title}
         </h3>
       ) : null}
-      <SectionLead className={leadExtra}>
-        {lead}
-      </SectionLead>
+      {lead != null ? <SectionLead className={leadExtra}>{lead}</SectionLead> : null}
     </header>
   );
 }

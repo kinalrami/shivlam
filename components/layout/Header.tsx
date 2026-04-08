@@ -80,6 +80,12 @@ export function Header() {
   const [activeSection, setActiveSection] = useState("Services");
   const [activeItem, setActiveItem] = useState<string>("Mobile App Development");
 
+  const subItemHref: Partial<Record<string, string>> = {
+    "iPhone App Development Company": "/services/iphone-app-development",
+    "Android App Development Company": "/services/android-app-development",
+    "Flutter App Development Company": "/services/flutter-app-development",
+  };
+
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
@@ -241,13 +247,29 @@ export function Header() {
                           />
                           <div className="min-w-0 flex-1 py-4 pl-4 pr-3">
                             <ul className="space-y-3">
-                              {item.submenu!.map((sub) => (
-                                <li key={sub.label}>
-                                  <span className="flex cursor-default items-center gap-3 text-xs text-gray-500 lg:text-sm">
-                                    {sub.label}
-                                  </span>
-                                </li>
-                              ))}
+                              {item.submenu!.map((sub) => {
+                                const href = subItemHref[sub.label];
+                                return (
+                                  <li key={sub.label}>
+                                    {href ? (
+                                      <button
+                                        type="button"
+                                        className="flex w-full cursor-pointer items-center gap-3 text-left text-xs text-gray-400 transition-colors hover:text-white lg:text-sm"
+                                        onClick={() => {
+                                          setIsMenuOpen(false);
+                                          router.push(href);
+                                        }}
+                                      >
+                                        {sub.label}
+                                      </button>
+                                    ) : (
+                                      <span className="flex cursor-default items-center gap-3 text-xs text-gray-500 lg:text-sm">
+                                        {sub.label}
+                                      </span>
+                                    )}
+                                  </li>
+                                );
+                              })}
                             </ul>
                           </div>
                         </div>

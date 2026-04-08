@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { CircleCheckBig, MoveRight, TrendingUp } from "lucide-react";
 import { ArbimReveal } from "./Motion";
+import { SectionIntro } from "@/components/shared/section-chrome";
 
 export default function Product() {
   const results = [
@@ -29,17 +30,19 @@ export default function Product() {
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
         <ArbimReveal delayStep={1}>
-          <div className="mb-3.5 flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
-            <span className="h-0.5 w-5 bg-orange-400" aria-hidden />
-            Product integration
-          </div>
-        </ArbimReveal>
-        <ArbimReveal delayStep={2}>
-          <h2 className="mb-4 font-sans text-4xl leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-6">
-            DeltaARBIM:
-            <br />
-            <em className="text-orange-400 not-italic">One of the Best Products We Built.</em>
-          </h2>
+          <SectionIntro
+            id="arbim-product-heading"
+            eyebrow="Product integration"
+            eyebrowStyle="dash"
+            title={
+              <>
+                DeltaARBIM:
+                <br />
+                <span className="text-sl-saffron">One of the Best Products We Built.</span>
+              </>
+            }
+            lead="An AI-powered BIM viewer that overlays live 3D building models — including structure, walls, and MEP pipes — directly onto real construction sites through your device camera."
+          />
         </ArbimReveal>
 
         <div className="grid items-center gap-16 md:grid-cols-2 md:gap-18">
@@ -52,14 +55,6 @@ export default function Product() {
                 />
                 LIVE NOW · deltaarbim.tech
               </div>
-            </ArbimReveal>
-
-            <ArbimReveal delayStep={3}>
-              <p className="mb-7 text-sm leading-[1.82] text-sl-text/82">
-                An AI-powered BIM viewer that overlays live 3D building models — including structure,
-                walls, and MEP pipes — directly onto real construction sites through your device
-                camera.
-              </p>
             </ArbimReveal>
 
             <ArbimReveal delayStep={4}>

@@ -39,7 +39,7 @@ export function Hero() {
       <canvas
         id="about-hero-bg-canvas"
         ref={heroBgRef}
-        className="absolute inset-0 z-[1] h-full w-full"
+        className="absolute inset-0 z-1 h-full w-full"
         aria-hidden
       />
       <div className="relative z-10 mx-auto grid max-w-325 items-center gap-0 px-5 pt-[clamp(4.5rem,10vh,6.5rem)] pb-16 md:grid-cols-2 lg:gap-12 md:px-12">

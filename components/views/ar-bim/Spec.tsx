@@ -3,6 +3,7 @@
 import type { RefObject } from "react";
 import { Box, CircleAlert, Smartphone } from "lucide-react";
 import { ArbimReveal } from "./Motion";
+import { SectionIntro } from "@/components/shared/section-chrome";
 
 type Props = {
   specCvRef: RefObject<HTMLCanvasElement | null>;
@@ -42,15 +43,17 @@ export default function Spec({ specCvRef }: Props) {
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
         <ArbimReveal delayStep={1}>
-          <div className="mb-3.5 flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
-            <span className="h-0.5 w-5 bg-orange-400" aria-hidden />
-            Specialisation
-          </div>
-        </ArbimReveal>
-        <ArbimReveal delayStep={2}>
-          <h2 className="mb-4 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-6">
-            Advanced <em className="text-orange-400 not-italic">AR VR Solutions</em>
-          </h2>
+          <SectionIntro
+            id="arbim-spec-heading"
+            eyebrow="Specialisation"
+            eyebrowStyle="dash"
+            title={
+              <>
+                Advanced <span className="text-sl-saffron">AR VR Solutions</span>
+              </>
+            }
+            lead="High-fidelity 3D reconstruction, immersive walkthroughs, and LiDAR-ready device support — shipped with field-first performance."
+          />
         </ArbimReveal>
 
         <div className="grid items-center gap-16 md:grid-cols-2 md:gap-18">

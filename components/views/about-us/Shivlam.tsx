@@ -86,7 +86,7 @@ export function Shivlam() {
             ].map((s) => (
               <div
                 key={s.l}
-                className="rounded-lg border border-white/10 bg-white/[0.04] px-5 py-5"
+                className="rounded-lg border border-white/10 bg-white/4 px-5 py-5"
               >
                 <div className="mb-1 font-sans text-[1.875rem] font-extrabold leading-none tracking-[-0.04em] text-sl-text">
                   {s.v}
