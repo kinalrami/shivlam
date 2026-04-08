@@ -32,25 +32,27 @@ const sectionItems: Record<string, SectionNavItem[]> = {
     {
       label: "Mobile App Development",
       submenu: [
-        { label: "iPhone App Development Company"},
-        { label: "Android App Development Company"},
-        { label: "Flutter App Development Company"},
+        { label: "iPhone App Development Company" },
+        { label: "Android App Development Company" },
+        { label: "Flutter App Development Company" },
       ],
     },
     { label: "Web Development" },
-    { label: "Game Development",
+    {
+      label: "Game Development",
       submenu: [
-        { label: "Unity Mobile Game Development"},
-        { label: "Vision Pro Game Development Company"},
+        { label: "Unity Mobile Game Development" },
+        { label: "Vision Pro Game Development Company" },
       ],
-     },
-    { label: "Digital Marketing",
+    },
+    {
+      label: "Digital Marketing",
       submenu: [
-        { label: "SEO"},
-        { label: "Mobile Game Marketing Service"},
-        { label: "SaaS Product Marketing Solutions"},
+        { label: "SEO" },
+        { label: "Mobile Game Marketing Service" },
+        { label: "SaaS Product Marketing Solutions" },
       ],
-     }
+    }
   ],
   "Work Portfolio": [
     { label: "Mobile App Specialised" },
@@ -126,23 +128,22 @@ export function Header() {
       </header>
 
       <div
-        className={`font-mono fixed inset-0 z-50 bg-black text-white backdrop-blur-[20.6px] [-webkit-backdrop-filter:blur(20.6px)] transition-transform duration-500 ease-out ${
-          isMenuOpen ? "translate-x-0" : "pointer-events-none translate-x-full"
-        }`}
+        className={`font-mono fixed inset-0 z-50 bg-black text-white backdrop-blur-[20.6px] [-webkit-backdrop-filter:blur(20.6px)] transition-transform duration-500 ease-out ${isMenuOpen ? "translate-x-0" : "pointer-events-none translate-x-full"
+          }`}
         role="dialog"
         aria-modal="true"
         aria-hidden={!isMenuOpen}
       >
-         <button
-            type="button"
-            className="font-mono absolute top-4 z-10 flex shrink-0 cursor-pointer items-center justify-center text-white sm:top-12 right-8 lg:right-14"
-            onClick={() => setIsMenuOpen(false)}
-            aria-label="Close menu"
-          >
-            <X className="size-8 lg:size-10" style={{ strokeWidth: 1 }} aria-hidden />
-          </button>
+        <button
+          type="button"
+          className="font-mono absolute top-4 z-10 flex shrink-0 cursor-pointer items-center justify-center text-white sm:top-12 right-8 lg:right-14"
+          onClick={() => setIsMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          <X className="size-8 lg:size-10" style={{ strokeWidth: 1 }} aria-hidden />
+        </button>
         <div className="relative mx-auto flex h-full w-full max-w-200 flex-col px-5 md:px-10">
-         
+
 
           <div className="flex min-h-0 flex-1 flex-col md:h-full md:flex-row md:items-stretch">
             <div className="flex min-h-0 min-w-0 flex-1 items-center md:border-r border-gray-800 md:border-r-0">
@@ -155,11 +156,10 @@ export function Header() {
                         <div className="flex w-full min-w-0 items-center gap-3">
                           <button
                             type="button"
-                            className={`flex shrink-0 items-center gap-2 transition-colors ${
-                              isActive
-                                ? "text-orange-400"
-                                : "text-gray-300 hover:text-white"
-                            }`}
+                            className={`flex shrink-0 items-center gap-2 transition-colors ${isActive
+                              ? "text-orange-400"
+                              : "text-gray-300 hover:text-white"
+                              }`}
                             onClick={() => {
                               const items = sectionItems[section] ?? [];
                               if (items.length === 0) {
@@ -210,11 +210,10 @@ export function Header() {
                     <li key={item.label}>
                       <button
                         type="button"
-                        className={`w-full text-left text-sm lg:text-base transition-colors ${
-                          isActive
-                            ? "text-orange-400"
-                            : "text-gray-400 hover:text-white"
-                        }`}
+                        className={`w-full text-left text-sm lg:text-base transition-colors ${isActive
+                          ? "text-orange-400"
+                          : "text-gray-400 hover:text-white"
+                          }`}
                         onClick={() => {
                           setActiveItem(item.label);
                           if (!hasSubmenu) {

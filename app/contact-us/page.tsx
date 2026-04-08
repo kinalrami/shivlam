@@ -1,28 +1,59 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import HeroCanvas from "@/components/views/home/Canvas";
+import ContactPage from "@/components/views/contact-us/Page";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Shivlam",
-  description: "Get in touch with Shivlam about your AR, BIM, or product build.",
+  title: "Contact DeltaARBIM — Get Early Access & Talk to Our Team",
+  description:
+    "Contact the DeltaARBIM team to request early access, discuss your construction project, or learn how AR BIM technology can reduce rework on your site. Built by Shivlam.",
+  keywords: [
+    "contact DeltaARBIM",
+    "AR BIM contact",
+    "construction AR inquiry",
+    "early access BIM",
+    "Shivlam contact",
+    "BIM augmented reality India",
+  ],
+  robots: { index: true, follow: true },
+  alternates: { canonical: "https://deltaarbim.tech/contact" },
+  openGraph: {
+    title: "Contact DeltaARBIM — Talk to Our Team",
+    description:
+      "Reach out to the DeltaARBIM team. Get early access, demo requests, or ask anything about AR BIM for your construction site.",
+    type: "website",
+    url: "https://deltaarbim.tech/contact",
+  },
 };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact DeltaARBIM",
+  url: "https://deltaarbim.tech/contact",
+  description:
+    "Contact the DeltaARBIM team for early access, demo requests, or questions about AR BIM for construction sites.",
+  mainEntity: {
+    "@type": "Organization",
+    name: "DeltaARBIM by Shivlam",
+    email: "hello@shivlam.com",
+    url: "https://deltaarbim.tech",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "hello@shivlam.com",
+      availableLanguage: ["English", "Hindi"],
+    },
+  },
+} as const;
 
 export default function ContactUsPage() {
   return (
     <>
-      <HeroCanvas />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="relative z-10 min-h-0 flex-1">
-      <section className="max-w-225 px-5 min-h-[70vh] py-16 sm:px-8 sm:py-24 lg:px-14">
-        <p className="font-mono mb-6 text-xs font-medium uppercase text-sl-saffron">
-          Contact Us
-        </p>
-        <Link
-          href="/"
-          className="inline-block rounded-sm border border-sl-saffron px-7 py-3 font-mono text-xs font-bold text-sl-saffron transition-[filter] hover:brightness-110"
-        >
-          Back to home
-        </Link>
-      </section>
+        <ContactPage />
       </main>
     </>
   );

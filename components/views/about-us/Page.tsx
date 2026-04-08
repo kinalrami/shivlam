@@ -3,7 +3,7 @@
 import { Hero } from "./Hero";
 import { Mission } from "./Mission";
 import { Story } from "./Story";
-import { Values } from "./Values";    
+import { Values } from "./Values";
 import { Shivlam } from "./Shivlam";
 import { Technology } from "./Technology";
 import { Cta } from "./Cta";

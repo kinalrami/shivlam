@@ -74,52 +74,52 @@ export default function Technologies({
   return (
     <section aria-label="Tech Stack" className="pb-12 md:pb-20">
       <div className="mx-auto max-w-325 px-5 md:px-12">
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
-          Tech Stack
-        </p>
-        <div className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block" />
-      </div>
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
+            Tech Stack
+          </p>
+          <div className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block" />
+        </div>
 
-      <div className="relative overflow-hidden rounded-lg border border-gray-800 bg-black/20 px-2 py-4">
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-linear-to-r from-black/70 to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-black/70 to-transparent"
-          aria-hidden
-        />
-        <motion.div
-          key={`${setWidth}-${speedSeconds}`}
-          className="flex w-max items-center will-change-transform"
-          animate={{ x: [0, animateTo] }}
-          transition={{
-            duration: speedSeconds,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop",
-          }}
-        >
-          <div ref={setRef} className="flex items-center gap-10 pr-10">
-            {logos.map((logo) => (
-              <LogoItem key={`${logo.name}-1`} logo={logo} />
-            ))}
-          </div>
+        <div className="relative overflow-hidden rounded-lg border border-gray-800 bg-black/20 px-2 py-4">
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-linear-to-r from-black/70 to-transparent"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-black/70 to-transparent"
+            aria-hidden
+          />
+          <motion.div
+            key={`${setWidth}-${speedSeconds}`}
+            className="flex w-max items-center will-change-transform"
+            animate={{ x: [0, animateTo] }}
+            transition={{
+              duration: speedSeconds,
+              ease: "linear",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
+          >
+            <div ref={setRef} className="flex items-center gap-10 pr-10">
+              {logos.map((logo) => (
+                <LogoItem key={`${logo.name}-1`} logo={logo} />
+              ))}
+            </div>
 
-          <div className="flex items-center gap-10 pr-10" aria-hidden>
-            {logos.map((logo) => (
-              <LogoItem key={`${logo.name}-2`} logo={logo} />
-            ))}
-          </div>
+            <div className="flex items-center gap-10 pr-10" aria-hidden>
+              {logos.map((logo) => (
+                <LogoItem key={`${logo.name}-2`} logo={logo} />
+              ))}
+            </div>
 
-          <div className="flex items-center gap-10 pr-10" aria-hidden>
-            {logos.map((logo) => (
-              <LogoItem key={`${logo.name}-3`} logo={logo} />
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            <div className="flex items-center gap-10 pr-10" aria-hidden>
+              {logos.map((logo) => (
+                <LogoItem key={`${logo.name}-3`} logo={logo} />
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

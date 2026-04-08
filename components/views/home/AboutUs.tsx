@@ -50,7 +50,7 @@ export default function AboutUs() {
         />
 
         <div className="mx-auto max-w-325 px-5 md:px-12">
-        {/* <div className="relative z-2 w-full max-w-240"> */}
+          {/* <div className="relative z-2 w-full max-w-240"> */}
           <div className="w-full text-left">
             <SectionIntro
               id="about-heading"
@@ -69,33 +69,33 @@ export default function AboutUs() {
             />
 
             <div className="mb-11 flex flex-wrap items-center justify-start gap-2.5">
-            <div
-              className={`${GLASS_CORE} flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4.5`}
-            >
-              <div className="relative flex h-9.5 w-9.5 shrink-0 items-center justify-center rounded-full border-2 border-sl-saffron animate-[about-us-seal-spin_12s_linear_infinite] motion-reduce:animate-none">
-                <div className="absolute -top-0.5 left-1/2 h-1.25 w-1.25 -translate-x-1/2 rounded-full bg-sl-saffron" />
-                <div className="text-center font-mono text-xs font-medium leading-snug text-sl-saffron">
-                  SHV
-                  <br />
-                  LAM
+              <div
+                className={`${GLASS_CORE} flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-4.5`}
+              >
+                <div className="relative flex h-9.5 w-9.5 shrink-0 items-center justify-center rounded-full border-2 border-sl-saffron animate-[about-us-seal-spin_12s_linear_infinite] motion-reduce:animate-none">
+                  <div className="absolute -top-0.5 left-1/2 h-1.25 w-1.25 -translate-x-1/2 rounded-full bg-sl-saffron" />
+                  <div className="text-center font-mono text-xs font-medium leading-snug text-sl-saffron">
+                    SHV
+                    <br />
+                    LAM
+                  </div>
+                </div>
+                <div className="text-sm font-bold tracking-tight text-slate-100">
+                  10+ Years of Experience
                 </div>
               </div>
-              <div className="text-sm font-bold tracking-tight text-slate-100">
-                10+ Years of Experience
+              <div
+                className={`${GLASS_CORE} flex items-center gap-1.75 rounded-full px-4 py-2`}
+              >
+                <div
+                  className="h-2 w-2 shrink-0 animate-[about-us-pulse-pin_2s_ease-in-out_infinite] -rotate-45 rounded-[50%_50%_50%_0] bg-sl-cyan motion-reduce:animate-none"
+                  aria-hidden
+                />
+                <span className="font-mono text-xs font-medium tracking-wider text-sl-cyan">
+                  PROUDLY ENGINEERED IN BHARAT
+                </span>
               </div>
             </div>
-            <div
-              className={`${GLASS_CORE} flex items-center gap-1.75 rounded-full px-4 py-2`}
-            >
-              <div
-                className="h-2 w-2 shrink-0 animate-[about-us-pulse-pin_2s_ease-in-out_infinite] -rotate-45 rounded-[50%_50%_50%_0] bg-sl-cyan motion-reduce:animate-none"
-                aria-hidden
-              />
-              <span className="font-mono text-xs font-medium tracking-wider text-sl-cyan">
-                PROUDLY ENGINEERED IN BHARAT
-              </span>
-            </div>
-          </div>
           </div>
 
           <div className="mb-10 text-left">
@@ -136,25 +136,25 @@ export default function AboutUs() {
             </div>
           </div>
 
-        <DeltaArbimInteractivePreview />
+          <DeltaArbimInteractivePreview />
 
-        <div className="relative z-20 w-full pb-2">
-          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-5">
-            {BENTO.map((item) => (
-              <div key={item.label} className={`${GLASS_CARD} px-3.5 pb-4 pt-4`}>
-                <div className="mb-0.5 text-3xl font-extrabold leading-none tracking-tighter text-sl-saffron">
-                  {item.num}
-                  <span className="text-sm font-bold text-sl-saffron/60">
-                    {item.unit}
-                  </span>
+          <div className="relative z-20 w-full pb-2">
+            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-5">
+              {BENTO.map((item) => (
+                <div key={item.label} className={`${GLASS_CARD} px-3.5 pb-4 pt-4`}>
+                  <div className="mb-0.5 text-3xl font-extrabold leading-none tracking-tighter text-sl-saffron">
+                    {item.num}
+                    <span className="text-sm font-bold text-sl-saffron/60">
+                      {item.unit}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 font-mono text-xs tracking-wide text-slate-400">
+                    {item.label}
+                  </div>
                 </div>
-                <div className="mt-1.5 font-mono text-xs tracking-wide text-slate-400">
-                  {item.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </section>

@@ -217,33 +217,33 @@ export default function WorkPortfolio() {
       className="relative scroll-mt-24 pb-12 md:pb-20"
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
-      <SectionIntro
-        id="work-portfolio-heading"
-        eyebrow="Work portfolio"
-        lead="Engineered solutions from concept to deployment — a curated look at shipped builds across mobile and web."
-      />
+        <SectionIntro
+          id="work-portfolio-heading"
+          eyebrow="Work portfolio"
+          lead="Engineered solutions from concept to deployment — a curated look at shipped builds across mobile and web."
+        />
 
-      <div className="mb-8 flex flex-wrap items-center gap-2.5 font-mono">
-        {PORTFOLIO_FILTER_OPTS.map(({ key, label }, idx) => (
-          <Fragment key={key}>
-            {idx === 1 ? <FilterRailSeparator /> : null}
-            <button
-              type="button"
-              onClick={() => setFilter(key)}
-              className={
-                filter === key
-                  ? "relative cursor-pointer overflow-hidden rounded border border-sl-saffron bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-sl-saffron shadow-md ring-2 ring-sl-saffron/20 transition-[color,box-shadow,border-color] duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-100 before:content-['']"
-                  : "relative cursor-pointer overflow-hidden rounded border border-slate-800 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-slate-600 transition-[color,box-shadow,border-color] duration-300 ease-out hover:border-slate-600 hover:text-slate-500 before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
-              }
-            >
-              {label}
-            </button>
-          </Fragment>
-        ))}
-        <span className="ml-auto font-mono text-xs uppercase tracking-wider text-gray-500">
-          {visibleCount} BUILD{visibleCount !== 1 ? "S" : ""} LOADED
-        </span>
-      </div>
+        <div className="mb-8 flex flex-wrap items-center gap-2.5 font-mono">
+          {PORTFOLIO_FILTER_OPTS.map(({ key, label }, idx) => (
+            <Fragment key={key}>
+              {idx === 1 ? <FilterRailSeparator /> : null}
+              <button
+                type="button"
+                onClick={() => setFilter(key)}
+                className={
+                  filter === key
+                    ? "relative cursor-pointer overflow-hidden rounded border border-sl-saffron bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-sl-saffron shadow-md ring-2 ring-sl-saffron/20 transition-[color,box-shadow,border-color] duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-100 before:content-['']"
+                    : "relative cursor-pointer overflow-hidden rounded border border-slate-800 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-slate-600 transition-[color,box-shadow,border-color] duration-300 ease-out hover:border-slate-600 hover:text-slate-500 before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
+                }
+              >
+                {label}
+              </button>
+            </Fragment>
+          ))}
+          <span className="ml-auto font-mono text-xs uppercase tracking-wider text-gray-500">
+            {visibleCount} BUILD{visibleCount !== 1 ? "S" : ""} LOADED
+          </span>
+        </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {PROJECTS.map((p, i) => {
@@ -444,9 +444,8 @@ export default function WorkPortfolio() {
 
       <div
         role="presentation"
-        className={`fixed inset-0 z-1000 flex items-center justify-center bg-[rgba(4,6,12,0.95)] backdrop-blur-md transition-opacity duration-400 ${
-          expanded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-1000 flex items-center justify-center bg-[rgba(4,6,12,0.95)] backdrop-blur-md transition-opacity duration-400 ${expanded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+          }`}
         onClick={(e) => {
           if (e.target === e.currentTarget) setExpandedIndex(null);
         }}
@@ -456,9 +455,8 @@ export default function WorkPortfolio() {
           role={expanded ? "dialog" : undefined}
           aria-modal={expanded ? "true" : undefined}
           aria-labelledby={expanded ? "portfolio-exp-title" : undefined}
-          className={`relative max-h-[85vh] w-full max-w-2xl scale-90 overflow-y-auto rounded-xl border border-sl-saffron/20 bg-slate-950 p-9 transition-transform duration-500 ease-out ${
-            expanded ? "scale-100" : ""
-          }`}
+          className={`relative max-h-[85vh] w-full max-w-2xl scale-90 overflow-y-auto rounded-xl border border-sl-saffron/20 bg-slate-950 p-9 transition-transform duration-500 ease-out ${expanded ? "scale-100" : ""
+            }`}
           onClick={(e) => e.stopPropagation()}
         >
           {expanded ? (

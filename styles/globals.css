@@ -1231,3 +1231,44 @@ body {
     transition: none;
   }
 }
+
+/* Contact Us page — scroll reveal (matches About timing) */
+[data-contact-reveal] {
+  opacity: 0;
+  transform: translateY(1.75rem);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-contact-reveal].contact-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-contact-reveal][data-contact-delay="1"] {
+  transition-delay: 0.1s;
+}
+[data-contact-reveal][data-contact-delay="2"] {
+  transition-delay: 0.2s;
+}
+[data-contact-reveal][data-contact-delay="3"] {
+  transition-delay: 0.3s;
+}
+[data-contact-reveal][data-contact-delay="4"] {
+  transition-delay: 0.4s;
+}
+[data-contact-reveal][data-contact-delay="5"] {
+  transition-delay: 0.5s;
+}
+[data-contact-reveal][data-contact-delay="6"] {
+  transition-delay: 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-contact-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

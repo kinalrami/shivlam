@@ -205,120 +205,120 @@ export default function InsightsTrends() {
       className="relative scroll-mt-24 pb-12 md:pb-20"
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
-      <SectionIntro
-        id="insights-heading"
-        eyebrow="Insights & trends"
-        lead="Technical journals covering how we think about engineering — architecture, immersive systems, and brand as code."
-      />
+        <SectionIntro
+          id="insights-heading"
+          eyebrow="Insights & trends"
+          lead="Technical journals covering how we think about engineering — architecture, immersive systems, and brand as code."
+        />
 
-      <div id="ins-root" className="relative w-full">
-        <div className="mb-8 flex flex-wrap items-center gap-2.5 font-mono">
-          {INS_FILTER_OPTS.map(({ key, label }, idx) => (
-            <Fragment key={key}>
-              {idx === 1 ? <FilterRailSeparator /> : null}
-              <button
-                type="button"
-                className={
-                  filter === key
-                    ? "relative cursor-pointer overflow-hidden rounded border border-sl-saffron bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-sl-saffron shadow-md ring-2 ring-sl-saffron/20 transition-[color,box-shadow,border-color] duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-100 before:content-['']"
-                    : "relative cursor-pointer overflow-hidden rounded border border-slate-800 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-slate-600 transition-[color,box-shadow,border-color] duration-300 ease-out hover:border-slate-600 hover:text-slate-500 before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
-                }
-                onClick={() => setFilter(key)}
-              >
-                {label}
-              </button>
-            </Fragment>
-          ))}
-          <span className="ml-auto font-mono text-xs uppercase tracking-wider text-gray-500">
-            {countLabel}
-          </span>
-        </div>
-
-        <div id="ins-grid" ref={gridRef}>
-          {filtered.map((p, i) => {
-            const diffDays = Math.floor(
-              (INSIGHTS_NOW.getTime() - new Date(p.date).getTime()) / 86400000,
-            );
-            const isNew = diffDays <= 2;
-            const codeHtml = codeLinesToHtml(p.code.lines);
-            const thumbSrc = insightThumbSrc(p.svgType, p.color);
-
-            return (
-              <div
-                key={p.id}
-                className="ins-card group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 shadow-none backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20 motion-reduce:transition-opacity motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
-                data-cat={p.catKey}
-                data-idx={i}
-                role="button"
-                tabIndex={0}
-                onKeyDown={onCardKeyDown}
-              >
-                <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                  style={{
-                    boxShadow:
-                      "0 0 0 2px color-mix(in srgb, var(--sl-saffron) 95%, transparent), 0 0 38px color-mix(in srgb, var(--sl-saffron) 45%, transparent), 0 0 130px color-mix(in srgb, var(--sl-saffron) 22%, transparent)",
-                  }}
-                  aria-hidden
-                />
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-60 mask-[radial-gradient(70%_50%_at_50%_0%,black,transparent)]"
-                  aria-hidden
+        <div id="ins-root" className="relative w-full">
+          <div className="mb-8 flex flex-wrap items-center gap-2.5 font-mono">
+            {INS_FILTER_OPTS.map(({ key, label }, idx) => (
+              <Fragment key={key}>
+                {idx === 1 ? <FilterRailSeparator /> : null}
+                <button
+                  type="button"
+                  className={
+                    filter === key
+                      ? "relative cursor-pointer overflow-hidden rounded border border-sl-saffron bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-sl-saffron shadow-md ring-2 ring-sl-saffron/20 transition-[color,box-shadow,border-color] duration-300 ease-out before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-100 before:content-['']"
+                      : "relative cursor-pointer overflow-hidden rounded border border-slate-800 bg-transparent px-4 py-2 font-mono text-xs uppercase tracking-widest text-slate-600 transition-[color,box-shadow,border-color] duration-300 ease-out hover:border-slate-600 hover:text-slate-500 before:pointer-events-none before:absolute before:inset-0 before:bg-linear-to-br before:from-sl-saffron/10 before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
+                  }
+                  onClick={() => setFilter(key)}
                 >
-                  <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/[0.07] blur-2xl" />
-                </div>
-                <div className="card-img-wrap relative z-10 -mx-6 -mt-7 mb-5 h-42">
-                  <div className="card-img-inner relative">
-                    <Image
-                      src={thumbSrc}
-                      alt=""
-                      fill
-                      unoptimized
-                      sizes="100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="card-grain" aria-hidden />
-                  <div className="card-cat">{p.cat}</div>
-                  {isNew ? (
-                    <div className="card-new">
-                      <div className="new-dot" />
-                      NEW
-                    </div>
-                  ) : null}
-                </div>
-                <div className="card-body relative z-10">
-                  <div className="card-meta">
-                    <div
-                      className={
-                        isNew ? "read-dot read-dot-new-post" : "read-dot"
-                      }
-                    />
-                    <span>{p.dateLabel}</span>
-                    <span className="meta-sep">•</span>
-                    <span>{p.read}</span>
-                    <span className="meta-sep">•</span>
-                    <span className="card-meta-id">{p.id}</span>
-                  </div>
-                  <div className="card-title">{p.title}</div>
+                  {label}
+                </button>
+              </Fragment>
+            ))}
+            <span className="ml-auto font-mono text-xs uppercase tracking-wider text-gray-500">
+              {countLabel}
+            </span>
+          </div>
+
+          <div id="ins-grid" ref={gridRef}>
+            {filtered.map((p, i) => {
+              const diffDays = Math.floor(
+                (INSIGHTS_NOW.getTime() - new Date(p.date).getTime()) / 86400000,
+              );
+              const isNew = diffDays <= 2;
+              const codeHtml = codeLinesToHtml(p.code.lines);
+              const thumbSrc = insightThumbSrc(p.svgType, p.color);
+
+              return (
+                <div
+                  key={p.id}
+                  className="ins-card group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 shadow-none backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20 motion-reduce:transition-opacity motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
+                  data-cat={p.catKey}
+                  data-idx={i}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={onCardKeyDown}
+                >
                   <div
-                    className="card-code"
-                    dangerouslySetInnerHTML={{ __html: codeHtml }}
+                    className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                    style={{
+                      boxShadow:
+                        "0 0 0 2px color-mix(in srgb, var(--sl-saffron) 95%, transparent), 0 0 38px color-mix(in srgb, var(--sl-saffron) 45%, transparent), 0 0 130px color-mix(in srgb, var(--sl-saffron) 22%, transparent)",
+                    }}
+                    aria-hidden
                   />
-                  <div className="card-excerpt">{p.excerpt}</div>
-                  <div className="card-footer">
-                    <span className="card-read-btn">READ JOURNAL</span>
-                    <span className="card-idx">
-                      [ {String(i + 1).padStart(2, "0")} /{" "}
-                      {String(filtered.length).padStart(2, "0")} ]
-                    </span>
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-60 mask-[radial-gradient(70%_50%_at_50%_0%,black,transparent)]"
+                    aria-hidden
+                  >
+                    <div className="absolute -left-16 top-0 h-48 w-48 rounded-full bg-sl-cyan/[0.07] blur-2xl" />
+                  </div>
+                  <div className="card-img-wrap relative z-10 -mx-6 -mt-7 mb-5 h-42">
+                    <div className="card-img-inner relative">
+                      <Image
+                        src={thumbSrc}
+                        alt=""
+                        fill
+                        unoptimized
+                        sizes="100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="card-grain" aria-hidden />
+                    <div className="card-cat">{p.cat}</div>
+                    {isNew ? (
+                      <div className="card-new">
+                        <div className="new-dot" />
+                        NEW
+                      </div>
+                    ) : null}
+                  </div>
+                  <div className="card-body relative z-10">
+                    <div className="card-meta">
+                      <div
+                        className={
+                          isNew ? "read-dot read-dot-new-post" : "read-dot"
+                        }
+                      />
+                      <span>{p.dateLabel}</span>
+                      <span className="meta-sep">•</span>
+                      <span>{p.read}</span>
+                      <span className="meta-sep">•</span>
+                      <span className="card-meta-id">{p.id}</span>
+                    </div>
+                    <div className="card-title">{p.title}</div>
+                    <div
+                      className="card-code"
+                      dangerouslySetInnerHTML={{ __html: codeHtml }}
+                    />
+                    <div className="card-excerpt">{p.excerpt}</div>
+                    <div className="card-footer">
+                      <span className="card-read-btn">READ JOURNAL</span>
+                      <span className="card-idx">
+                        [ {String(i + 1).padStart(2, "0")} /{" "}
+                        {String(filtered.length).padStart(2, "0")} ]
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

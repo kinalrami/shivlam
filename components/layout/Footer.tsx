@@ -64,11 +64,10 @@ export function Footer() {
               return (
                 <div key={section.id} className="group rounded-2xl bg-gray-950 text-gray-400 p-4">
                   <p
-                    className={`mb-2 text-base font-bold ${
-                      sectionHasSelectedOption
-                        ? "text-orange-400"
-                        : "text-white"
-                    }`}
+                    className={`mb-2 text-base font-bold ${sectionHasSelectedOption
+                      ? "text-orange-400"
+                      : "text-white"
+                      }`}
                   >
                     {section.title}
                   </p>
@@ -83,11 +82,10 @@ export function Footer() {
                             <a
                               href="mailto:hi@shivlam.com"
                               onClick={() => setSelectedOption(optionId)}
-                              className={`block cursor-pointer text-left transition-colors ${
-                                isSelected
-                                  ? "text-orange-400"
-                                  : "text-gray-400 hover:text-orange-400"
-                              }`}
+                              className={`block cursor-pointer text-left transition-colors ${isSelected
+                                ? "text-orange-400"
+                                : "text-gray-400 hover:text-orange-400"
+                                }`}
                             >
                               {option}
                             </a>
@@ -98,11 +96,10 @@ export function Footer() {
                                 setSelectedOption(optionId);
                                 openChat();
                               }}
-                              className={`block cursor-pointer text-left transition-colors ${
-                                isSelected
-                                  ? "text-orange-400"
-                                  : "text-gray-400 hover:text-orange-400"
-                              }`}
+                              className={`block cursor-pointer text-left transition-colors ${isSelected
+                                ? "text-orange-400"
+                                : "text-gray-400 hover:text-orange-400"
+                                }`}
                             >
                               {option}
                             </button>
@@ -110,11 +107,10 @@ export function Footer() {
                             <Link
                               href="/#contact"
                               onClick={() => setSelectedOption(optionId)}
-                              className={`block cursor-pointer text-left transition-colors ${
-                                isSelected
-                                  ? "text-orange-400"
-                                  : "text-gray-400 hover:text-orange-400"
-                              }`}
+                              className={`block cursor-pointer text-left transition-colors ${isSelected
+                                ? "text-orange-400"
+                                : "text-gray-400 hover:text-orange-400"
+                                }`}
                             >
                               {option}
                             </Link>
@@ -122,11 +118,10 @@ export function Footer() {
                             <Link
                               href={optionHref[option]!}
                               onClick={() => setSelectedOption(optionId)}
-                              className={`block cursor-pointer text-left transition-colors ${
-                                isSelected
-                                  ? "text-orange-400"
-                                  : "text-gray-400 hover:text-orange-400"
-                              }`}
+                              className={`block cursor-pointer text-left transition-colors ${isSelected
+                                ? "text-orange-400"
+                                : "text-gray-400 hover:text-orange-400"
+                                }`}
                             >
                               {option}
                             </Link>
@@ -134,11 +129,10 @@ export function Footer() {
                             <button
                               type="button"
                               onClick={() => setSelectedOption(optionId)}
-                              className={`block cursor-pointer text-left transition-colors ${
-                                isSelected
-                                  ? "text-orange-400"
-                                  : "text-gray-400 hover:text-orange-400"
-                              }`}
+                              className={`block cursor-pointer text-left transition-colors ${isSelected
+                                ? "text-orange-400"
+                                : "text-gray-400 hover:text-orange-400"
+                                }`}
                             >
                               {option}
                             </button>
@@ -153,7 +147,7 @@ export function Footer() {
           </div>
 
           <div className="mt-7 flex items-center justify-between rounded-xl bg-gray-950 px-4 py-3">
-            <p className="text-sm flex items-center gap-2 text-white"><Copyright size={14}/> {new Date().getFullYear()} shivlam</p>
+            <p className="text-sm flex items-center gap-2 text-white"><Copyright size={14} /> {new Date().getFullYear()} shivlam</p>
             <div className="flex items-center gap-3">
               {(
                 [

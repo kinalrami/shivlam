@@ -22,7 +22,7 @@ export function Cta() {
       body={
         <>
           Be among the first construction teams to use DeltaARBIM on your next
-          project.<br/>We&apos;re onboarding early partners now.
+          project.<br />We&apos;re onboarding early partners now.
         </>
       }
       actions={
