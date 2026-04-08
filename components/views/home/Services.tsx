@@ -52,17 +52,17 @@ export default function Services() {
       className="relative scroll-mt-24 pb-12 md:pb-20"
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
-      <SectionIntro
-        id="power-trio-heading"
-        eyebrow="Services"
-        lead="Quick navigation to the core pillars we ship best."
-      />
+        <SectionIntro
+          id="power-trio-heading"
+          eyebrow="Services"
+          lead="Quick navigation to the core pillars we ship best."
+        />
 
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        {services.map((service) => (
-          <ServiceCard key={service.title} service={service} />
-        ))}
-      </div>
+        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {services.map((service) => (
+            <ServiceCard key={service.title} service={service} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -98,22 +98,22 @@ function ServiceCard({ service }: { service: Service }) {
         </div>
 
         <div className="relative mt-auto flex items-center justify-between pt-6">
-        {service.href ? (
-          <Link
-            href={service.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-sm text-gray-400 transition-colors group-hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sl-saffron/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            aria-label={`${service.title} — Explore`}
-          >
-            Explore →
-          </Link>
-        ) : (
-          <span className="font-mono text-sm text-gray-400 transition-colors group-hover:text-white">
-            Explore →
-          </span>
-        )}
-        <span className="h-px w-24 bg-linear-to-r from-transparent via-white/15 to-transparent" />
+          {service.href ? (
+            <Link
+              href={service.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-sm text-gray-400 transition-colors group-hover:text-white focus:outline-hidden focus-visible:ring-2 focus-visible:ring-sl-saffron/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              aria-label={`${service.title} — Explore`}
+            >
+              Explore →
+            </Link>
+          ) : (
+            <span className="font-mono text-sm text-gray-400 transition-colors group-hover:text-white">
+              Explore →
+            </span>
+          )}
+          <span className="h-px w-24 bg-linear-to-r from-transparent via-white/15 to-transparent" />
         </div>
       </div>
 

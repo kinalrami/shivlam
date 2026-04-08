@@ -1,3 +1,5 @@
+import { ARBIM_STACK_GRAPH_LABELS } from "./constants";
+
 /** Shared 2D projection + canvas loops for AR BIM landing (client-only). */
 
 export function makeProj(
@@ -473,11 +475,11 @@ export function attachMidCtaParticles(canvas: HTMLCanvasElement) {
   };
 }
 
+type SpecProjFn = (px: number, py: number, pz: number) => { x: number; y: number };
+
 function box2(
   ctx: CanvasRenderingContext2D,
-  W: number,
-  H: number,
-  tRef: { v: number },
+  proj: SpecProjFn,
   ox: number,
   oy: number,
   oz: number,
@@ -487,7 +489,6 @@ function box2(
   col: string,
   lw?: number,
 ) {
-  const proj = makeProj(W, H, 480, 320, tRef);
   const v = [
     proj(ox - bw / 2, oy, oz - bd / 2),
     proj(ox + bw / 2, oy, oz - bd / 2),
@@ -563,10 +564,21 @@ export function attachSpecCanvas(canvas: HTMLCanvasElement) {
       ctx.lineWidth = 0.5;
       ctx.stroke();
     }
-    const proj = makeProj(W, H, 480, 320, tRef);
-    box2(ctx, W, H, tRef, 0, 0, 0, 95, 170, 75, "rgba(16,43,77,0.9)", 1);
-    box2(ctx, W, H, tRef, -80, 0, -6, 50, 95, 48, "rgba(16,43,77,0.7)", 0.8);
-    box2(ctx, W, H, tRef, 78, 0, -6, 42, 65, 40, "rgba(16,43,77,0.55)", 0.7);
+    const projBase = makeProj(W, H, 480, 320, tRef);
+    /** Keep main tower centroid (0, bh/2, 0) near canvas center; accounts for rotation. */
+    const anchor = projBase(0, 85, 0);
+    const reserveBottom = Math.min(100, H * 0.22);
+    const targetX = W / 2;
+    const targetY = (H - reserveBottom) / 2;
+    const panX = targetX - anchor.x;
+    const panY = targetY - anchor.y;
+    const proj: SpecProjFn = (px, py, pz) => {
+      const p = projBase(px, py, pz);
+      return { x: p.x + panX, y: p.y + panY };
+    };
+    box2(ctx, proj, 0, 0, 0, 95, 170, 75, "rgba(16,43,77,0.9)", 1);
+    box2(ctx, proj, -80, 0, -6, 50, 95, 48, "rgba(16,43,77,0.7)", 0.8);
+    box2(ctx, proj, 78, 0, -6, 42, 65, 40, "rgba(16,43,77,0.55)", 0.7);
     for (let i = 0; i < 180; i++) {
       const ang = (i / 180) * Math.PI * 2;
       const layer = Math.floor(i / 60);
@@ -620,27 +632,34 @@ export function attachStackCanvas(canvas: HTMLCanvasElement, monoFontStack: stri
   let W = 0;
   let H = 0;
 
-  const nodes: StackNode[] = [
-    { lbl: "Unity", x: 0.12, y: 0.3 },
-    { lbl: "Swift", x: 0.28, y: 0.6 },
-    { lbl: "ARKit", x: 0.2, y: 0.15 },
-    { lbl: "Next.js", x: 0.48, y: 0.4 },
-    { lbl: "Node.js", x: 0.62, y: 0.7 },
-    { lbl: "AWS", x: 0.75, y: 0.3 },
-    { lbl: "React Native", x: 0.38, y: 0.75 },
-    { lbl: "Three.js", x: 0.55, y: 0.15 },
-    { lbl: "IFC.js", x: 0.88, y: 0.55 },
+  /** Normalized positions — aligned with `ARBIM_STACK_GRAPH_LABELS` / stack entries order. */
+  const stackNodeLayout: [number, number][] = [
+    [0.22, 0.66],
+    [0.12, 0.38],
+    [0.31, 0.2],
+    [0.43, 0.45],
+    [0.55, 0.72],
+    [0.71, 0.5],
+    [0.87, 0.66],
+    [0.54, 0.28],
+    [0.8, 0.22],
   ];
+  const nodes: StackNode[] = ARBIM_STACK_GRAPH_LABELS.map((lbl, i) => {
+    const xy = stackNodeLayout[i] ?? [0.5, 0.5];
+    return { lbl, x: xy[0], y: xy[1] };
+  });
   const edges: [number, number][] = [
+    [1, 2],
+    [2, 3],
+    [0, 1],
     [0, 2],
-    [0, 3],
-    [1, 3],
-    [2, 7],
-    [3, 4],
-    [3, 5],
-    [4, 6],
-    [5, 8],
-    [6, 3],
+    [4, 5],
+    [5, 6],
+    [4, 7],
+    [6, 7],
+    [4, 8],
+    [6, 8],
+    [1, 4],
   ];
 
   function resize() {
@@ -688,7 +707,7 @@ export function attachStackCanvas(canvas: HTMLCanvasElement, monoFontStack: stri
       ctx.fillStyle = `rgba(255,153,51,${pulse * 0.2})`;
       ctx.fill();
       ctx.font = `8px ${monoFontStack}`;
-      ctx.fillStyle = "rgba(255,255,255,0.4)";
+      ctx.fillStyle = "rgba(255,255,255,0.45)";
       ctx.textAlign = "center";
       ctx.fillText(n.lbl, nx, ny - 13);
     });

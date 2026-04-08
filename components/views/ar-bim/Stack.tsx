@@ -3,6 +3,7 @@
 import type { RefObject } from "react";
 import { ARBIM_STACK_PILLS } from "./constants";
 import { ArbimReveal } from "./Motion";
+import { SectionIntro } from "@/components/shared/section-chrome";
 
 type Props = {
   stackCvRef: RefObject<HTMLCanvasElement | null>;
@@ -28,19 +29,18 @@ export default function Stack({ stackCvRef }: Props) {
     <section id="arbim-stack" className="scroll-mt-14 bg-[#060606] py-12 md:py-20">
       <div className="mx-auto max-w-325 px-5 md:px-12">
         <ArbimReveal delayStep={1}>
-          <div className="mb-3.5 flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
-            <span className="h-0.5 w-5 bg-orange-400" aria-hidden />
-            TECHNICAL STACK & EXPERIENCE
-          </div>
-        </ArbimReveal>
-
-        <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] md:mb-13">
-            <span className="text-white">
-              Scalable Tech Services <br />
-              <span className="text-orange-400">for Bharat</span>
-            </span>
-          </h2>
+          <SectionIntro
+            id="arbim-stack-heading"
+            eyebrow="TECHNICAL STACK & EXPERIENCE"
+            eyebrowStyle="dash"
+            title={
+              <>
+                Scalable Tech Services <br />
+                <span className="text-sl-saffron">for Bharat</span>
+              </>
+            }
+            lead="Battle-tested delivery experience, backed by a modern AR stack and the systems to ship reliably at scale."
+          />
         </ArbimReveal>
 
         <div className="grid items-start gap-16 md:grid-cols-2 md:gap-18">

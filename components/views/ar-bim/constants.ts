@@ -5,7 +5,7 @@ export const ARBIM_MQ_ITEMS = [
   "3D RECONSTRUCTION",
   "CLASH DETECTION",
   "AR VR SOLUTIONS",
-  "SWIFT · ARKIT · UNITY",
+  "SWIFT IOS · UNITY · ARKIT · LIDAR · FORGE",
   "REAL-TIME OVERLAY",
   "POINT CLOUD CAPTURE",
   "ON-SITE VALIDATION",
@@ -13,16 +13,22 @@ export const ARBIM_MQ_ITEMS = [
   "DELTAARBIM",
 ] as const;
 
-export const ARBIM_STACK_PILLS = [
-  "Unity",
-  "Swift",
-  "ARKit",
-  "Next.js",
-  "Node.js",
-  "AWS",
-  "React Native",
-  "IFC.js",
-  "Three.js",
-  "Firebase",
+/** Pill copy (UI) + short graph labels (canvas at ~8px mono). Same order. */
+export const ARBIM_STACK_ENTRIES = [
+  { pill: "Swift Native iOS", graphLabel: "Swift iOS" },
+  { pill: "Unity", graphLabel: "Unity" },
+  { pill: "ARKit", graphLabel: "ARKit" },
+  { pill: "Apple ARKit - LiDAR", graphLabel: "ARKit LiDAR" },
+  { pill: "Autodesk Forge", graphLabel: "Forge" },
+  { pill: "Pixyz Plugin", graphLabel: "Pixyz" },
+  { pill: "Tridify", graphLabel: "Tridify" },
+  { pill: "VIM", graphLabel: "VIM" },
+  { pill: "Python", graphLabel: "Python" },
 ] as const;
+
+export const ARBIM_STACK_PILLS = ARBIM_STACK_ENTRIES.map((e) => e.pill);
+
+export const ARBIM_STACK_GRAPH_LABELS = ARBIM_STACK_ENTRIES.map(
+  (e) => e.graphLabel,
+);
 

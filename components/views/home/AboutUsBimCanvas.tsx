@@ -6,6 +6,32 @@ import * as THREE from "three";
 
 type LayerKey = "struct" | "wall" | "mepr" | "mepb" | "mepg";
 
+/** Visual chrome around the viewer; defaults match the About page / DeltaARBIM. */
+export type AboutUsBimCanvasUi = {
+  overlayBadge: string;
+  overlayDotClass: string;
+  overlayTextClass: string;
+  footerLeft: string;
+  footerLeftClass: string;
+  cornerAccent: string;
+  innerRing: string;
+  lidarScanLineClass: string;
+  canvasAriaLabel: string;
+};
+
+export const ABOUT_US_BIM_CANVAS_UI: AboutUsBimCanvasUi = {
+  overlayBadge: "BIM OVERLAY LIVE",
+  overlayDotClass: "bg-sl-cyan",
+  overlayTextClass: "text-sl-cyan/70",
+  footerLeft: "DELTA-ARBIM // AR SCAN ACTIVE",
+  footerLeftClass: "text-[rgb(245_138_11/0.55)]",
+  cornerAccent: "border-sl-saffron/40",
+  innerRing: "border-sl-saffron/30",
+  lidarScanLineClass:
+    "pointer-events-none absolute left-0 right-0 z-10 h-0.5 animate-[about-us-lidar-scan_4.5s_ease-in-out_infinite] bg-linear-to-r from-transparent via-sl-cyan/65 to-transparent motion-reduce:animate-none",
+  canvasAriaLabel: "Delta-ARBIM 3D preview — drag to rotate",
+};
+
 function readSlBgHex(): number {
   if (typeof document === "undefined") return 0x060e1c;
   const raw = getComputedStyle(document.documentElement)
@@ -46,7 +72,23 @@ const LAYER_TOGGLERS: { key: LayerKey; label: string; tw: string }[] = [
   },
 ];
 
-export default function AboutUsBimCanvas() {
+type AboutUsBimCanvasProps = {
+  ui?: Partial<AboutUsBimCanvasUi>;
+  /** AR-BIM services page: different framing, backdrop, and motion vs About (same layer stack). */
+  scenePreset?: "about" | "arbim";
+};
+
+export default function AboutUsBimCanvas({
+  ui: uiPartial,
+  scenePreset,
+}: AboutUsBimCanvasProps = {}) {
+  const ui = { ...ABOUT_US_BIM_CANVAS_UI, ...uiPartial };
+  const preset = scenePreset ?? "about";
+  const isArbim = preset === "arbim";
+  const rootSurface = isArbim
+    ? "bg-[#060606] [&:fullscreen]:bg-[#060606]"
+    : "bg-sl-bg [&:fullscreen]:bg-sl-bg";
+  const panelSurface = isArbim ? "bg-[#080c14]" : "bg-sl-bg";
   const fsRootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const groupsRef = useRef<Record<LayerKey, THREE.Group> | null>(null);
@@ -102,6 +144,7 @@ export default function AboutUsBimCanvas() {
     let { w, h } = sizeCanvas();
 
     const BG = readSlBgHex();
+    const clearHex = isArbim ? 0x080c14 : BG;
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -109,13 +152,18 @@ export default function AboutUsBimCanvas() {
       alpha: false,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(BG, 1);
+    renderer.setClearColor(clearHex, 1);
     renderer.setSize(w, h, false);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 300);
-    camera.position.set(8, 6, 12);
-    camera.lookAt(0, 2, 0);
+    if (isArbim) {
+      camera.position.set(10.2, 6.9, 15.8);
+      camera.lookAt(0, 2.35, 0);
+    } else {
+      camera.position.set(8, 6, 12);
+      camera.lookAt(0, 2, 0);
+    }
 
     const groups: Record<LayerKey, THREE.Group> = {
       struct: new THREE.Group(),
@@ -300,7 +348,12 @@ export default function AboutUsBimCanvas() {
       gp.push(-6, 0, i, 6, 0, i);
     }
     gf.setAttribute("position", new THREE.Float32BufferAttribute(gp, 3));
-    scene.add(new THREE.LineSegments(gf, lm(0x1e293b, 0.28)));
+    scene.add(
+      new THREE.LineSegments(
+        gf,
+        lm(isArbim ? 0x3d2818 : 0x1e293b, isArbim ? 0.32 : 0.28),
+      ),
+    );
 
     const mg = new THREE.Group();
     Object.values(groups).forEach((g) => mg.add(g));
@@ -309,8 +362,8 @@ export default function AboutUsBimCanvas() {
     let isDrag = false;
     let lx = 0;
     let ly = 0;
-    let rotY = 0.4;
-    let rotX = 0.25;
+    let rotY = isArbim ? 0.52 : 0.4;
+    let rotX = isArbim ? 0.22 : 0.25;
     let auto = true;
     let raf = 0;
 
@@ -348,7 +401,7 @@ export default function AboutUsBimCanvas() {
 
     function animate() {
       raf = requestAnimationFrame(animate);
-      if (auto) rotY += 0.004;
+      if (auto) rotY += isArbim ? 0.0053 : 0.004;
       mg.rotation.y = rotY;
       mg.rotation.x = rotX;
       renderer.render(scene, camera);
@@ -395,15 +448,18 @@ export default function AboutUsBimCanvas() {
     };
 
     return dispose;
-  }, []);
+  }, [isArbim]);
 
   return (
     <div
       ref={fsRootRef}
-      className="relative h-full min-h-full w-full bg-sl-bg [&:fullscreen]:box-border [&:fullscreen]:h-screen [&:fullscreen]:min-h-screen [&:fullscreen]:w-full [&:fullscreen]:bg-sl-bg"
+      className={`relative h-full min-h-full w-full [&:fullscreen]:box-border [&:fullscreen]:h-screen [&:fullscreen]:min-h-screen [&:fullscreen]:w-full ${rootSurface}`}
       data-about-bim-fs-root
+      data-scene-preset={preset}
     >
-      <div className="absolute inset-6 z-10 box-border overflow-hidden rounded border border-sl-saffron/30 bg-sl-bg">
+      <div
+        className={`absolute inset-6 z-10 box-border overflow-hidden rounded border ${panelSurface} ${ui.innerRing}`}
+      >
         <div className="pointer-events-auto absolute left-2.5 top-2.5 z-20 flex flex-col gap-1">
           {LAYER_TOGGLERS.map(({ key, label, tw }) => (
             <button
@@ -419,20 +475,27 @@ export default function AboutUsBimCanvas() {
         <canvas
           ref={canvasRef}
           className="block h-full w-full cursor-grab active:cursor-grabbing"
-          aria-label="Delta-ARBIM 3D preview — drag to rotate"
+          aria-label={ui.canvasAriaLabel}
+        />
+        <div className={ui.lidarScanLineClass} aria-hidden />
+        <div
+          className={`pointer-events-none absolute -left-px -top-px size-4.5 border-0 border-solid ${ui.cornerAccent} border-t-2 border-l-2`}
         />
         <div
-          className="pointer-events-none absolute left-0 right-0 z-10 h-0.5 animate-[about-us-lidar-scan_4.5s_ease-in-out_infinite] bg-linear-to-r from-transparent via-sl-cyan/65 to-transparent motion-reduce:animate-none"
-          aria-hidden
+          className={`pointer-events-none absolute -right-px -top-px size-4.5 border-0 border-solid ${ui.cornerAccent} border-t-2 border-r-2`}
         />
-        <div className="pointer-events-none absolute -left-px -top-px size-4.5 border-0 border-solid border-sl-saffron/40 border-t-2 border-l-2" />
-        <div className="pointer-events-none absolute -right-px -top-px size-4.5 border-0 border-solid border-sl-saffron/40 border-t-2 border-r-2" />
-        <div className="pointer-events-none absolute -bottom-px -left-px size-4.5 border-0 border-solid border-sl-saffron/40 border-b-2 border-l-2" />
-        <div className="pointer-events-none absolute -bottom-px -right-px size-4.5 border-0 border-solid border-sl-saffron/40 border-b-2 border-r-2" />
+        <div
+          className={`pointer-events-none absolute -bottom-px -left-px size-4.5 border-0 border-solid ${ui.cornerAccent} border-b-2 border-l-2`}
+        />
+        <div
+          className={`pointer-events-none absolute -bottom-px -right-px size-4.5 border-0 border-solid ${ui.cornerAccent} border-b-2 border-r-2`}
+        />
         <div className="pointer-events-none absolute right-3 top-2.5 z-10 flex items-center gap-1">
-          <div className="size-1.75 animate-[about-us-blink_1.8s_ease-in-out_infinite] rounded-full bg-sl-cyan motion-reduce:animate-none" />
-          <div className="font-mono text-xs tracking-wider text-sl-cyan/70">
-            BIM OVERLAY LIVE
+          <div
+            className={`size-1.75 animate-[about-us-blink_1.8s_ease-in-out_infinite] rounded-full motion-reduce:animate-none ${ui.overlayDotClass}`}
+          />
+          <div className={`font-mono text-xs tracking-wider ${ui.overlayTextClass}`}>
+            {ui.overlayBadge}
           </div>
         </div>
         <button
@@ -456,8 +519,10 @@ export default function AboutUsBimCanvas() {
             <Maximize2 className="size-4" aria-hidden />
           )}
         </button>
-        <div className="pointer-events-none absolute bottom-2.5 left-3 font-mono text-[8px] tracking-[0.14em] text-[rgb(245_138_11/0.55)]">
-          DELTA-ARBIM // AR SCAN ACTIVE
+        <div
+          className={`pointer-events-none absolute bottom-2.5 left-3 font-mono text-[8px] tracking-[0.14em] ${ui.footerLeftClass}`}
+        >
+          {ui.footerLeft}
         </div>
         <div className="pointer-events-none absolute bottom-4 right-14 max-w-md text-right font-mono text-xs tracking-wide text-white/30">
           {isFullscreen

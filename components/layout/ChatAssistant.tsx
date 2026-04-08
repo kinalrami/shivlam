@@ -122,11 +122,10 @@ export function ChatAssistant() {
             {lines.map((line, i) => (
               <div
                 key={`${i}-${line.role}-${line.content.slice(0, 12)}`}
-                className={`max-w-[95%] rounded-xl px-3 py-2 text-sm leading-relaxed ${
-                  line.role === "user"
-                    ? "ml-auto bg-sl-saffron/20 text-gray-100"
-                    : "mr-auto border border-white/10 bg-white/5 text-gray-200"
-                }`}
+                className={`max-w-[95%] rounded-xl px-3 py-2 text-sm leading-relaxed ${line.role === "user"
+                  ? "ml-auto bg-sl-saffron/20 text-gray-100"
+                  : "mr-auto border border-white/10 bg-white/5 text-gray-200"
+                  }`}
               >
                 {line.content}
               </div>

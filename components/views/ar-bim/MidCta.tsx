@@ -2,8 +2,8 @@
 
 import type { RefObject } from "react";
 import Link from "next/link";
-import { MoveRight, Phone } from "lucide-react";
-import { ArbimReveal } from "./Motion";
+import { MoveRight } from "lucide-react";
+import { MidBannerCta } from "@/components/shared/MidBannerCta";
 
 type Props = {
   midCvRef: RefObject<HTMLCanvasElement | null>;
@@ -14,64 +14,44 @@ export default function MidCta({ midCvRef }: Props) {
   const primaryHref = `mailto:${email}`;
 
   return (
-    <section
-      id="arbim-mid-cta"
-      className="relative scroll-mt-14 overflow-hidden bg-[#060606] py-12 md:py-20"
-    >
-      <canvas className="absolute inset-0 z-0 h-full w-full" id="arbim-mid-cv" ref={midCvRef} />
-      <div className="relative z-5 mx-auto max-w-200 px-5 text-center md:px-12">
-        <ArbimReveal delayStep={1}>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-orange-400/30 bg-orange-400/6 px-3.5 py-1.5 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
-            <span
-              className="size-1.5 rounded-full bg-orange-400 animate-[arbim-landing-bpulse_1.8s_ease-in-out_infinite]"
-              aria-hidden
-            />
-            THE TECHNICAL BRIDGE
-          </div>
-        </ArbimReveal>
-
-        <ArbimReveal delayStep={2}>
-          <h2 className="mb-4 font-sans text-2xl md:text-5xl leading-tight font-bold text-white md:mb-4.5">
-            Overlay Your Dream
-            <br />
-            above your code,
-            <br />
-            <span className="text-orange-400">Capture Now.</span>
-          </h2>
-        </ArbimReveal>
-
-        <ArbimReveal delayStep={3}>
-          <div className="mb-9 flex items-center justify-center gap-4">
-            <span className="h-px max-w-30 flex-1 bg-linear-to-r from-transparent to-orange-400/30" />
-            <span className="flex size-8 items-center justify-center rounded-full border border-orange-400/30">
-              <Phone className="size-3.5 stroke-orange-400 stroke-2" aria-hidden />
-            </span>
-            <span className="h-px max-w-30 flex-1 bg-linear-to-l from-transparent to-orange-400/30" />
-          </div>
-        </ArbimReveal>
-
-        <ArbimReveal delayStep={3}>
-          <p className="mb-9 text-[15px] leading-[1.75] text-white/45 md:mb-9">
-            Ready to see your Revit models in the field?
-            <br />
-            Send your specs to{" "}
-            <a
-              href={`mailto:${email}`}
-              className="border-b border-orange-400/30 text-orange-400 no-underline hover:border-orange-400"
-            >
-              {email}
-            </a>{" "}
-            and we'll sync your site in AR.
-          </p>
-        </ArbimReveal>
-
-        <ArbimReveal delayStep={4} className="flex flex-wrap items-center justify-center gap-3.5">
+    <MidBannerCta
+      sectionId="arbim-mid-cta"
+      canvasRef={midCvRef}
+      canvasId="arbim-mid-cv"
+      reveal="arbim"
+      badge="THE TECHNICAL BRIDGE"
+      showPhoneIcon
+      title={
+        <>
+          Overlay Your Dream
+          <br />
+          above your code,
+          <br />
+          <span className="text-orange-400">Capture Now.</span>
+        </>
+      }
+      body={
+        <>
+          Ready to see your Revit models in the field?
+          <br />
+          Send your specs to{" "}
+          <a
+            href={`mailto:${email}`}
+            className="border-b border-orange-400/30 text-orange-400 no-underline hover:border-orange-400"
+          >
+            {email}
+          </a>{" "}
+          and we&apos;ll sync your site in AR.
+        </>
+      }
+      actions={
+        <>
           <Link
             data-arbim-cursor
             href={primaryHref}
             className="relative flex items-center gap-2 rounded-md border border-orange-400 bg-orange-400 px-8 py-3 text-[13px] font-semibold tracking-[0.07em] text-white uppercase shadow-[0_0_24px_rgb(245_138_11/0.35)] transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[0_0_44px_rgb(245_138_11/0.55)]"
           >
-            Start AR sync <MoveRight/>
+            Start AR sync <MoveRight />
           </Link>
           <a
             data-arbim-cursor
@@ -82,9 +62,8 @@ export default function MidCta({ midCvRef }: Props) {
           >
             View Deltaarbim
           </a>
-        </ArbimReveal>
-      </div>
-    </section>
+        </>
+      }
+    />
   );
 }
-

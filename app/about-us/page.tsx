@@ -1,29 +1,57 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import HeroCanvas from "@/components/views/home/Canvas";
+import AboutPage from "@/components/views/about-us/Page";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "DeltaARBIM",
+  url: "https://deltaarbim.tech",
+  description:
+    "DeltaARBIM is an AR-powered BIM platform built by Shivlam to transform construction site intelligence through real-time augmented reality overlays.",
+  foundingDate: "2022",
+  foundingLocation: "Bharat, India",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "Shivlam",
+    url: "https://www.shivlam.com",
+  },
+  sameAs: ["https://deltaarbim.tech"],
+};
 
 export const metadata: Metadata = {
-  title: "About Us | Shivlam",
+  title: "About DeltaARBIM — AR & BIM Intelligence Built in Bharat | Shivlam",
   description:
-    "Learn about Shivlam — a spatial computing studio focused on AR, BIM, and scalable product engineering.",
+    "Learn about DeltaARBIM — an AR-powered BIM platform built by Shivlam, a Bharat-based tech company with 10+ years of experience. Our mission is to transform construction with real-time augmented reality.",
+  keywords: [
+    "DeltaARBIM",
+    "about us",
+    "AR BIM",
+    "construction technology",
+    "augmented reality BIM",
+    "Shivlam",
+    "Bharat tech",
+    "building information modeling",
+  ],
+  robots: { index: true, follow: true },
+  alternates: { canonical: "https://deltaarbim.tech/about" },
+  openGraph: {
+    title: "About DeltaARBIM — Construction + AR + BIM Intelligence",
+    description:
+      "DeltaARBIM is built by Shivlam, a Bharat-based technology company on a mission to eliminate the gap between BIM design and real-world construction.",
+    type: "website",
+    url: "https://deltaarbim.tech/about",
+  },
 };
 
 export default function AboutUsPage() {
   return (
     <>
-      <HeroCanvas />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="relative z-10 min-h-0 flex-1">
-      <section className="max-w-225 px-5 min-h-[70vh] py-16 sm:px-8 sm:py-24 lg:px-14">
-        <p className="font-mono mb-6 text-xs font-medium uppercase text-sl-saffron">
-          About Us
-        </p>
-        <Link
-          href="/"
-          className="inline-block rounded-sm border border-sl-saffron px-7 py-3 font-mono text-xs font-bold text-sl-saffron transition-[filter] hover:brightness-110"
-        >
-          Back to home
-        </Link>
-      </section>
+        <AboutPage />
       </main>
     </>
   );
