@@ -35,7 +35,7 @@ export default function Product() {
           </div>
         </ArbimReveal>
         <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-4xl leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-13">
+          <h2 className="mb-4 font-sans text-4xl leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-6">
             DeltaARBIM:
             <br />
             <em className="text-orange-400 not-italic">One of the Best Products We Built.</em>

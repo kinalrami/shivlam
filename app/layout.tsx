@@ -3,6 +3,7 @@ import { DM_Sans, Space_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ChatAssistant } from "@/components/layout/ChatAssistant";
+import { GlobalCursor } from "@/components/layout/GlobalCursor";
 import "@/styles/globals.css";
 
 const dmSans = DM_Sans({
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.className} min-h-full flex flex-col font-sans font-normal`}
       >
+        <GlobalCursor />
         <Header />
         {children}
         <Footer />

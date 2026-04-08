@@ -47,7 +47,7 @@ export default function Hero({ heroBgRef, heroArRef }: Props) {
           <div className="mb-12 flex flex-wrap items-center gap-3.5">
             <a
               data-arbim-cursor
-              href="#arbim-spec"
+              href="#arbim-stack"
               className="relative flex items-center gap-2 rounded-md overflow-hidden border border-orange-400 bg-orange-400 px-8 py-3.5 text-[13px] font-semibold tracking-[0.07em] text-white uppercase shadow-[0_0_24px_rgb(245_138_11/0.35)] transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_44px_rgb(245_138_11/0.55)]"
             >
               View Our Specialisation <MoveRight/>

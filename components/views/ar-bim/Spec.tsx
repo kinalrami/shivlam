@@ -48,7 +48,7 @@ export default function Spec({ specCvRef }: Props) {
           </div>
         </ArbimReveal>
         <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-13">
+          <h2 className="mb-4 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-6">
             Advanced <em className="text-orange-400 not-italic">AR VR Solutions</em>
           </h2>
         </ArbimReveal>

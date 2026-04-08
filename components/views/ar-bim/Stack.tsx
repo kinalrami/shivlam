@@ -35,7 +35,7 @@ export default function Stack({ stackCvRef }: Props) {
         </ArbimReveal>
 
         <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] md:mb-13">
+          <h2 className="mb-4 font-sans text-[clamp(1.5rem,3.2vw,2.75rem)] leading-tight font-extrabold tracking-[-0.025em] md:mb-6">
             <span className="text-white">
               Scalable Tech Services <br />
               <span className="text-orange-400">for Bharat</span>
