@@ -138,6 +138,19 @@ body {
   }
 }
 
+/* 3D Reconstruction hero — vertical HUD scan line */
+@keyframes recon-hero-scan-line {
+  0%,
+  100% {
+    transform: translateY(-6%);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(6%);
+    opacity: 1;
+  }
+}
+
 @keyframes arbim-landing-chip-float {
   0%,
   100% {
