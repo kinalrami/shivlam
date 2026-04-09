@@ -4,7 +4,15 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
-type LayerKey = "struct" | "wall" | "mepr" | "mepb" | "mepg";
+import { buildArbimOtWingScene } from "@/components/views/ar-bim/arbimOtWingScene";
+
+export type LayerKey = "struct" | "wall" | "mepr" | "mepb" | "mepy" | "mepg";
+
+export type AboutUsBimLayerToggle = {
+  key: LayerKey;
+  label: string;
+  tw: string;
+};
 
 /** Visual chrome around the viewer; defaults match the About page / DeltaARBIM. */
 export type AboutUsBimCanvasUi = {
@@ -44,7 +52,8 @@ function readSlBgHex(): number {
   return 0x060e1c;
 }
 
-const LAYER_TOGGLERS: { key: LayerKey; label: string; tw: string }[] = [
+/** Home / About only — AR-BIM toggles live in `deltaPreviewArbimContent.ts`. */
+const LAYER_TOGGLERS_ABOUT: AboutUsBimLayerToggle[] = [
   {
     key: "struct",
     label: "STRUCTURE",
@@ -63,7 +72,7 @@ const LAYER_TOGGLERS: { key: LayerKey; label: string; tw: string }[] = [
   {
     key: "mepb",
     label: "MEP WATER",
-    tw: "border-sky-400/40 bg-sky-400/10 text-sky-400",
+    tw: "border-cyan-400/40 bg-cyan-400/10 text-cyan-400",
   },
   {
     key: "mepg",
@@ -76,11 +85,17 @@ type AboutUsBimCanvasProps = {
   ui?: Partial<AboutUsBimCanvasUi>;
   /** AR-BIM services page: different framing, backdrop, and motion vs About (same layer stack). */
   scenePreset?: "about" | "arbim";
+  /**
+   * When `scenePreset` is `"arbim"`, pass layer buttons from page content
+   * (e.g. `AR_BIM_LAYER_TOGGLERS` in `deltaPreviewArbimContent.ts`).
+   */
+  layerTogglers?: AboutUsBimLayerToggle[];
 };
 
 export default function AboutUsBimCanvas({
   ui: uiPartial,
   scenePreset,
+  layerTogglers: layerTogglersProp,
 }: AboutUsBimCanvasProps = {}) {
   const ui = { ...ABOUT_US_BIM_CANVAS_UI, ...uiPartial };
   const preset = scenePreset ?? "about";
@@ -88,7 +103,10 @@ export default function AboutUsBimCanvas({
   const rootSurface = isArbim
     ? "bg-[#060606] [&:fullscreen]:bg-[#060606]"
     : "bg-sl-bg [&:fullscreen]:bg-sl-bg";
-  const panelSurface = isArbim ? "bg-[#080c14]" : "bg-sl-bg";
+  const panelSurface = isArbim ? "bg-[#111820]" : "bg-sl-bg";
+  const layerTogglers = isArbim
+    ? (layerTogglersProp ?? [])
+    : LAYER_TOGGLERS_ABOUT;
   const fsRootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const groupsRef = useRef<Record<LayerKey, THREE.Group> | null>(null);
@@ -98,6 +116,7 @@ export default function AboutUsBimCanvas({
     wall: true,
     mepr: true,
     mepb: true,
+    mepy: true,
     mepg: true,
   });
 
@@ -144,22 +163,26 @@ export default function AboutUsBimCanvas({
     let { w, h } = sizeCanvas();
 
     const BG = readSlBgHex();
-    const clearHex = isArbim ? 0x080c14 : BG;
+    const clearHex = BG;
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
-      alpha: false,
+      alpha: isArbim,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(clearHex, 1);
+    if (isArbim) {
+      renderer.setClearColor(0x000000, 0);
+    } else {
+      renderer.setClearColor(clearHex, 1);
+    }
     renderer.setSize(w, h, false);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 300);
     if (isArbim) {
-      camera.position.set(10.2, 6.9, 15.8);
-      camera.lookAt(0, 2.35, 0);
+      camera.position.set(7.95, 6.25, 9.1);
+      camera.lookAt(0, 1.8, 0);
     } else {
       camera.position.set(8, 6, 12);
       camera.lookAt(0, 2, 0);
@@ -170,6 +193,7 @@ export default function AboutUsBimCanvas({
       wall: new THREE.Group(),
       mepr: new THREE.Group(),
       mepb: new THREE.Group(),
+      mepy: new THREE.Group(),
       mepg: new THREE.Group(),
     };
     groupsRef.current = groups;
@@ -215,145 +239,152 @@ export default function AboutUsBimCanvas({
       grp.add(m);
     }
 
-    const sg = groups.struct;
-    const sm = lm(0x94a3b8, 0.9);
-    const smf = mm(0x475569, 0.18);
-    const colXZ: [number, number][] = [
-      [-2.5, -2.5],
-      [-2.5, 2.5],
-      [2.5, -2.5],
-      [2.5, 2.5],
-      [-2.5, 0],
-      [2.5, 0],
-      [0, -2.5],
-      [0, 2.5],
-    ];
-    colXZ.forEach(([x, z]) => {
-      addMesh(new THREE.BoxGeometry(0.28, 6, 0.28), smf, sg, x, 3, z);
-      addEdge(new THREE.BoxGeometry(0.28, 6, 0.28), sm, sg, x, 3, z);
-    });
-    for (let i = 0; i <= 5; i++) {
-      const y = i * 1.1;
-      const pts = [
-        new THREE.Vector3(-2.5, y, -2.5),
-        new THREE.Vector3(2.5, y, -2.5),
-        new THREE.Vector3(2.5, y, 2.5),
-        new THREE.Vector3(-2.5, y, 2.5),
-        new THREE.Vector3(-2.5, y, -2.5),
+    if (!isArbim) {
+      const sg = groups.struct;
+      const sm = lm(0x94a3b8, 0.9);
+      const smf = mm(0x475569, 0.18);
+      const colXZ: [number, number][] = [
+        [-2.5, -2.5],
+        [-2.5, 2.5],
+        [2.5, -2.5],
+        [2.5, 2.5],
+        [-2.5, 0],
+        [2.5, 0],
+        [0, -2.5],
+        [0, 2.5],
       ];
-      sg.add(
-        new THREE.Line(
-          new THREE.BufferGeometry().setFromPoints(pts),
-          lm(0x64748b, 0.55),
-        ),
-      );
-      if (i < 5) {
-        addMesh(new THREE.BoxGeometry(5.2, 0.12, 5.2), mm(0x334155, 0.35), sg, 0, y + 1.08, 0);
-        addEdge(
-          new THREE.BoxGeometry(5.2, 0.12, 5.2),
-          lm(0x94a3b8, 0.3),
-          sg,
-          0,
-          y + 1.08,
-          0,
-        );
-      }
-    }
-
-    const wg = groups.wall;
-    const wm = mm(0x3b82f6, 0.22);
-    const we = lm(0x60a5fa, 0.65);
-    const wallBoxes: [number, number, number, number, number, number][] = [
-      [5.2, 3.3, 0.12, 0, 1.65, -2.5],
-      [5.2, 3.3, 0.12, 0, 1.65, 2.5],
-      [0.12, 3.3, 5.2, -2.5, 1.65, 0],
-      [0.12, 3.3, 5.2, 2.5, 1.65, 0],
-    ];
-    wallBoxes.forEach(([bw, bh, bd, x, y, z]) => {
-      addMesh(new THREE.BoxGeometry(bw, bh, bd), wm, wg, x, y, z);
-      addEdge(new THREE.BoxGeometry(bw, bh, bd), we, wg, x, y, z);
-    });
-
-    function pipe(
-      grp: THREE.Group,
-      matF: THREE.MeshBasicMaterial,
-      matL: THREE.LineBasicMaterial,
-      p1: [number, number, number],
-      p2: [number, number, number],
-      r: number,
-    ) {
-      const len = Math.sqrt(
-        (p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2 + (p2[2] - p1[2]) ** 2,
-      );
-      const mx = (p1[0] + p2[0]) / 2;
-      const my = (p1[1] + p2[1]) / 2;
-      const mz = (p1[2] + p2[2]) / 2;
-      const dx = p2[0] - p1[0];
-      const dz = p2[2] - p1[2];
-      const angle = Math.atan2(dz, dx);
-      const g = new THREE.CylinderGeometry(r, r, len, 8);
-      const mesh = new THREE.Mesh(g, matF);
-      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(g), matL);
-      [mesh, edges].forEach((m) => {
-        m.position.set(mx, my, mz);
-        m.rotation.z = Math.PI / 2;
-        m.rotation.y = -angle;
-        grp.add(m);
+      colXZ.forEach(([x, z]) => {
+        addMesh(new THREE.BoxGeometry(0.28, 6, 0.28), smf, sg, x, 3, z);
+        addEdge(new THREE.BoxGeometry(0.28, 6, 0.28), sm, sg, x, 3, z);
       });
+      for (let i = 0; i <= 5; i++) {
+        const y = i * 1.1;
+        const pts = [
+          new THREE.Vector3(-2.5, y, -2.5),
+          new THREE.Vector3(2.5, y, -2.5),
+          new THREE.Vector3(2.5, y, 2.5),
+          new THREE.Vector3(-2.5, y, 2.5),
+          new THREE.Vector3(-2.5, y, -2.5),
+        ];
+        sg.add(
+          new THREE.Line(
+            new THREE.BufferGeometry().setFromPoints(pts),
+            lm(0x64748b, 0.55),
+          ),
+        );
+        if (i < 5) {
+          addMesh(new THREE.BoxGeometry(5.2, 0.12, 5.2), mm(0x334155, 0.35), sg, 0, y + 1.08, 0);
+          addEdge(
+            new THREE.BoxGeometry(5.2, 0.12, 5.2),
+            lm(0x94a3b8, 0.3),
+            sg,
+            0,
+            y + 1.08,
+            0,
+          );
+        }
+      }
+
+      const wg = groups.wall;
+      const wm = mm(0x3b82f6, 0.22);
+      const we = lm(0x60a5fa, 0.65);
+      const wallBoxes: [number, number, number, number, number, number][] = [
+        [5.2, 3.3, 0.12, 0, 1.65, -2.5],
+        [5.2, 3.3, 0.12, 0, 1.65, 2.5],
+        [0.12, 3.3, 5.2, -2.5, 1.65, 0],
+        [0.12, 3.3, 5.2, 2.5, 1.65, 0],
+      ];
+      wallBoxes.forEach(([bw, bh, bd, x, y, z]) => {
+        addMesh(new THREE.BoxGeometry(bw, bh, bd), wm, wg, x, y, z);
+        addEdge(new THREE.BoxGeometry(bw, bh, bd), we, wg, x, y, z);
+      });
+
+      function pipe(
+        grp: THREE.Group,
+        matF: THREE.MeshBasicMaterial,
+        matL: THREE.LineBasicMaterial,
+        p1: [number, number, number],
+        p2: [number, number, number],
+        r: number,
+      ) {
+        const len = Math.sqrt(
+          (p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2 + (p2[2] - p1[2]) ** 2,
+        );
+        const mx = (p1[0] + p2[0]) / 2;
+        const my = (p1[1] + p2[1]) / 2;
+        const mz = (p1[2] + p2[2]) / 2;
+        const dx = p2[0] - p1[0];
+        const dz = p2[2] - p1[2];
+        const angle = Math.atan2(dz, dx);
+        const g = new THREE.CylinderGeometry(r, r, len, 8);
+        const mesh = new THREE.Mesh(g, matF);
+        const edges = new THREE.LineSegments(new THREE.EdgesGeometry(g), matL);
+        [mesh, edges].forEach((m) => {
+          m.position.set(mx, my, mz);
+          m.rotation.z = Math.PI / 2;
+          m.rotation.y = -angle;
+          grp.add(m);
+        });
+      }
+
+      const rg = groups.mepr;
+      const rm = mm(0xef4444, 0.75);
+      const re = lm(0xf87171, 0.9);
+      const redPipes: [[[number, number, number], [number, number, number]], number][] =
+        [
+          [[[-2.2, 4.2, -2.2], [2.2, 4.2, -2.2]], 0.14],
+          [[[-2.2, 4.2, 2.2], [2.2, 4.2, 2.2]], 0.14],
+          [[[0, 4.2, -2.2], [0, 4.2, 2.2]], 0.18],
+          [[[-2.2, 4.2, 0], [2.2, 4.2, 0]], 0.18],
+        ];
+      redPipes.forEach(([seg, r]) => pipe(rg, rm, re, seg[0], seg[1], r));
+
+      const bg2 = groups.mepb;
+      const bm = mm(0x0ea5e9, 0.8);
+      const bl2 = lm(0x38bdf8, 0.95);
+      const bluePipes: [[[number, number, number], [number, number, number]], number][] =
+        [
+          [[[-2.2, 3.6, -1.5], [2.2, 3.6, -1.5]], 0.07],
+          [[[-2.2, 3.6, 1.5], [2.2, 3.6, 1.5]], 0.07],
+          [[[-1.5, 3.6, -2.2], [-1.5, 3.6, 2.2]], 0.07],
+          [[[1.5, 3.6, -2.2], [1.5, 3.6, 2.2]], 0.07],
+          [[[-1.5, 0.6, -2.2], [-1.5, 0.6, 2.2]], 0.055],
+          [[[1.5, 0.6, -2.2], [1.5, 0.6, 2.2]], 0.055],
+        ];
+      bluePipes.forEach(([seg, r]) => pipe(bg2, bm, bl2, seg[0], seg[1], r));
+
+      const gg = groups.mepg;
+      const gm2 = mm(0x22c55e, 0.8);
+      const gl = lm(0x4ade80, 0.9);
+      const greenPipes: [[[number, number, number], [number, number, number]], number][] =
+        [
+          [[[-2.2, 2.2, -1.0], [2.2, 2.2, -1.0]], 0.05],
+          [[[-2.2, 2.2, 1.0], [2.2, 2.2, 1.0]], 0.05],
+          [[[-1.0, 2.2, -2.2], [-1.0, 2.2, 2.2]], 0.05],
+          [[[1.0, 2.2, -2.2], [1.0, 2.2, 2.2]], 0.05],
+          [[[-2.2, 4.8, 0], [2.2, 4.8, 0]], 0.045],
+        ];
+      greenPipes.forEach(([seg, r]) => pipe(gg, gm2, gl, seg[0], seg[1], r));
+    } else {
+      buildArbimOtWingScene(groups);
     }
-
-    const rg = groups.mepr;
-    const rm = mm(0xef4444, 0.75);
-    const re = lm(0xf87171, 0.9);
-    const redPipes: [[[number, number, number], [number, number, number]], number][] =
-      [
-        [[[-2.2, 4.2, -2.2], [2.2, 4.2, -2.2]], 0.14],
-        [[[-2.2, 4.2, 2.2], [2.2, 4.2, 2.2]], 0.14],
-        [[[0, 4.2, -2.2], [0, 4.2, 2.2]], 0.18],
-        [[[-2.2, 4.2, 0], [2.2, 4.2, 0]], 0.18],
-      ];
-    redPipes.forEach(([seg, r]) => pipe(rg, rm, re, seg[0], seg[1], r));
-
-    const bg2 = groups.mepb;
-    const bm = mm(0x0ea5e9, 0.8);
-    const bl2 = lm(0x38bdf8, 0.95);
-    const bluePipes: [[[number, number, number], [number, number, number]], number][] =
-      [
-        [[[-2.2, 3.6, -1.5], [2.2, 3.6, -1.5]], 0.07],
-        [[[-2.2, 3.6, 1.5], [2.2, 3.6, 1.5]], 0.07],
-        [[[-1.5, 3.6, -2.2], [-1.5, 3.6, 2.2]], 0.07],
-        [[[1.5, 3.6, -2.2], [1.5, 3.6, 2.2]], 0.07],
-        [[[-1.5, 0.6, -2.2], [-1.5, 0.6, 2.2]], 0.055],
-        [[[1.5, 0.6, -2.2], [1.5, 0.6, 2.2]], 0.055],
-      ];
-    bluePipes.forEach(([seg, r]) => pipe(bg2, bm, bl2, seg[0], seg[1], r));
-
-    const gg = groups.mepg;
-    const gm2 = mm(0x22c55e, 0.8);
-    const gl = lm(0x4ade80, 0.9);
-    const greenPipes: [[[number, number, number], [number, number, number]], number][] =
-      [
-        [[[-2.2, 2.2, -1.0], [2.2, 2.2, -1.0]], 0.05],
-        [[[-2.2, 2.2, 1.0], [2.2, 2.2, 1.0]], 0.05],
-        [[[-1.0, 2.2, -2.2], [-1.0, 2.2, 2.2]], 0.05],
-        [[[1.0, 2.2, -2.2], [1.0, 2.2, 2.2]], 0.05],
-        [[[-2.2, 4.8, 0], [2.2, 4.8, 0]], 0.045],
-      ];
-    greenPipes.forEach(([seg, r]) => pipe(gg, gm2, gl, seg[0], seg[1], r));
 
     const gf = new THREE.BufferGeometry();
     const gp: number[] = [];
+    const zGrid = isArbim ? 5 : 6;
+    const yGrid = isArbim ? -0.14 : 0;
     for (let i = -6; i <= 6; i++) {
-      gp.push(i, 0, -6, i, 0, 6);
-      gp.push(-6, 0, i, 6, 0, i);
+      gp.push(i, yGrid, -zGrid, i, yGrid, zGrid);
+      gp.push(-6, yGrid, i, 6, yGrid, i);
     }
     gf.setAttribute("position", new THREE.Float32BufferAttribute(gp, 3));
-    scene.add(
-      new THREE.LineSegments(
-        gf,
-        lm(isArbim ? 0x3d2818 : 0x1e293b, isArbim ? 0.32 : 0.28),
-      ),
-    );
+    const gridMat = new THREE.LineBasicMaterial({
+      color: 0x1e293b,
+      transparent: true,
+      opacity: isArbim ? 0.6 : 0.28,
+      depthWrite: false,
+    });
+    scene.add(new THREE.LineSegments(gf, gridMat));
 
     const mg = new THREE.Group();
     Object.values(groups).forEach((g) => mg.add(g));
@@ -362,8 +393,8 @@ export default function AboutUsBimCanvas({
     let isDrag = false;
     let lx = 0;
     let ly = 0;
-    let rotY = isArbim ? 0.52 : 0.4;
-    let rotX = isArbim ? 0.22 : 0.25;
+    let rotY = isArbim ? 0.5 : 0.4;
+    let rotX = isArbim ? 0.35 : 0.25;
     let auto = true;
     let raf = 0;
 
@@ -401,7 +432,7 @@ export default function AboutUsBimCanvas({
 
     function animate() {
       raf = requestAnimationFrame(animate);
-      if (auto) rotY += isArbim ? 0.0053 : 0.004;
+      if (auto) rotY += 0.004;
       mg.rotation.y = rotY;
       mg.rotation.x = rotX;
       renderer.render(scene, camera);
@@ -433,6 +464,14 @@ export default function AboutUsBimCanvas({
       canvas.removeEventListener("touchstart", ts);
       renderer.dispose();
       scene.traverse((obj) => {
+        if (obj instanceof THREE.Sprite) {
+          const m = obj.material;
+          if (m instanceof THREE.SpriteMaterial) {
+            m.map?.dispose();
+            m.dispose();
+          }
+          return;
+        }
         if (
           obj instanceof THREE.Mesh ||
           obj instanceof THREE.Line ||
@@ -461,7 +500,7 @@ export default function AboutUsBimCanvas({
         className={`absolute inset-6 z-10 box-border overflow-hidden rounded border ${panelSurface} ${ui.innerRing}`}
       >
         <div className="pointer-events-auto absolute left-2.5 top-2.5 z-20 flex flex-col gap-1">
-          {LAYER_TOGGLERS.map(({ key, label, tw }) => (
+          {layerTogglers.map(({ key, label, tw }) => (
             <button
               key={key}
               type="button"
