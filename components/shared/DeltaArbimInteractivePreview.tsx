@@ -3,7 +3,7 @@
 import { Fragment, type ReactNode } from "react";
 import AboutUsBimCanvas from "@/components/views/home/AboutUsBimCanvas";
 
-export type DeltaPreviewLogDot = "green" | "cyan" | "amber";
+export type DeltaPreviewLogDot = "green" | "cyan" | "amber" | "red";
 
 export type DeltaPreviewLogLine = {
   dot: DeltaPreviewLogDot;
@@ -51,6 +51,7 @@ const LOG_DOT_COLORS: Record<DeltaPreviewLogDot, string> = {
   green: "bg-green-400",
   cyan: "bg-sl-cyan",
   amber: "bg-sl-saffron",
+  red: "bg-[#f87171]"
 };
 
 export const DELTA_PREVIEW_CONTENT_ABOUT: DeltaArbimPreviewContent = {
@@ -139,7 +140,7 @@ export const DELTA_PREVIEW_CONTENT_ABOUT: DeltaArbimPreviewContent = {
     {
       arrowStroke: "#f87171",
       title: "MEP Pipes & Ducts",
-      body: "Red HVAC ducts, blue water pipes, green conduits — each trade in its own colour. Toggle layers to isolate any system for clash inspection.",
+      body: "Red HVAC ducts, blue water pipes, yellow medical gas, green conduits — each trade in its own colour. Toggle layers to isolate any system for clash inspection.",
       rowGapClass: "gap-3",
       clashPill: true,
     },

@@ -20,6 +20,7 @@ import { DeltaArbimInteractivePreview } from "@/components/shared/DeltaArbimInte
 import AboutUsBimCanvas from "@/components/views/home/AboutUsBimCanvas";
 import {
   AR_BIM_DELTA_PREVIEW_CONTENT,
+  AR_BIM_LAYER_TOGGLERS,
   AR_BIM_PAGE_CANVAS_UI,
 } from "@/components/views/ar-bim/deltaPreviewArbimContent";
 
@@ -93,6 +94,7 @@ export default function Landing() {
               <AboutUsBimCanvas
                 ui={AR_BIM_PAGE_CANVAS_UI}
                 scenePreset="arbim"
+                layerTogglers={AR_BIM_LAYER_TOGGLERS}
               />
             }
             content={AR_BIM_DELTA_PREVIEW_CONTENT}
