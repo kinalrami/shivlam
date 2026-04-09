@@ -72,6 +72,7 @@ const sectionHrefWhenEmpty: Partial<Record<string, string>> = {
 
 const itemHref: Partial<Record<string, string>> = {
   "AR BIM development": "/services/ar-bim",
+  "3D Reconstruction": "/services/3d-reconstruction",
 };
 
 export function Header() {
