@@ -10,7 +10,7 @@ import {
   attachStackCanvas,
 } from "./landingCanvas";
 import Hero from "./Hero";
-import Marquee from "./Marquee";
+import { Marquee } from "@/components/shared/Marquee";
 import MidCta from "./MidCta";
 import Product from "./Product";
 import Spec from "./Spec";
@@ -80,7 +80,7 @@ export default function Landing() {
       </span>
 
       <Hero heroBgRef={heroBgRef} heroArRef={heroArRef} />
-      <Marquee items={mqTrack} />
+      <Marquee items={mqTrack} repeat={1} />
       <Product />
       <MidCta midCvRef={midCvRef} />
       <Spec specCvRef={specCvRef} />

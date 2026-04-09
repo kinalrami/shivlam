@@ -8,6 +8,7 @@ import { useState } from "react";
 const optionHref: Partial<Record<string, string>> = {
   "AR BIM development": "/services/ar-bim",
   "3D Reconstruction": "/services/3d-reconstruction",
+  "AR VR Solution": "/services/ar-vr-solution",
   "Mobile App Development": "/services/iphone-app-development",
   "Contact Us": "/contact-us",
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode, RefObject } from "react";
-import { MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 import { ArbimReveal } from "@/components/views/ar-bim/Motion";
 
 export type MidBannerCtaReveal = "arbim" | "about";
@@ -34,7 +34,7 @@ export type MidBannerCtaProps = {
   title: ReactNode;
   showPhoneIcon?: boolean;
   /** Icon between divider lines when `showPhoneIcon` is true. */
-  centerIcon?: "phone" | "mapPin";
+  centerIcon?: "phone" | "mapPin" | "clock";
   /** Merged onto the default heading classes (e.g. serif display). */
   headingClassName?: string;
   body: ReactNode;
@@ -71,6 +71,8 @@ export function MidBannerCta({
       <span className="flex size-8 items-center justify-center rounded-full border border-orange-400/30">
         {centerIcon === "mapPin" ? (
           <MapPin className="size-3.5 stroke-orange-400 stroke-2" aria-hidden />
+        ) : centerIcon === "clock" ? (
+          <Clock className="size-3.5 stroke-orange-400 stroke-2" aria-hidden />
         ) : (
           <Phone className="size-3.5 stroke-orange-400 stroke-2" aria-hidden />
         )}
