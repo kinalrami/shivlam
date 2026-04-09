@@ -2,7 +2,7 @@
 
 import type { MobileServiceContent } from "./content";
 import { Hero } from "./Hero";
-import { Marquee } from "./Marquee";
+import { Marquee } from "@/components/shared/Marquee";
 import { WhyHire } from "./WhyHire";
 import { Advantages } from "./Advantages";
 import { PortfolioCta } from "./PortfolioCta";
