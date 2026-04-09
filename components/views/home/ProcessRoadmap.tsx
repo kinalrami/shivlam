@@ -234,87 +234,87 @@ export default function ProcessRoadmap() {
       className="relative scroll-mt-24 pb-12 md:pb-20"
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
-      <h2 id="process-roadmap-heading" className="sr-only">
-        How we work — development timeline
-      </h2>
+        <h2 id="process-roadmap-heading" className="sr-only">
+          How we work — development timeline
+        </h2>
 
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
-          HOW WE WORK
-        </p>
-        <div className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block" />
-      </div>
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <p className="font-mono text-xs font-medium uppercase text-sl-saffron">
+            HOW WE WORK
+          </p>
+          <div className="hidden h-px flex-1 bg-linear-to-r from-transparent via-gray-800 to-transparent sm:block" />
+        </div>
 
-      <div className="ta-root">
-        <div className="ta-layout">
-          <div ref={leftRef} className="ta-left" aria-hidden>
-            <div className="ta-v-track" />
-            <div ref={vFillRef} className="ta-v-fill" />
+        <div className="ta-root">
+          <div className="ta-layout">
+            <div ref={leftRef} className="ta-left" aria-hidden>
+              <div className="ta-v-track" />
+              <div ref={vFillRef} className="ta-v-fill" />
 
-            <div ref={cursorRef} className="ta-cursor">
-              <div className="ta-c-ring" />
-              <div className="ta-c-h" />
-              <div className="ta-c-v" />
-              <div className="ta-c-od ta-c-od1" />
-              <div className="ta-c-od ta-c-od2" />
-              <div ref={coordsRef} className="ta-c-coords">
-                x:040 y:030
+              <div ref={cursorRef} className="ta-cursor">
+                <div className="ta-c-ring" />
+                <div className="ta-c-h" />
+                <div className="ta-c-v" />
+                <div className="ta-c-od ta-c-od1" />
+                <div className="ta-c-od ta-c-od2" />
+                <div ref={coordsRef} className="ta-c-coords">
+                  x:040 y:030
+                </div>
               </div>
+
+              {dotPositions.map((top, i) => (
+                <div
+                  key={i}
+                  id={`ta-ld-${sectionId}-${i}`}
+                  className={`ta-left-dot${i === active ? " active" : i < active ? " done" : ""}`}
+                  style={{ top }}
+                />
+              ))}
             </div>
 
-            {dotPositions.map((top, i) => (
-              <div
-                key={i}
-                id={`ta-ld-${sectionId}-${i}`}
-                className={`ta-left-dot${i === active ? " active" : i < active ? " done" : ""}`}
-                style={{ top }}
-              />
-            ))}
-          </div>
-
-          <div
-            ref={rightRef}
-            className="ta-right"
-            aria-label="Development timeline steps"
-            tabIndex={0}
-          >
-            <div className="ta-steps">
-              {STEPS.map((s, i) => (
-                <div key={s.title} className="ta-step-item" id={`ta-si-${sectionId}-${i}`}>
-                  <div
-                    id={`ta-sn-${sectionId}-${i}`}
-                    className={`ta-s-num${i === active ? " active" : i < active ? " done" : ""}`}
-                  >
-                    {s.num}
+            <div
+              ref={rightRef}
+              className="ta-right"
+              aria-label="Development timeline steps"
+              tabIndex={0}
+            >
+              <div className="ta-steps">
+                {STEPS.map((s, i) => (
+                  <div key={s.title} className="ta-step-item" id={`ta-si-${sectionId}-${i}`}>
+                    <div
+                      id={`ta-sn-${sectionId}-${i}`}
+                      className={`ta-s-num${i === active ? " active" : i < active ? " done" : ""}`}
+                    >
+                      {s.num}
+                    </div>
+                    <div
+                      ref={(el) => {
+                        titleRefs.current[i] = el;
+                      }}
+                      className={`ta-s-title${i === active ? " active" : i < active ? " done" : ""}`}
+                    >
+                      {s.title}
+                    </div>
+                    <div
+                      ref={(el) => {
+                        bodyRefs.current[i] = el;
+                      }}
+                      className={`ta-s-body${i === active ? " active" : i < active ? " done" : ""}`}
+                    >
+                      {s.body}
+                    </div>
+                    <div
+                      id={`ta-stag-${sectionId}-${i}`}
+                      className={`ta-s-tag${i === active ? " active" : i < active ? " done" : ""}`}
+                    >
+                      {s.tag}
+                    </div>
                   </div>
-                  <div
-                    ref={(el) => {
-                      titleRefs.current[i] = el;
-                    }}
-                    className={`ta-s-title${i === active ? " active" : i < active ? " done" : ""}`}
-                  >
-                    {s.title}
-                  </div>
-                  <div
-                    ref={(el) => {
-                      bodyRefs.current[i] = el;
-                    }}
-                    className={`ta-s-body${i === active ? " active" : i < active ? " done" : ""}`}
-                  >
-                    {s.body}
-                  </div>
-                  <div
-                    id={`ta-stag-${sectionId}-${i}`}
-                    className={`ta-s-tag${i === active ? " active" : i < active ? " done" : ""}`}
-                  >
-                    {s.tag}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

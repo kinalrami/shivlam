@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { CircleCheckBig, MoveRight, TrendingUp } from "lucide-react";
 import { ArbimReveal } from "./Motion";
+import { SectionIntro } from "@/components/shared/section-chrome";
 
 export default function Product() {
   const results = [
@@ -29,17 +30,19 @@ export default function Product() {
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
         <ArbimReveal delayStep={1}>
-          <div className="mb-3.5 flex items-center gap-2 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
-            <span className="h-0.5 w-5 bg-orange-400" aria-hidden />
-            Product integration
-          </div>
-        </ArbimReveal>
-        <ArbimReveal delayStep={2}>
-          <h2 className="mb-12 font-sans text-4xl leading-tight font-extrabold tracking-[-0.025em] text-sl-text md:mb-13">
-            DeltaARBIM:
-            <br />
-            <em className="text-orange-400 not-italic">One of the Best Products We Built.</em>
-          </h2>
+          <SectionIntro
+            id="arbim-product-heading"
+            eyebrow="Product integration"
+            eyebrowStyle="dash"
+            title={
+              <>
+                DeltaARBIM:
+                <br />
+                <span className="text-sl-saffron">One of the Best Products We Built.</span>
+              </>
+            }
+            lead="An AI-powered BIM viewer that overlays live 3D building models — including structure, walls, and MEP pipes — directly onto real construction sites through your device camera."
+          />
         </ArbimReveal>
 
         <div className="grid items-center gap-16 md:grid-cols-2 md:gap-18">
@@ -52,14 +55,6 @@ export default function Product() {
                 />
                 LIVE NOW · deltaarbim.tech
               </div>
-            </ArbimReveal>
-
-            <ArbimReveal delayStep={3}>
-              <p className="mb-7 text-sm leading-[1.82] text-sl-text/82">
-                An AI-powered BIM viewer that overlays live 3D building models — including structure,
-                walls, and MEP pipes — directly onto real construction sites through your device
-                camera.
-              </p>
             </ArbimReveal>
 
             <ArbimReveal delayStep={4}>
@@ -99,10 +94,10 @@ export default function Product() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-2 rounded-md border border-[#1b3055]/55 px-5 py-2.5 font-mono text-[10px] tracking-[0.16em] text-sl-text uppercase transition-all duration-300 hover:border-orange-400 hover:text-orange-400 hover:shadow-[0_0_16px_rgb(245_138_11/0.15)]"
               >
-                explore deltaarbim.tech <MoveRight/>
+                explore deltaarbim.tech <MoveRight />
               </a>
             </ArbimReveal>
-          </div>  
+          </div>
 
           <ArbimReveal delayStep={3} className="relative min-w-0">
             <div className="relative w-full min-w-0 overflow-hidden rounded-xl border border-[#1b3055]/60 bg-[#060606] shadow-[0_16px_52px_rgb(0_0_0/0.35)] ring-1 ring-cyan-400/10">
@@ -131,9 +126,9 @@ export default function Product() {
                 </div>
               </div>
             </div>
-            </ArbimReveal>
+          </ArbimReveal>
 
-            {/* <div className="pointer-events-none absolute -top-4 -right-4 z-10 hidden flex-col items-end gap-2 md:flex">
+          {/* <div className="pointer-events-none absolute -top-4 -right-4 z-10 hidden flex-col items-end gap-2 md:flex">
               {chips.map((c, i) => (
                 <div
                   key={c}
@@ -148,7 +143,7 @@ export default function Product() {
               ))}
             </div> */}
 
-            {/* <div className="pointer-events-none absolute -bottom-3.5 left-0 right-0 z-10 flex justify-center px-2">
+          {/* <div className="pointer-events-none absolute -bottom-3.5 left-0 right-0 z-10 flex justify-center px-2">
               <div className="flex items-center gap-2 rounded-full border border-[#1b3055]/45 bg-[#0a0f18]/95 px-3.5 py-1 font-mono text-[8px] tracking-[0.14em] text-sl-muted uppercase">
                 <Image
                   src="/delta-logo.png"
