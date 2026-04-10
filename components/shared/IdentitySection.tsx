@@ -131,7 +131,7 @@ export function IdentitySection({
   return (
     <section
       id={sectionId}
-      className="relative scroll-mt-14 overflow-hidden bg-[#060606] py-12 md:py-20"
+      className="relative scroll-mt-14 overflow-hidden bg-[#060606] pb-12 md:pb-20"
     >
       <div className="relative z-10 mx-auto max-w-325 px-5 md:px-12">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">

@@ -1285,3 +1285,14 @@ body {
     transition: none;
   }
 }
+
+/* Why Hire — code cursor blink (used with Tailwind arbitrary animate) */
+@keyframes why-hire-cursor-blink {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0;
+  }
+}

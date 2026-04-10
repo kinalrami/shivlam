@@ -12,6 +12,7 @@ import {
   attachProcessCanvas,
   attachReconHeroLidar,
 } from "./reconCanvas";
+import ContactForm from "../home/ContactForm";
 
 export default function Landing() {
   const heroBgRef = useRef<HTMLCanvasElement>(null);
@@ -53,6 +54,7 @@ export default function Landing() {
       <MidCta midCvRef={midCvRef} />
       <Analytics floorCvRef={floorCvRef} />
       <Identity />
+      <ContactForm />
     </div>
   );
 }
