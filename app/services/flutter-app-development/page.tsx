@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function FlutterAppDevelopmentPage() {
   return (
     <main className="relative z-10 min-h-0 flex-1">
-      <MobileServiceLanding content={MOBILE_SERVICE_CONTENT.flutter} />
+      <MobileServiceLanding serviceKey="flutter" content={MOBILE_SERVICE_CONTENT.flutter} />
     </main>
   );
 }

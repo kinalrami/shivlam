@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AndroidAppDevelopmentPage() {
   return (
     <main className="relative z-10 min-h-0 flex-1">
-      <MobileServiceLanding content={MOBILE_SERVICE_CONTENT.android} />
+      <MobileServiceLanding serviceKey="android" content={MOBILE_SERVICE_CONTENT.android} />
     </main>
   );
 }
