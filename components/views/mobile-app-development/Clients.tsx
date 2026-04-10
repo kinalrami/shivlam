@@ -1,39 +1,29 @@
 "use client";
 
 import { SectionIntro } from "@/components/shared/section-chrome";
+import type { MobileServiceContent } from "./content";
 
-const CLIENTS = [
-  "Soma",
-  "Plinth",
-  "SwadeshotSav",
-  "Urban Rural",
-  "SM-PG",
-  "Bhareshwar",
-  "Ecovance",
-  "Wingtrack",
-  "QuizBuzz",
-  "Gifta",
-  "Pure Earth",
-  "EpiTailo",
-] as const;
+type Props = {
+  content: MobileServiceContent;
+};
 
-const clientLine =
-  "DELIVEREND · HOLA · SOMA · PLINTH · SWADESHOTSAV · URBAN RURAL · SM-PG · BHARESHWAR · ECOVANCE · WINGTRACK · QUIZBUZZ · GIFTA · PUREEARTH · EPITAILO · PLASTOWARE";
+export function Clients({ content }: Props) {
+  const c = content.clients;
 
-export function Clients() {
   return (
-    <section id="clients" className="bg-[#060606] scroll-mt-14">
+    <section id={c.sectionId} className="bg-[#060606] scroll-mt-14">
       <div className="mx-auto max-w-325 px-5 md:px-12">
         <SectionIntro
-          id="clients-who-trust-us"
-          eyebrow="CLIENTS WHO TRUST US"
+          id={c.headingId}
+          eyebrow={c.eyebrow}
           eyebrowStyle="dash"
           title={
             <>
-              Powering <span className="text-orange-400">Global Innovation.</span>
+              {c.titleBefore}
+              <span className="text-orange-400">{c.titleHighlight}</span>
             </>
           }
-          lead="Expert tech partnerships in Web, Mobile, Gaming, and Digital Growth across 3+ Continents."
+          lead={c.lead}
         />
       </div>
 
@@ -52,7 +42,7 @@ export function Clients() {
             <div className="flex min-w-max gap-3 motion-safe:animate-[arbim-dev-marquee_22s_linear_infinite]">
               {Array.from({ length: 2 }).map((_, loopIdx) => (
                 <div key={loopIdx} className="flex min-w-max gap-3 pr-3">
-                  {CLIENTS.map((name) => (
+                  {c.names.map((name) => (
                     <span
                       key={`${loopIdx}-${name}`}
                       className="inline-flex items-center rounded-md border border-black/10 bg-black/[0.03] px-4 py-2 font-sans text-[12px] font-semibold tracking-tight text-grey-400"
@@ -67,10 +57,9 @@ export function Clients() {
         </div>
 
         <p className="mt-4 text-center font-mono text-[10px] tracking-[0.22em] text-gray-400 uppercase">
-          {clientLine}
+          {c.marqueeLine}
         </p>
       </div>
     </section>
   );
 }
-
