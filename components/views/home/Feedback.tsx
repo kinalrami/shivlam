@@ -3,7 +3,11 @@
 import { SectionIntro } from "@/components/shared/section-chrome";
 import NetworkFeedbackMap from "@/components/views/home/NetworkFeedbackMap";
 
-export default function Feedback() {
+type Props = {
+  eyebrowStyle?: "rule" | "dash";
+};
+
+export default function Feedback({ eyebrowStyle = "rule" }: Props) {
   return (
     <section
       id="clients"
@@ -14,6 +18,7 @@ export default function Feedback() {
         <SectionIntro
           id="network-feedback-heading"
           eyebrow="Our clients"
+          eyebrowStyle={eyebrowStyle}
           lead="Our Client's are Celebrating Success with Sharing Joy."
         />
 
