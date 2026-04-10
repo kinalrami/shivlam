@@ -28,7 +28,7 @@ export default function MobileServiceLanding({ content }: Props) {
       <Advantages content={content} />
       <AppPortfolio content={content} />
       <PortfolioStory story={content.appPortfolio.story} />
-      <Feedback />
+      <Feedback eyebrowStyle="dash" />
       <PortfolioCta />
       <Clients content={content} />
       <Dedication />
