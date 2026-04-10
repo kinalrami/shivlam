@@ -10,6 +10,8 @@ import { Clients } from "./Clients";
 import { Dedication } from "./Dedication";
 import { OtherServices } from "./OtherServices";
 import { FinalCta } from "./FinalCta";
+import Feedback from "../home/Feedback";
+import ContactForm from "../home/ContactForm";
 
 type Props = {
   content: MobileServiceContent;
@@ -22,11 +24,13 @@ export default function MobileServiceLanding({ content }: Props) {
       <Marquee items={content.marquee} />
       <WhyHire />
       <Advantages />
+      <Feedback />
       <PortfolioCta />
       <Clients />
       <Dedication />
       <OtherServices />
       <FinalCta serviceName={content.heroHighlight} />
+      <ContactForm />
     </div>
   );
 }
