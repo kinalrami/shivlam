@@ -1,8 +1,16 @@
 export type MobileServiceKey = "iphone" | "android" | "flutter";
 
-export type WhyHireCardIconKey = "heart" | "clock" | "cube" | "check";
+export type WhyHireCardIconKey =
+  | "heart"
+  | "clock"
+  | "cube"
+  | "check"
+  | "oneCodebase"
+  | "hotReload"
+  | "performance"
+  | "stores";
 
-export type WhyHireCardAccent = "orange" | "cyan";
+export type WhyHireCardAccent = "orange" | "cyan" | "flutter";
 
 export type WhyHireCardContent = {
   icon: WhyHireCardIconKey;
@@ -674,14 +682,28 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
       ],
       cards: [
         {
-          icon: "heart",
-          title: "Customer Satisfaction",
-          desc: "We optimize for end-user feel—scrolling, motion, and responsiveness—so your app looks premium on every device.",
+          icon: "oneCodebase",
+          accent: "flutter",
+          title: "One Codebase",
+          desc: "Single Dart codebase ships to iOS, Android, and web with no rewrites.",
         },
         {
-          icon: "clock",
-          title: "On-Time Delivery",
-          desc: "Rapid prototyping to production with shared components, automated builds, and a release plan for both stores.",
+          icon: "hotReload",
+          accent: "orange",
+          title: "Hot Reload 🔥",
+          desc: "See UI changes instantly — sub-300ms hot reload keeps iterations fast.",
+        },
+        {
+          icon: "performance",
+          accent: "flutter",
+          title: "Native Performance",
+          desc: "Compiled to native ARM code — 60fps smooth on every device.",
+        },
+        {
+          icon: "stores",
+          accent: "orange",
+          title: "Both Store Launches",
+          desc: "Full App Store and Play Store submission — ASO, compliance, release pipeline.",
         },
       ],
     },

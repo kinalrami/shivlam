@@ -1,7 +1,17 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Heart, Clock, Box, CheckCircle2, type LucideIcon } from "lucide-react";
+import {
+  Heart,
+  Clock,
+  Box,
+  CheckCircle2,
+  Layers,
+  Flame,
+  Activity,
+  Store,
+  type LucideIcon,
+} from "lucide-react";
 import { attachWhyPhoneCanvas } from "./whyPhoneCanvas";
 import { WHY_CODE_LINES_BY_SERVICE, type CodeToken } from "./whyCodeLines";
 import type { MobileServiceContent, WhyHireCardIconKey } from "./content";
@@ -62,6 +72,10 @@ const CARD_ICONS: Record<WhyHireCardIconKey, LucideIcon> = {
   clock: Clock,
   cube: Box,
   check: CheckCircle2,
+  oneCodebase: Layers,
+  hotReload: Flame,
+  performance: Activity,
+  stores: Store,
 };
 
 type Props = {
@@ -820,7 +834,9 @@ export function WhyHire({ serviceKey, content }: Props) {
                 const accentClasses =
                   c.accent === "cyan"
                     ? "border-cyan-400/25 bg-cyan-400/10 text-cyan-300"
-                    : "border-orange-400/25 bg-orange-400/10 text-orange-400";
+                    : c.accent === "flutter"
+                      ? "border-[#54C5F8]/25 bg-[#54C5F8]/10 text-[#54C5F8]"
+                      : "border-orange-400/25 bg-orange-400/10 text-orange-400";
                 return (
                   <div
                     key={c.title}
