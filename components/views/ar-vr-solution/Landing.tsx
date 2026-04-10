@@ -14,6 +14,7 @@ import {
 } from "@/components/views/ar-vr-solution/arvrCanvas";
 import { Marquee } from "@/components/shared/Marquee";
 import { ARVR_MARQUEE_ITEMS } from "@/components/views/ar-vr-solution/constants";
+import ContactForm from "../home/ContactForm";
 
 export default function Landing() {
   const heroBgRef = useRef<HTMLCanvasElement>(null);
@@ -54,6 +55,7 @@ export default function Landing() {
       <MidCta midCvRef={midCvRef} />
       <UseCases />
       <Identity />
+      <ContactForm />
     </div>
   );
 }
