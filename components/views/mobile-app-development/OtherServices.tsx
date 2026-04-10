@@ -21,7 +21,7 @@ export function OtherServices({ content }: Props) {
 
   return (
     <section id={s.sectionId} className="relative overflow-hidden bg-[#060606] scroll-mt-14">
-      <div className="relative mx-auto max-w-325 px-5 md:pb-8 md:px-12">
+      <div className="relative mx-auto max-w-325 px-5 pb-12 md:pb-20 md:px-12">
         <SectionIntro
           id={s.headingId}
           eyebrow={s.eyebrow}

@@ -1,5 +1,52 @@
 export type MobileServiceKey = "iphone" | "android" | "flutter";
 
+export type WhyHireCardIconKey =
+  | "heart"
+  | "clock"
+  | "cube"
+  | "check"
+  | "oneCodebase"
+  | "hotReload"
+  | "performance"
+  | "stores";
+
+export type WhyHireCardAccent = "orange" | "cyan" | "flutter";
+
+export type WhyHireCardContent = {
+  icon: WhyHireCardIconKey;
+  accent?: WhyHireCardAccent;
+  title: string;
+  desc: string;
+};
+
+export type WhyHireStatContent = {
+  val: string;
+  lbl: string;
+};
+
+export type WhyHireSectionContent = {
+  sectionId: string;
+  eyebrow: string;
+  titleLine1: string;
+  titleLine2: string;
+  titleHighlight: string;
+  description: string;
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+
+  /** Left code editor bar labels */
+  codeFilename: string;
+  codeLangLabel: string;
+
+  /** Floating chips around the phone preview */
+  phoneChip1: string;
+  phoneChip2: string;
+  phoneChip3: string;
+
+  stats: readonly WhyHireStatContent[];
+  cards: readonly WhyHireCardContent[];
+};
+
 export type AppPortfolioAppContent = {
   /** Path under `public/`, e.g. `/mobile-app-portfolio/deliverend.svg` */
   icon: string;
@@ -102,6 +149,7 @@ export type MobileServiceContent = {
   heroMeta: string[];
   heroChips: string[];
   heroPhoneTopLeft: string;
+  heroPhoneTopRight: string;
   heroPhoneSummary: string;
   heroChipFloat1: string;
   heroChipFloat2: string;
@@ -110,6 +158,7 @@ export type MobileServiceContent = {
   primaryCtaHref: string;
 
   marquee: string[];
+  whyHire: WhyHireSectionContent;
   advantages: AdvantagesSectionContent;
   clients: ClientsSectionContent;
   otherServices: OtherServicesSectionContent;
@@ -447,6 +496,7 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
     heroMeta: ["iOS Native Development", "SwiftUI & UIKit", "App Store Launch", "On-Time Delivery"],
     heroChips: ["SwiftUI · UIKit", "App Store Ready", "ARKit · CoreML", "On-Time Delivery"],
     heroPhoneTopLeft: "iOS LIVE",
+    heroPhoneTopRight: "Swift ●",
     heroPhoneSummary: "A modern iOS build pipeline with crisp UI and fast iteration cycles.",
     heroChipFloat1: "SwiftUI · UIKit",
     heroChipFloat2: "App Store Ready",
@@ -467,6 +517,42 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
       "SCALABLE TECH",
       "SHIVLAM.COM",
     ],
+    whyHire: {
+      sectionId: "why",
+      eyebrow: "WHY HIRE US",
+      titleLine1: "Ultimate iPhone App",
+      titleLine2: "Development Company",
+      titleHighlight: "to Shortlist.",
+      description:
+        "Discover excellence in app development with our top-tier iPhone app development company. Our skilled team crafts immersive, user-friendly apps tailored to your vision. From concept to App Store launch, we ensure seamless functionality, stunning design, and optimal performance.",
+      primaryCta: { label: "Start Your Project →", href: "https://shivlam.com/contact-us/" },
+      secondaryCta: {
+        label: "View Portfolio",
+        href: "https://shivlam.com/shivlam-it-services-portfolio-apps-games-websites-seo/",
+      },
+      codeFilename: "ContentView.swift",
+      codeLangLabel: "Swift 5.9",
+      phoneChip1: "✓ UIKit Ready",
+      phoneChip2: "⬡ SwiftUI",
+      phoneChip3: "◎ 4.9★ Store",
+      stats: [
+        { val: "50+", lbl: "Projects Shipped" },
+        { val: "99%", lbl: "Satisfaction Rate" },
+        { val: "5+", lbl: "Countries Served" },
+      ],
+      cards: [
+        {
+          icon: "heart",
+          title: "Customer Satisfaction",
+          desc: "Our success thrives on your happiness. We prioritize your needs, exceed expectations, and create lasting connections through unmatched customer satisfaction.",
+        },
+        {
+          icon: "clock",
+          title: "On-Time Delivery",
+          desc: "Embrace the challenge of on-time delivery. Our commitment drives efficient processes, ensuring your project reaches the finish line promptly without compromising quality.",
+        },
+      ],
+    },
     advantages: ADVANTAGES_IPHONE,
     clients: MOBILE_CLIENTS_SECTION,
     otherServices: MOBILE_OTHER_SERVICES_SECTION,
@@ -481,6 +567,7 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
     heroMeta: ["Kotlin-first Development", "Jetpack Compose UI", "Play Store Launch", "On-Time Delivery"],
     heroChips: ["Kotlin · Compose", "Play Store Ready", "Material UI", "CI/CD Pipelines"],
     heroPhoneTopLeft: "ANDROID LIVE",
+    heroPhoneTopRight: "Kotlin ●",
     heroPhoneSummary: "Modern Android stack with Compose UI, smooth animations, and scalable architecture.",
     heroChipFloat1: "Kotlin · Compose",
     heroChipFloat2: "Play Store Ready",
@@ -499,6 +586,44 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
       "CI/CD",
       "Scalability",
     ],
+    whyHire: {
+      sectionId: "why",
+      eyebrow: "WHY HIRE US",
+      titleLine1: "Ultimate Android App",
+      titleLine2: "Development Company",
+      titleHighlight: "to Shortlist.",
+      description:
+        "Discover excellence with Kotlin-first, Material Design-powered Android apps. From MVVM architecture to Play Store submission — we ship clean, fast, scalable Android products that users love.",
+      primaryCta: { label: "Start Your Project →", href: "https://shivlam.com/contact-us/" },
+      secondaryCta: {
+        label: "View Portfolio",
+        href: "https://shivlam.com/shivlam-it-services-portfolio-apps-games-websites-seo/",
+      },
+      codeFilename: "MainActivity.kt",
+      codeLangLabel: "Kotlin",
+      phoneChip1: "✓ Compose UI",
+      phoneChip2: "⬡ Material",
+      phoneChip3: "◎ Play Store",
+      stats: [
+        { val: "50+", lbl: "Projects Shipped" },
+        { val: "99%", lbl: "Satisfaction Rate" },
+        { val: "5+", lbl: "Countries Served" },
+      ],
+      cards: [
+        {
+          icon: "cube",
+          accent: "orange",
+          title: "Material Design",
+          desc: "Pixel-perfect Material 3 UI that feels native on every Android device.",
+        },
+        {
+          icon: "check",
+          accent: "cyan",
+          title: "Play Store Launch",
+          desc: "End-to-end submission — metadata, ASO, compliance, and review handled.",
+        },
+      ],
+    },
     advantages: ADVANTAGES_ANDROID,
     clients: MOBILE_CLIENTS_SECTION,
     otherServices: MOBILE_OTHER_SERVICES_SECTION,
@@ -509,10 +634,11 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
     heroHighlight: "Flutter App",
     heroTitleTail: "Development Company.",
     heroDescription:
-      "Ship pixel-perfect Flutter apps with one codebase, native integrations, and performance-focused engineering—delivered for both iOS and Android stores.",
+      "Ship pixel-perfect Flutter apps with one codebase, native integrations, and performance-focused engineering — delivered for iOS, Android, and beyond.",
     heroMeta: ["Single Codebase", "Native Integrations", "App Store + Play Store", "Fast Iterations"],
     heroChips: ["Flutter · Dart", "iOS + Android", "Native Plugins", "Performance"],
     heroPhoneTopLeft: "FLUTTER LIVE",
+    heroPhoneTopRight: "Dart ●",
     heroPhoneSummary: "Cross-platform UI with native-grade performance and smooth animation polish.",
     heroChipFloat1: "Flutter · Dart",
     heroChipFloat2: "Store Ready",
@@ -531,6 +657,56 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
       "CI/CD",
       "Scalable UI",
     ],
+    whyHire: {
+      sectionId: "why",
+      eyebrow: "WHY HIRE US",
+      titleLine1: "Ultimate Flutter App",
+      titleLine2: "Development Company",
+      titleHighlight: "to Shortlist.",
+      description:
+        "One codebase. Three platforms. Zero compromises. Our Dart-first team ships pixel-perfect Flutter apps that feel genuinely native on iOS and Android — with shared business logic, shared design tokens, and separate store releases.",
+      primaryCta: { label: "Start Your Project →", href: "https://shivlam.com/contact-us/" },
+      secondaryCta: {
+        label: "View Portfolio",
+        href: "https://shivlam.com/shivlam-it-services-portfolio-apps-games-websites-seo/",
+      },
+      codeFilename: "main.dart",
+      codeLangLabel: "Dart",
+      phoneChip1: "✓ One Codebase",
+      phoneChip2: "⬡ Native Bridges",
+      phoneChip3: "◎ iOS + Android",
+      stats: [
+        { val: "50+", lbl: "Projects Shipped" },
+        { val: "99%", lbl: "Satisfaction Rate" },
+        { val: "5+", lbl: "Countries Served" },
+      ],
+      cards: [
+        {
+          icon: "oneCodebase",
+          accent: "flutter",
+          title: "One Codebase",
+          desc: "Single Dart codebase ships to iOS, Android, and web with no rewrites.",
+        },
+        {
+          icon: "hotReload",
+          accent: "orange",
+          title: "Hot Reload 🔥",
+          desc: "See UI changes instantly — sub-300ms hot reload keeps iterations fast.",
+        },
+        {
+          icon: "performance",
+          accent: "flutter",
+          title: "Native Performance",
+          desc: "Compiled to native ARM code — 60fps smooth on every device.",
+        },
+        {
+          icon: "stores",
+          accent: "orange",
+          title: "Both Store Launches",
+          desc: "Full App Store and Play Store submission — ASO, compliance, release pipeline.",
+        },
+      ],
+    },
     advantages: ADVANTAGES_FLUTTER,
     clients: MOBILE_CLIENTS_SECTION,
     otherServices: MOBILE_OTHER_SERVICES_SECTION,

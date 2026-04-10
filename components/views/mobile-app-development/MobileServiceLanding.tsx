@@ -11,20 +11,21 @@ import { PortfolioCta } from "./PortfolioCta";
 import { Clients } from "./Clients";
 import { Dedication } from "./Dedication";
 import { OtherServices } from "./OtherServices";
-import { FinalCta } from "./FinalCta";
+// import { FinalCta } from "./FinalCta";
 import Feedback from "../home/Feedback";
 import ContactForm from "../home/ContactForm";
 
 type Props = {
+  serviceKey: "iphone" | "android" | "flutter";
   content: MobileServiceContent;
 };
 
-export default function MobileServiceLanding({ content }: Props) {
+export default function MobileServiceLanding({ serviceKey, content }: Props) {
   return (
     <div className="overflow-x-hidden bg-[#060606] font-sans text-sl-text antialiased selection:bg-orange-400/30">
-      <Hero content={content} />
+      <Hero serviceKey={serviceKey} content={content} />
       <Marquee items={content.marquee} />
-      <WhyHire />
+      <WhyHire serviceKey={serviceKey} content={content} />
       <Advantages content={content} />
       <AppPortfolio content={content} />
       <PortfolioStory story={content.appPortfolio.story} />
@@ -33,7 +34,7 @@ export default function MobileServiceLanding({ content }: Props) {
       <Clients content={content} />
       <Dedication />
       <OtherServices content={content} />
-      <FinalCta serviceName={content.heroHighlight} />
+      {/* <FinalCta serviceName={content.heroHighlight} /> */}
       <ContactForm />
     </div>
   );

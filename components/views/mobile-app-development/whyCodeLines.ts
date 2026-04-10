@@ -1,6 +1,6 @@
 export type CodeToken = { t: "ln" | "kw" | "fn" | "st" | "cm" | "pu"; v: string };
 
-export const WHY_CODE_LINES: CodeToken[][] = [
+const WHY_CODE_LINES_IPHONE: CodeToken[][] = [
   [{ t: "ln", v: "1" }, { t: "kw", v: "import" }, { t: "pu", v: " SwiftUI" }],
   [{ t: "ln", v: "2" }, { t: "kw", v: "import" }, { t: "pu", v: " Combine" }],
   [{ t: "ln", v: "3" }, { t: "pu", v: "" }],
@@ -59,3 +59,100 @@ export const WHY_CODE_LINES: CodeToken[][] = [
     { t: "pu", v: ")" },
   ],
 ];
+
+const WHY_CODE_LINES_ANDROID: CodeToken[][] = [
+  [{ t: "ln", v: "1" }, { t: "kw", v: "import" }, { t: "pu", v: " androidx.compose.runtime.*" }],
+  [{ t: "ln", v: "2" }, { t: "kw", v: "import" }, { t: "pu", v: " androidx.compose.material3.*" }],
+  [{ t: "ln", v: "3" }, { t: "pu", v: "" }],
+  [
+    { t: "ln", v: "4" },
+    { t: "kw", v: "@Composable" },
+    { t: "pu", v: " " },
+    { t: "fn", v: "fun" },
+    { t: "pu", v: " " },
+    { t: "fn", v: "Dashboard" },
+    { t: "pu", v: "() {" },
+  ],
+  [
+    { t: "ln", v: "5" },
+    { t: "pu", v: "  " },
+    { t: "kw", v: "val" },
+    { t: "pu", v: " " },
+    { t: "fn", v: "state" },
+    { t: "pu", v: " = " },
+    { t: "fn", v: "remember" },
+    { t: "pu", v: " { " },
+    { t: "fn", v: "mutableStateOf" },
+    { t: "pu", v: "(" },
+    { t: "st", v: "0" },
+    { t: "pu", v: ") }" },
+  ],
+  [{ t: "ln", v: "6" }, { t: "cm", v: "  // Material UI + fast iteration" }],
+  [
+    { t: "ln", v: "7" },
+    { t: "pu", v: "  " },
+    { t: "fn", v: "Scaffold" },
+    { t: "pu", v: " { " },
+    { t: "fn", v: "Text" },
+    { t: "pu", v: "(" },
+    { t: "st", v: "\"Hello Android\"" },
+    { t: "pu", v: ") }" },
+  ],
+  [{ t: "ln", v: "8" }, { t: "pu", v: "}" }],
+];
+
+const WHY_CODE_LINES_FLUTTER: CodeToken[][] = [
+  [{ t: "ln", v: "1" }, { t: "kw", v: "import" }, { t: "pu", v: " 'package:flutter/material.dart';" }],
+  [{ t: "ln", v: "2" }, { t: "pu", v: "" }],
+  [
+    { t: "ln", v: "3" },
+    { t: "kw", v: "class" },
+    { t: "fn", v: " Dashboard" },
+    { t: "pu", v: " " },
+    { t: "kw", v: "extends" },
+    { t: "pu", v: " " },
+    { t: "fn", v: "StatelessWidget" },
+    { t: "pu", v: " {" },
+  ],
+  [
+    { t: "ln", v: "4" },
+    { t: "pu", v: "  " },
+    { t: "kw", v: "@override" },
+  ],
+  [
+    { t: "ln", v: "5" },
+    { t: "pu", v: "  " },
+    { t: "fn", v: "Widget" },
+    { t: "pu", v: " " },
+    { t: "fn", v: "build" },
+    { t: "pu", v: "(" },
+    { t: "fn", v: "BuildContext" },
+    { t: "pu", v: " context) {" },
+  ],
+  [
+    { t: "ln", v: "6" },
+    { t: "pu", v: "    " },
+    { t: "kw", v: "return" },
+    { t: "pu", v: " " },
+    { t: "fn", v: "Scaffold" },
+    { t: "pu", v: "(" },
+    { t: "fn", v: "body" },
+    { t: "pu", v: ": " },
+    { t: "fn", v: "Center" },
+    { t: "pu", v: "(" },
+    { t: "fn", v: "child" },
+    { t: "pu", v: ": " },
+    { t: "fn", v: "Text" },
+    { t: "pu", v: "(" },
+    { t: "st", v: "'Hello Flutter'" },
+    { t: "pu", v: ")))," },
+  ],
+  [{ t: "ln", v: "7" }, { t: "pu", v: "  }" }],
+  [{ t: "ln", v: "8" }, { t: "pu", v: "}" }],
+];
+
+export const WHY_CODE_LINES_BY_SERVICE = {
+  iphone: WHY_CODE_LINES_IPHONE,
+  android: WHY_CODE_LINES_ANDROID,
+  flutter: WHY_CODE_LINES_FLUTTER,
+} as const;
