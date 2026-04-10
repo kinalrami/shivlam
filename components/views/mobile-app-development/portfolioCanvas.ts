@@ -86,7 +86,7 @@ export function attachPortfolioCanvas(canvas: HTMLCanvasElement): Cleanup {
       ctx.scale(0.6, 0.6);
       ctx.textAlign = "center";
       ctx.fillStyle = "rgba(255,255,255,0.35)";
-      ctx.font = "16px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
+      ctx.font = "22px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
       ctx.fillText(ic.lbl, 0, 0);
       ctx.restore();
     });

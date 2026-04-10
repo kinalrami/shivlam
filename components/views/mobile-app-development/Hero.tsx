@@ -5,12 +5,15 @@ import { MoveRight } from "lucide-react";
 import { attachHeroBgParticles } from "@/components/views/ar-bim/landingCanvas";
 import type { MobileServiceContent } from "./content";
 import { attachIphonePhoneCanvas } from "./iphonePhoneCanvas";
+import { AndroidHeroPhone } from "@/components/views/mobile-app-development/AndroidHeroPhone";
+import { FlutterHeroRight } from "@/components/views/mobile-app-development/FlutterHeroRight";
 
 type Props = {
+  serviceKey: "iphone" | "android" | "flutter";
   content: MobileServiceContent;
 };
 
-export function Hero({ content }: Props) {
+export function Hero({ serviceKey, content }: Props) {
   const heroBgRef = useRef<HTMLCanvasElement>(null);
   const phoneRef = useRef<HTMLCanvasElement>(null);
 
@@ -23,8 +26,10 @@ export function Hero({ content }: Props) {
   useEffect(() => {
     const c = phoneRef.current;
     if (!c) return;
+    if (serviceKey === "android") return;
+    if (serviceKey === "flutter") return;
     return attachIphonePhoneCanvas(c);
-  }, []);
+  }, [serviceKey]);
 
   return (
     <section
@@ -92,55 +97,91 @@ export function Hero({ content }: Props) {
             ))}
           </div>
         </div>
-
+        {/* Right Side */}
         <div className="relative flex items-center justify-center">
           <div className="relative">
-            <div className="relative h-[520px] w-[260px] overflow-hidden rounded-[38px] border-2 border-orange-400/25 bg-[#0a1b33] shadow-[0_0_60px_rgb(245_138_11/0.10),0_40px_80px_rgb(0_0_0/0.55),inset_0_0_0_1px_rgb(255_255_255/0.04)]">
-              <div className="absolute left-1/2 top-0 z-10 flex h-[26px] w-[88px] -translate-x-1/2 items-center justify-center gap-2 rounded-b-[15px] bg-[#060606]">
-                <span
-                  className="size-[7px] rounded-full border border-white/10 bg-[#0a1b33]"
-                  aria-hidden
-                />
-              </div>
-
-              <canvas ref={phoneRef} className="block h-full w-full" />
-
-              <div className="pointer-events-none absolute left-0 right-0 top-[12%] z-5 h-0.5 bg-linear-to-r from-transparent via-orange-400 to-transparent shadow-[0_0_10px_rgb(245_138_11/0.9)] motion-safe:animate-[arbim-dev-scan-line_2.8s_ease-in-out_infinite]" />
-
-              <div className="pointer-events-none absolute left-3 top-9 z-10 font-mono text-[9px] tracking-[0.12em] text-orange-400/80 uppercase">
-                {content.heroPhoneTopLeft}
-              </div>
-              <div className="pointer-events-none absolute right-3 top-9 z-10 font-mono text-[9px] tracking-[0.12em] text-white/55 uppercase">
-                Swift ●
-              </div>
-
-              <span
-                className="pointer-events-none absolute left-2 top-8 z-10 size-3 border-l-2 border-t-2 border-orange-400/50"
-                aria-hidden
+            {serviceKey === "flutter" ? (
+              <FlutterHeroRight
+                chipTopLeft={content.heroPhoneTopLeft}
+                chipBottomRight={`✓ ${content.heroChipFloat2}`}
               />
-              <span
-                className="pointer-events-none absolute right-2 top-8 z-10 size-3 border-r-2 border-t-2 border-orange-400/50"
-                aria-hidden
-              />
-              <span
-                className="pointer-events-none absolute bottom-3 left-2 z-10 size-3 border-b-2 border-l-2 border-orange-400/50"
-                aria-hidden
-              />
-              <span
-                className="pointer-events-none absolute bottom-3 right-2 z-10 size-3 border-b-2 border-r-2 border-orange-400/50"
-                aria-hidden
-              />
-            </div>
+            ) : (
+              <>
+                <div className="relative h-[520px] w-[260px] overflow-hidden rounded-[38px] border-2 border-orange-400/25 bg-[#0a1b33] shadow-[0_0_60px_rgb(245_138_11/0.10),0_40px_80px_rgb(0_0_0/0.55),inset_0_0_0_1px_rgb(255_255_255/0.04)]">
+                  <div className="absolute left-1/2 top-0 z-10 flex h-[26px] w-[88px] -translate-x-1/2 items-center justify-center gap-2 rounded-b-[15px] bg-[#060606]">
+                    <span
+                      className="size-[7px] rounded-full border border-white/10 bg-[#0a1b33]"
+                      aria-hidden
+                    />
+                  </div>
 
-            <div className="pointer-events-none absolute -right-14 top-[14%] hidden animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] rounded-md border border-orange-400/30 bg-black/55 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-orange-400 uppercase shadow-[0_10px_30px_rgb(0_0_0/0.4)] md:block">
-              ⬡ {content.heroChipFloat1}
-            </div>
-            <div className="pointer-events-none absolute -right-16 top-[44%] hidden animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] rounded-md border border-orange-400/30 bg-black/55 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-orange-400 uppercase shadow-[0_10px_30px_rgb(0_0_0/0.4)] [animation-delay:.9s] md:block">
-              ✓ {content.heroChipFloat2}
-            </div>
-            <div className="pointer-events-none absolute -left-14 bottom-[18%] hidden animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] rounded-md border border-orange-400/30 bg-black/55 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-orange-400 uppercase shadow-[0_10px_30px_rgb(0_0_0/0.4)] [animation-delay:1.8s] md:block">
-              ◎ {content.heroChipFloat3}
-            </div>
+                  {serviceKey === "android" ? (
+                    <AndroidHeroPhone
+                      topLeft={content.heroPhoneTopLeft}
+                      topRight={content.heroChipFloat1}
+                    />
+                  ) : (
+                    <canvas ref={phoneRef} className="block h-full w-full" />
+                  )}
+
+                  {serviceKey === "android" ? null : (
+                    <>
+                      <div className="pointer-events-none absolute left-0 right-0 top-[12%] z-5 h-0.5 bg-linear-to-r from-transparent via-orange-400 to-transparent shadow-[0_0_10px_rgb(245_138_11/0.9)] motion-safe:animate-[arbim-dev-scan-line_2.8s_ease-in-out_infinite]" />
+
+                      <div className="pointer-events-none absolute left-3 top-9 z-10 font-mono text-[9px] tracking-[0.12em] text-orange-400/80 uppercase">
+                        {content.heroPhoneTopLeft}
+                      </div>
+                      <div className="pointer-events-none absolute right-3 top-9 z-10 font-mono text-[9px] tracking-[0.12em] text-white/55 uppercase">
+                        {content.heroPhoneTopRight}
+                      </div>
+
+                      <span
+                        className="pointer-events-none absolute left-2 top-8 z-10 size-3 border-l-2 border-t-2 border-orange-400/50"
+                        aria-hidden
+                      />
+                      <span
+                        className="pointer-events-none absolute right-2 top-8 z-10 size-3 border-r-2 border-t-2 border-orange-400/50"
+                        aria-hidden
+                      />
+                      <span
+                        className="pointer-events-none absolute bottom-3 left-2 z-10 size-3 border-b-2 border-l-2 border-orange-400/50"
+                        aria-hidden
+                      />
+                      <span
+                        className="pointer-events-none absolute bottom-3 right-2 z-10 size-3 border-b-2 border-r-2 border-orange-400/50"
+                        aria-hidden
+                      />
+                    </>
+                  )}
+                </div>
+
+                {serviceKey === "android" ? (
+                  <>
+                    <div className="pointer-events-none absolute top-[60px] left-[-80px] hidden whitespace-nowrap rounded-[4px] border border-[rgba(255,153,51,0.3)] bg-[rgba(10,27,51,0.9)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-[rgba(255,255,255,0.7)] uppercase lg:block">
+                      {content.heroPhoneTopLeft}
+                    </div>
+                    <div className="pointer-events-none absolute top-1/2 left-[-90px] hidden -translate-y-1/2 whitespace-nowrap rounded-[4px] border border-[rgba(255,153,51,0.3)] bg-[rgba(10,27,51,0.9)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-[rgba(255,255,255,0.7)] uppercase lg:block">
+                      ◎ {content.heroChipFloat3}
+                    </div>
+                    <div className="pointer-events-none absolute bottom-[70px] right-[-80px] hidden whitespace-nowrap rounded-[4px] border border-[rgba(255,153,51,0.3)] bg-[rgba(10,27,51,0.9)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-[rgba(255,255,255,0.7)] uppercase lg:block">
+                      ✓ {content.heroChipFloat2}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="pointer-events-none absolute -right-14 top-[14%] hidden animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] rounded-md border border-orange-400/30 bg-black/55 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-orange-400 uppercase shadow-[0_10px_30px_rgb(0_0_0/0.4)] md:block">
+                      ⬡ {content.heroChipFloat1}
+                    </div>
+                    <div className="pointer-events-none absolute -right-16 top-[44%] hidden animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] rounded-md border border-orange-400/30 bg-black/55 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-orange-400 uppercase shadow-[0_10px_30px_rgb(0_0_0/0.4)] [animation-delay:.9s] md:block">
+                      ✓ {content.heroChipFloat2}
+                    </div>
+                    <div className="pointer-events-none absolute -left-14 bottom-[18%] hidden animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] rounded-md border border-orange-400/30 bg-black/55 px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-orange-400 uppercase shadow-[0_10px_30px_rgb(0_0_0/0.4)] [animation-delay:1.8s] md:block">
+                      ◎ {content.heroChipFloat3}
+                    </div>
+                  </>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

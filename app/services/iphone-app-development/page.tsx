@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function IphoneAppDevelopmentPage() {
   return (
     <main className="relative z-10 min-h-0 flex-1">
-      <MobileServiceLanding content={MOBILE_SERVICE_CONTENT.iphone} />
+      <MobileServiceLanding serviceKey="iphone" content={MOBILE_SERVICE_CONTENT.iphone} />
     </main>
   );
 }
