@@ -17,12 +17,7 @@ export default function CaseStudiesPage() {
           <p className="font-mono mb-6 text-xs font-medium uppercase text-sl-saffron">
             Case Studies
           </p>
-          <Link
-            href="/"
-            className="inline-block rounded-sm border border-sl-saffron px-7 py-3 font-mono text-xs font-bold text-sl-saffron transition-[filter] hover:brightness-110"
-          >
-            Back to home
-          </Link>
+          <p>Content Coming Soon...</p>
         </section>
       </main>
     </>

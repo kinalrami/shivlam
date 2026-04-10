@@ -5,6 +5,8 @@ import { Hero } from "./Hero";
 import { Marquee } from "@/components/shared/Marquee";
 import { WhyHire } from "./WhyHire";
 import { Advantages } from "./Advantages";
+import { AppPortfolio } from "./AppPortfolio";
+import { PortfolioStory } from "./PortfolioStory";
 import { PortfolioCta } from "./PortfolioCta";
 import { Clients } from "./Clients";
 import { Dedication } from "./Dedication";
@@ -23,12 +25,14 @@ export default function MobileServiceLanding({ content }: Props) {
       <Hero content={content} />
       <Marquee items={content.marquee} />
       <WhyHire />
-      <Advantages />
+      <Advantages content={content} />
+      <AppPortfolio content={content} />
+      <PortfolioStory story={content.appPortfolio.story} />
       <Feedback />
       <PortfolioCta />
-      <Clients />
+      <Clients content={content} />
       <Dedication />
-      <OtherServices />
+      <OtherServices content={content} />
       <FinalCta serviceName={content.heroHighlight} />
       <ContactForm />
     </div>
