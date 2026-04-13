@@ -43,19 +43,23 @@ export function WorkPortfolioHeroCanvas() {
     }
 
     function resize() {
-      const parent = canvas.parentElement;
+      const el = ref.current;
+      if (!el) return;
+      const parent = el.parentElement;
       if (!parent) return;
       const rct = parent.getBoundingClientRect();
-      canvas.width = rct.width * dpr;
-      canvas.height = H * dpr;
-      canvas.style.width = `${rct.width}px`;
-      canvas.style.height = `${H}px`;
+      el.width = rct.width * dpr;
+      el.height = H * dpr;
+      el.style.width = `${rct.width}px`;
+      el.style.height = `${H}px`;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
     }
 
     function draw() {
-      const W = canvas.offsetWidth;
+      const el = ref.current;
+      if (!el) return;
+      const W = el.offsetWidth;
       ctx.fillStyle = "#080818";
       ctx.fillRect(0, 0, W, H);
       ctx.strokeStyle = "rgba(255,153,51,.05)";
