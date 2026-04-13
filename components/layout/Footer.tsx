@@ -10,6 +10,7 @@ const optionHref: Partial<Record<string, string>> = {
   "3D Reconstruction": "/services/3d-reconstruction",
   "AR VR Solution": "/services/ar-vr-solution",
   "Mobile App Development": "/services/iphone-app-development",
+  "Website Development": "/services/web-development",
   "Contact Us": "/contact-us",
 };
 

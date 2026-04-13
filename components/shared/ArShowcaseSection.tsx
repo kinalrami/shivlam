@@ -235,15 +235,6 @@ export function ArShowcaseSection({
       aria-labelledby={headingId}
       className="relative scroll-mt-14 overflow-hidden bg-[#060606] pb-12 md:pb-20"
     >
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,153,51,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,153,51,.04) 1px, transparent 1px)",
-          backgroundSize: "52px 52px",
-        }}
-        aria-hidden
-      />
 
       <div className="relative mx-auto grid max-w-325 items-center gap-12 px-5 md:grid-cols-2 md:gap-[72px] md:px-12">
         {visualPosition === "start" ? (
