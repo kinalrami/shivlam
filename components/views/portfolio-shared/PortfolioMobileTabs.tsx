@@ -1,25 +1,19 @@
 "use client";
 
 import type { PortfolioCatKey } from "@/lib/work-portfolio/types";
-
-const TABS: { key: PortfolioCatKey; short: string; dot: string }[] = [
-  { key: "all", short: "All Work", dot: "bg-orange-400" },
-  { key: "iphone", short: "iPhone & AR/BIM", dot: "bg-[#54C5F8]" },
-  { key: "games", short: "Game Dev", dot: "bg-[#AAAAFF]" },
-  { key: "web", short: "Web & Design", dot: "bg-[#22c55e]" },
-  { key: "brand", short: "Brand Building", dot: "bg-orange-400" },
-];
+import type { PortfolioMobileTab } from "@/lib/portfolio-shell/sidebar-types";
 
 type Props = {
+  tabs: readonly PortfolioMobileTab[];
   active: PortfolioCatKey;
   onSelect: (cat: PortfolioCatKey) => void;
 };
 
-export function WorkPortfolioMobileTabs({ active, onSelect }: Props) {
+export function PortfolioMobileTabs({ tabs, active, onSelect }: Props) {
   return (
     <div className="sticky top-14 z-30 border-b border-orange-400/15 bg-[#0D2240] md:hidden">
       <div className="flex gap-0 overflow-x-auto whitespace-nowrap [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:h-0">
-        {TABS.map((t) => {
+        {tabs.map((t) => {
           const isActive = active === t.key;
           return (
             <button
@@ -32,8 +26,8 @@ export function WorkPortfolioMobileTabs({ active, onSelect }: Props) {
                   : "border-transparent text-white/35"
               }`}
             >
-              <span className={`size-1.5 shrink-0 rounded-full ${t.dot}`} aria-hidden />
-              {t.short}
+              <span className={`size-1.5 shrink-0 rounded-full ${t.dotClass}`} aria-hidden />
+              {t.label}
             </button>
           );
         })}

@@ -1296,3 +1296,49 @@ body {
     opacity: 0;
   }
 }
+
+/* Case Studies — hero scan line + progress */
+@keyframes case-studies-hero-scan {
+  0% {
+    top: 15%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 85%;
+    opacity: 0;
+  }
+}
+
+@keyframes case-studies-progress-main {
+  from {
+    width: 0;
+  }
+  to {
+    width: 35%;
+  }
+}
+
+@keyframes case-studies-prog-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes case-studies-mini-bar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

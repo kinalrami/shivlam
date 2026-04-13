@@ -1,25 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import HeroCanvas from "@/components/views/home/Canvas";
+import { CaseStudiesShell } from "@/components/views/case-studies/CaseStudiesShell";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Shivlam",
+  title: "Case Studies — Shivlam | In-Depth Project Stories Coming Soon",
   description:
-    "Project stories and outcomes from Shivlam — AR, BIM, mobile, and spatial computing work.",
+    "Shivlam case studies — deep-dives into iOS app, game, web, and brand-building projects. Coming soon. Explore our work portfolio in the meantime.",
+  openGraph: {
+    title: "Case Studies — Shivlam",
+    description:
+      "Deep-dives into iOS, games, web, and brand projects — coming soon. Browse the work portfolio for live projects.",
+  },
 };
 
 export default function CaseStudiesPage() {
-  return (
-    <>
-      <HeroCanvas />
-      <main className="relative z-10 min-h-0 flex-1">
-        <section className="max-w-225 px-5 min-h-[70vh] py-16 sm:px-8 sm:py-24 lg:px-14">
-          <p className="font-mono mb-6 text-xs font-medium uppercase text-sl-saffron">
-            Case Studies
-          </p>
-          <p>Content Coming Soon...</p>
-        </section>
-      </main>
-    </>
-  );
+  return <CaseStudiesShell />;
 }
