@@ -39,7 +39,7 @@ const services: Service[] = [
     description:
       "Unity based game development for the PC, mobile device and AR.",
     icon: <Gamepad2 className="size-5" aria-hidden />,
-    href: "/",
+    href: "/services/game-development",
     meta: "Unity • PC • Mobile • AR",
   },
 ];

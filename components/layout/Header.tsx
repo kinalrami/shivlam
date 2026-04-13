@@ -46,12 +46,7 @@ const sectionItems: Record<string, SectionNavItem[]> = {
       ],
     },
     {
-      label: "Digital Marketing",
-      submenu: [
-        { label: "SEO" },
-        { label: "Mobile Game Marketing Service" },
-        { label: "SaaS Product Marketing Solutions" },
-      ],
+      label: "Brand Building",
     }
   ],
   "Work Portfolio": [],
@@ -73,6 +68,7 @@ const itemHref: Partial<Record<string, string>> = {
   "3D Reconstruction": "/services/3d-reconstruction",
   "AR VR Solution": "/services/ar-vr-solution",
   "Web Development": "/services/web-development",
+  "Game Development": "/services/game-development",
 };
 
 export function Header() {
@@ -85,6 +81,8 @@ export function Header() {
     "iPhone App Development Company": "/services/iphone-app-development",
     "Android App Development Company": "/services/android-app-development",
     "Flutter App Development Company": "/services/flutter-app-development",
+    "Unity Mobile Game Development": "/services/unity-mobile-game-development",
+    "Vision Pro Game Development Company": "/services/vision-pro-game-development",
   };
 
   useEffect(() => {

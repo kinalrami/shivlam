@@ -25,7 +25,6 @@ export default function Landing() {
     <div className="overflow-x-hidden bg-[#060606] font-sans text-sl-text antialiased selection:bg-orange-400/30">
       <Hero content={c.hero} />
       <Marquee items={c.marquee} />
-
       <StatsStrip items={c.stats} />
       <Services content={c.services} />
       <MidCta content={c.midCta} />
