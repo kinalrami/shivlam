@@ -19,7 +19,7 @@ export function Design({ content }: Props) {
 
   return (
     <section id={content.sectionId} className="bg-[#060606] scroll-mt-14">
-      <div className="mx-auto max-w-325 px-5 pb-12 md:px-12 md:pb-20">
+      <div className="mx-auto max-w-325 px-5 md:px-12">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <SectionIntro
