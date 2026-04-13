@@ -5,6 +5,8 @@ export type WhyHireCardIconKey =
   | "clock"
   | "cube"
   | "check"
+  | "home"
+  | "briefcase"
   | "oneCodebase"
   | "hotReload"
   | "performance"
