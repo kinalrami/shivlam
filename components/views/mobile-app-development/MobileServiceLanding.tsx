@@ -5,6 +5,9 @@ import { Hero } from "./Hero";
 import { Marquee } from "@/components/shared/Marquee";
 import { WhyHire } from "./WhyHire";
 import { Advantages } from "./Advantages";
+import { ArMarketingShowcase } from "@/components/shared/ArMarketingShowcase";
+import { SpatialMidCta } from "@/components/shared/SpatialMidCta";
+import { FlutterOneCodebaseCta } from "./FlutterOneCodebaseCta";
 import { AppPortfolio } from "./AppPortfolio";
 import { PortfolioStory } from "./PortfolioStory";
 import { PortfolioCta } from "./PortfolioCta";
@@ -27,6 +30,22 @@ export default function MobileServiceLanding({ serviceKey, content }: Props) {
       <Marquee items={content.marquee} />
       <WhyHire serviceKey={serviceKey} content={content} />
       <Advantages content={content} />
+      {content.arFoundation != null ? (
+        <ArMarketingShowcase variant="flutter" content={content.arFoundation} />
+      ) : null}
+      {content.flutterOneCodebaseCta != null ? (
+        <FlutterOneCodebaseCta content={content.flutterOneCodebaseCta} />
+      ) : null}
+      {content.androidArShowcase != null ? (
+        <ArMarketingShowcase variant="android" content={content.androidArShowcase} />
+      ) : null}
+      {content.iphoneArVr != null ? (
+        <ArMarketingShowcase variant="iphone-arvr" content={content.iphoneArVr} />
+      ) : null}
+      {content.iphoneVisionOs != null ? (
+        <ArMarketingShowcase variant="iphone-visionos" content={content.iphoneVisionOs} />
+      ) : null}
+      {content.spatialMidCta != null ? <SpatialMidCta content={content.spatialMidCta} /> : null}
       <AppPortfolio content={content} />
       <PortfolioStory story={content.appPortfolio.story} />
       <Feedback eyebrowStyle="dash" />

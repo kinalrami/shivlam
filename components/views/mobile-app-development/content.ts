@@ -141,6 +141,42 @@ export type OtherServicesSectionContent = {
   items: readonly OtherServiceItemContent[];
 };
 
+import type { ArFoundationSectionContent } from "@/components/shared/arFoundationTypes";
+import type {
+  AndroidArShowcaseContent,
+  IphoneArVrShowcaseContent,
+  IphoneVisionOsShowcaseContent,
+  SpatialMidCtaContent,
+} from "@/components/shared/arShowcaseTypes";
+
+export type {
+  ArFoundationFeatureContent,
+  ArFoundationFeatureIcon,
+  ArFoundationPillVariant,
+  ArFoundationSectionContent,
+  ArFoundationTitlePart,
+} from "@/components/shared/arFoundationTypes";
+
+export type {
+  AndroidArMidCtaContent,
+  AndroidArShowcaseContent,
+  IphoneArVrShowcaseContent,
+  IphoneVisionOsShowcaseContent,
+  SpatialMidCtaContent,
+} from "@/components/shared/arShowcaseTypes";
+
+export type FlutterOneCodebaseCtaContent = {
+  sectionId: string;
+  headingId: string;
+  eyebrow: string;
+  titleLine1: string;
+  titleHighlight: string;
+  lead: string;
+  stats: readonly { value: string; label: string }[];
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+};
+
 export type MobileServiceContent = {
   heroTagline: string;
   heroHighlight: string;
@@ -163,6 +199,18 @@ export type MobileServiceContent = {
   clients: ClientsSectionContent;
   otherServices: OtherServicesSectionContent;
   appPortfolio: AppPortfolioBlocks;
+  /** Flutter page: AR Foundation showcase (reusable section data) */
+  arFoundation?: ArFoundationSectionContent;
+  /** Flutter page: mid-page CTA after AR section */
+  flutterOneCodebaseCta?: FlutterOneCodebaseCtaContent;
+  /** Android page: ARCore showcase after Advantages */
+  androidArShowcase?: AndroidArShowcaseContent;
+  /** Android / iPhone: shared stats mid-CTA after spatial sections */
+  spatialMidCta?: SpatialMidCtaContent;
+  /** iPhone page: ARKit / RealityKit showcase after Advantages */
+  iphoneArVr?: IphoneArVrShowcaseContent;
+  /** iPhone page: visionOS showcase */
+  iphoneVisionOs?: IphoneVisionOsShowcaseContent;
 };
 
 const MOBILE_APP_PORTFOLIO_BLOCKS: AppPortfolioBlocks = {
@@ -416,6 +464,321 @@ const ADVANTAGES_FLUTTER: AdvantagesSectionContent = {
   ],
 };
 
+const FLUTTER_AR_FOUNDATION: ArFoundationSectionContent = {
+  sectionId: "flutter-ar",
+  headingId: "flutter-ar-heading",
+  eyebrow: "AR FOUNDATION · FLUTTER",
+  titleLines: [
+    [{ text: "One Dart Codebase." }],
+    [
+      { text: "AR on iOS " },
+      { text: "and", emphasis: true },
+      { text: " Android." },
+    ],
+    [{ text: "Simultaneously.", emphasis: true }],
+  ],
+  description:
+    "Flutter's AR Foundation plugin bridges Apple's ARKit and Google's ARCore from a single Dart codebase. Write the AR logic once — it runs natively on both platforms. No duplicate codebases, no platform-specific rewrites, no version drift.",
+  canvasBadges: {
+    ios: "◎ ARKit (iOS)",
+    android: "⬡ ARCore (Android)",
+    oneCodebase: "🔥 ONE CODEBASE",
+  },
+  platformRow: {
+    ios: "iOS · ARKit 6 · LiDAR",
+    android: "Android · ARCore · Depth API",
+  },
+  features: [
+    {
+      icon: "plugin",
+      title: "AR Foundation — One Plugin, Both Platforms",
+      desc: "A single Dart API abstracts ARKit and ARCore. Plane detection, hit testing, anchor management, and light estimation — all platform-agnostic from your Flutter code.",
+    },
+    {
+      icon: "cube",
+      title: "3D Object Placement & USDZ / glTF Models",
+      desc: "Place USDZ models on iOS and glTF models on Android from the same asset pipeline. Real-world scale, orientation locking, and physics integration via Flutter.",
+    },
+    {
+      icon: "reload",
+      title: "Hot Reload for AR — Faster Iteration",
+      desc: "Flutter's hot reload works with AR scenes — change UI overlays, adjust placement logic, or update 3D object parameters and see results in under 300ms without restarting the AR session.",
+    },
+    {
+      icon: "stores",
+      title: "Ship to Both Stores from One Codebase",
+      desc: "Build once, submit to App Store and Play Store. The AR functionality adapts automatically — ARKit on iOS, ARCore on Android — with the same UI layer on top.",
+    },
+  ],
+  pills: [
+    { label: "AR Foundation", variant: "cyan" },
+    { label: "Dart 3", variant: "orange" },
+    { label: "ARKit Plugin", variant: "cyan" },
+    { label: "ARCore Plugin", variant: "orange" },
+    { label: "USDZ · glTF", variant: "cyan" },
+    { label: "Plane Detection", variant: "orange" },
+    { label: "Cloud Anchors", variant: "cyan" },
+    { label: "Flutter 3", variant: "orange" },
+  ],
+  primaryCta: { label: "Build a Flutter AR App →", href: "https://shivlam.com/contact-us/" },
+  secondaryCta: { label: "AR/VR Solutions", href: "/services/ar-vr-solution" },
+};
+
+const FLUTTER_ONECODEBASE_CTA: FlutterOneCodebaseCtaContent = {
+  sectionId: "flutter-one-codebase-cta",
+  headingId: "flutter-one-codebase-heading",
+  eyebrow: "THE FLUTTER ADVANTAGE",
+  titleLine1: "One Codebase.",
+  titleHighlight: "Three Realities.",
+  lead:
+    "Flutter ships your app to iOS and Android from a single Dart codebase — and now AR too. No platform teams. No duplicated logic. Just one clean codebase that serves both stores and both AR frameworks.",
+  stats: [
+    { value: "1", label: "Codebase" },
+    { value: "2", label: "AR Frameworks" },
+    { value: "2", label: "Stores Shipped" },
+    { value: "🔥", label: "Hot Reload" },
+  ],
+  primaryCta: { label: "Start Your Flutter AR Project →", href: "https://shivlam.com/contact-us/" },
+  secondaryCta: {
+    label: "View Portfolio",
+    href: "https://shivlam.com/shivlam-it-services-portfolio-apps-games-websites-seo/",
+  },
+};
+
+const ANDROID_AR_SHOWCASE: AndroidArShowcaseContent = {
+  sectionId: "android-ar",
+  headingId: "android-ar-heading",
+  eyebrow: "AR FOR ANDROID",
+  titleLines: [
+    [{ text: "ARCore-Powered" }],
+    [{ text: "Android AR Apps that" }],
+    [{ text: "Redefine Reality.", emphasis: true }],
+  ],
+  description:
+    "Google ARCore brings augmented reality to over 1 billion Android devices. We build ARCore apps using Android's native SDK, Jetpack Compose UI, and Kotlin-first architecture — real-world anchoring, 3D object placement, and cloud anchors that sync across devices.",
+  features: [
+    {
+      icon: "motion",
+      title: "Motion Tracking & Environment Understanding",
+      desc: "ARCore tracks device motion and maps the physical environment in real time — horizontal and vertical plane detection, depth mapping, and instant placement without markers.",
+    },
+    {
+      icon: "cloud",
+      title: "Cloud Anchors — Shared AR Experiences",
+      desc: "ARCore Cloud Anchors enable multiple Android users to share the same AR session — see the same virtual objects in the same real-world location simultaneously.",
+    },
+    {
+      icon: "depth",
+      title: "Depth API & Raw Depth Sensing",
+      desc: "Android Depth API for real-time occlusion — virtual objects hide behind real ones correctly. On depth-enabled devices, centimetre-accurate depth maps for precise AR placement.",
+    },
+    {
+      icon: "geo",
+      title: "Geospatial API — Real-World GPS AR",
+      desc: "ARCore Geospatial places virtual content at precise real-world GPS coordinates — AR navigation, location-based gaming, and outdoor AR experiences at global scale.",
+    },
+  ],
+  compareEyebrow: "ANDROID AR ADVANTAGE",
+  compareCards: [
+    {
+      variant: "green",
+      tag: "✓ ARCORE",
+      title: "1B+ Devices",
+      desc: "ARCore runs on any Android 7.0+ device — the largest AR-capable audience on earth.",
+    },
+    {
+      variant: "orange",
+      tag: "◎ GEOSPATIAL",
+      title: "GPS-Level AR",
+      desc: "ARCore Geospatial API — place AR content at real-world coordinates globally. iOS doesn't have this.",
+    },
+  ],
+  pills: [
+    { label: "ARCore SDK", variant: "green" },
+    { label: "Kotlin", variant: "orange" },
+    { label: "Geospatial API", variant: "green" },
+    { label: "Sceneform", variant: "orange" },
+    { label: "Cloud Anchors", variant: "green" },
+    { label: "Depth API", variant: "muted" },
+    { label: "Jetpack Compose", variant: "orange" },
+    { label: "Unity ARCore", variant: "muted" },
+    { label: "glTF / USDZ", variant: "green" },
+    { label: "OpenGL ES", variant: "muted" },
+  ],
+  canvasBadges: {
+    arcore: "⬡ ARCORE SDK",
+    geospatial: "◎ GEOSPATIAL API",
+    depth: "✓ DEPTH ACTIVE",
+  },
+  primaryCta: { label: "Build an Android AR App →", href: "https://shivlam.com/contact-us/" },
+  secondaryCta: { label: "AR/VR Solutions", href: "/services/ar-vr-solution" },
+};
+
+const SPATIAL_MID_CTA_ANDROID: SpatialMidCtaContent = {
+  sectionId: "android-ar-mid-cta",
+  headingId: "android-ar-mid-cta-heading",
+  eyebrow: "BUILD MORE THAN AN ANDROID APP",
+  titleLines: [
+    { segments: [{ text: "Native Android." }] },
+    {
+      segments: [
+        { text: "AR-Powered.", tone: "green" },
+        { text: " " },
+        { text: "Globally Scalable.", tone: "saffron" },
+      ],
+    },
+  ],
+  lead:
+    "Whether you need a Kotlin-first production app or an ARCore-powered immersive experience — our Android team ships both, with zero compromise on performance or Play Store compliance.",
+  stats: [
+    { value: "1B+", label: "ARCore Devices" },
+    { value: "50+", label: "Apps Shipped" },
+    { value: "5+", label: "Countries Served" },
+  ],
+  primaryCta: { label: "Start Your Android Project →", href: "https://shivlam.com/contact-us/" },
+  secondaryCta: {
+    label: "View Portfolio",
+    href: "https://shivlam.com/shivlam-it-services-portfolio-apps-games-websites-seo/",
+  },
+};
+
+const IPHONE_AR_VR: IphoneArVrShowcaseContent = {
+  sectionId: "iphone-arvr",
+  headingId: "iphone-arvr-heading",
+  eyebrow: "AR / VR FOR iPHONE",
+  titleLines: [
+    [{ text: "ARKit & RealityKit" }],
+    [
+      { text: "Apps That Blend " },
+      { text: "Real", emphasis: true },
+    ],
+    [{ text: "& Virtual.", emphasis: true }],
+  ],
+  description:
+    "We build augmented and mixed reality iOS apps using Apple's ARKit, RealityKit, and LiDAR Scanner. From real-world object placement to markerless face tracking and LiDAR-powered depth mapping — immersive experiences that run natively on iPhone.",
+  features: [
+    {
+      icon: "world",
+      title: "World Tracking & Plane Detection",
+      desc: "Real-world surface anchoring — floors, walls, and tables become interactive stages. Persistent anchors survive app restarts and device reorientations.",
+    },
+    {
+      icon: "lidar",
+      title: "LiDAR Scanner Integration",
+      desc: "On iPhone Pro models — instant AR scene understanding, real-time occlusion, and physics-accurate object placement using the LiDAR depth sensor.",
+    },
+    {
+      icon: "face",
+      title: "Face Tracking & Body Tracking",
+      desc: "TrueDepth camera face tracking with 52 blend shapes, body pose estimation, and hand tracking — AR filters, virtual try-on, and motion capture apps.",
+    },
+    {
+      icon: "object",
+      title: "Object Scanning & 3D Reconstruction",
+      desc: "RealityKit Object Capture and LiDAR scanning to create photorealistic 3D models from real objects — for product visualisation and AR commerce apps.",
+    },
+  ],
+  pills: [
+    { label: "ARKit 6", variant: "orange" },
+    { label: "RealityKit 3", variant: "cyan" },
+    { label: "LiDAR Scanner", variant: "orange" },
+    { label: "SceneKit", variant: "cyan" },
+    { label: "CoreML Vision", variant: "orange" },
+    { label: "Metal", variant: "cyan" },
+    { label: "Object Capture", variant: "orange" },
+    { label: "Unity iOS AR", variant: "cyan" },
+  ],
+  canvasBadges: {
+    lidar: "◎ ARKIT 6 · LIDAR",
+    realitykit: "⬡ REALITYKIT 3",
+    plane: "✓ PLANE DETECTED",
+  },
+  primaryCta: { label: "Build an AR App →", href: "https://shivlam.com/contact-us/" },
+  secondaryCta: { label: "AR/VR Solutions", href: "/services/ar-vr-solution" },
+};
+
+const IPHONE_VISIONOS: IphoneVisionOsShowcaseContent = {
+  sectionId: "iphone-visionos",
+  headingId: "iphone-visionos-heading",
+  eyebrow: "VISIONOS · APPLE VISION PRO",
+  titleLines: [
+    [{ text: "Spatial Apps for" }],
+    [{ text: "Apple Vision Pro." }],
+    [{ text: "The Next Platform.", emphasis: true }],
+  ],
+  description:
+    "visionOS is Apple's most ambitious computing platform. We build spatial apps and games using SwiftUI, RealityKit, and ARKit for visionOS — apps that live in the space around you, controlled by eyes, hands, and voice.",
+  cardGrid: [
+    {
+      tag: "◎ SPATIAL UI",
+      title: "Windows & Volumes",
+      desc: "2D SwiftUI windows, 3D RealityKit volumes, and full Immersive Spaces — all three display modes mastered.",
+    },
+    {
+      tag: "⬡ INPUT",
+      title: "Eye & Hand Tracking",
+      desc: "Gaze + pinch interactions, direct hand touch, and voice commands — natural spatial input built correctly from day one.",
+    },
+    {
+      tag: "✦ MIXED REALITY",
+      title: "Passthrough & Immersion",
+      desc: "Progressive immersion from windowed to fully immersive — content that coexists with the real world or replaces it entirely.",
+    },
+    {
+      tag: "▣ SHAREPLAY",
+      title: "Multiplayer & Collaboration",
+      desc: "SharePlay and Multipeer spatial sessions — shared 3D content that multiple Vision Pro users interact with simultaneously.",
+    },
+  ],
+  pills: [
+    { label: "visionOS 2", variant: "purple" },
+    { label: "SwiftUI", variant: "muted" },
+    { label: "RealityKit", variant: "purple" },
+    { label: "ARKit visionOS", variant: "muted" },
+    { label: "Reality Composer Pro", variant: "purple" },
+    { label: "SharePlay", variant: "muted" },
+    { label: "Spatial Audio", variant: "purple" },
+    { label: "Unity visionOS", variant: "muted" },
+  ],
+  canvasBadges: {
+    visionos: "◎ VISIONOS 2",
+    realitykit: "⬡ REALITYKIT",
+    spatial: "✦ SPATIAL AUDIO",
+  },
+  primaryCta: {
+    label: "Vision Pro Development →",
+    href: "https://shivlam.com/apple-vision-pro-game-development-ar-vr-experts/",
+  },
+  secondaryCta: { label: "Discuss Your Idea", href: "https://shivlam.com/contact-us/" },
+};
+
+const SPATIAL_MID_CTA_IPHONE: SpatialMidCtaContent = {
+  sectionId: "iphone-spatial-mid-cta",
+  headingId: "iphone-spatial-mid-cta-heading",
+  eyebrow: "BUILD BEYOND A STANDARD APP",
+  titleLines: [
+    {
+      segments: [
+        { text: "iPhone. AR. " },
+        { text: "visionOS.", tone: "saffron" },
+      ],
+    },
+    { segments: [{ text: "We Build All Three." }] },
+  ],
+  lead:
+    "Whether you need a native iPhone app, an ARKit-powered experience, or a pioneering visionOS spatial app — our iOS team ships across Apple's entire device ecosystem.",
+  stats: [
+    { value: "50+", label: "iOS Apps Shipped" },
+    { value: "3", label: "Apple Platforms" },
+    { value: "5+", label: "Countries Served" },
+  ],
+  primaryCta: { label: "Start Your iOS Project →", href: "https://shivlam.com/contact-us/" },
+  secondaryCta: {
+    label: "View Portfolio",
+    href: "https://shivlam.com/shivlam-it-services-portfolio-apps-games-websites-seo/",
+  },
+};
+
 const MOBILE_CLIENTS_SECTION: ClientsSectionContent = {
   sectionId: "clients",
   headingId: "clients-who-trust-us",
@@ -557,6 +920,9 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
     clients: MOBILE_CLIENTS_SECTION,
     otherServices: MOBILE_OTHER_SERVICES_SECTION,
     appPortfolio: MOBILE_APP_PORTFOLIO_BLOCKS,
+    iphoneArVr: IPHONE_AR_VR,
+    iphoneVisionOs: IPHONE_VISIONOS,
+    spatialMidCta: SPATIAL_MID_CTA_IPHONE,
   },
   android: {
     heroTagline: "KOTLIN · COMPOSE · MATERIAL · ANDROID STUDIO",
@@ -628,6 +994,8 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
     clients: MOBILE_CLIENTS_SECTION,
     otherServices: MOBILE_OTHER_SERVICES_SECTION,
     appPortfolio: MOBILE_APP_PORTFOLIO_BLOCKS,
+    androidArShowcase: ANDROID_AR_SHOWCASE,
+    spatialMidCta: SPATIAL_MID_CTA_ANDROID,
   },
   flutter: {
     heroTagline: "FLUTTER · DART · CROSS-PLATFORM · PERFORMANCE",
@@ -711,6 +1079,8 @@ export const MOBILE_SERVICE_CONTENT: Record<MobileServiceKey, MobileServiceConte
     clients: MOBILE_CLIENTS_SECTION,
     otherServices: MOBILE_OTHER_SERVICES_SECTION,
     appPortfolio: MOBILE_APP_PORTFOLIO_BLOCKS,
+    arFoundation: FLUTTER_AR_FOUNDATION,
+    flutterOneCodebaseCta: FLUTTER_ONECODEBASE_CTA,
   },
 };
 
