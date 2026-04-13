@@ -12,106 +12,110 @@ type Props = {
 function PhoneFrame({ variant }: { variant: "ios" | "android" }) {
   const isIos = variant === "ios";
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div
-        className={[
-          "relative overflow-hidden bg-[#0D2240]",
-          isIos
-            ? "h-[480px] w-[220px] rounded-[32px] border-[1.5px] border-[rgba(84,197,248,0.3)] shadow-[0_0_40px_rgba(84,197,248,0.08)]"
-            : "h-[480px] w-[220px] rounded-[24px] border-[1.5px] border-[rgba(255,153,51,0.3)] shadow-[0_0_40px_rgba(255,153,51,0.08)]",
-        ].join(" ")}
-      >
-        {isIos ? (
-          <div className="absolute left-1/2 top-[10px] z-[5] h-[5px] w-[48px] -translate-x-1/2 rounded-[3px] bg-black/70" />
-        ) : (
-          <div className="absolute left-1/2 top-[10px] z-[5] size-2 -translate-x-1/2 rounded-full border border-[rgba(84,197,248,0.2)] bg-black/70" />
-        )}
+    <div className="flex shrink-0 flex-col items-center gap-2">
+      {/* Fixed 220×480 design scaled down on small viewports so flex row/column width matches visuals */}
+      <div className="relative h-[393px] w-[180px] sm:h-[436px] sm:w-[200px] lg:h-[480px] lg:w-[220px]">
+        <div
+          className={[
+            "absolute left-1/2 top-0 origin-top -translate-x-1/2 scale-[0.818] sm:scale-[0.909] lg:left-0 lg:translate-x-0 lg:scale-100",
+            "overflow-hidden bg-[#0D2240]",
+            isIos
+              ? "h-[480px] w-[220px] rounded-[32px] border-[1.5px] border-[rgba(84,197,248,0.3)] shadow-[0_0_40px_rgba(84,197,248,0.08)]"
+              : "h-[480px] w-[220px] rounded-[24px] border-[1.5px] border-[rgba(255,153,51,0.3)] shadow-[0_0_40px_rgba(255,153,51,0.08)]",
+          ].join(" ")}
+        >
+          {isIos ? (
+            <div className="absolute left-1/2 top-[10px] z-[5] h-[5px] w-[48px] -translate-x-1/2 rounded-[3px] bg-black/70" />
+          ) : (
+            <div className="absolute left-1/2 top-[10px] z-[5] size-2 -translate-x-1/2 rounded-full border border-[rgba(84,197,248,0.2)] bg-black/70" />
+          )}
 
-        <div className="absolute inset-0 flex flex-col gap-[5px] px-2 pt-[26px] pb-[10px] font-mono">
-          <div className="flex justify-between border-b border-[rgba(84,197,248,0.1)] pb-[5px] text-[9px] text-white/30">
-            <span>9:41</span>
-            <span className={isIos ? "text-[#54C5F8]" : "text-[#3DDC84]"}>
-              {isIos ? "iOS" : "Android"}
-            </span>
-          </div>
+          <div className="absolute inset-0 flex flex-col gap-[5px] px-2 pt-[26px] pb-[10px] font-mono">
+            <div className="flex justify-between border-b border-[rgba(84,197,248,0.1)] pb-[5px] text-[9px] text-white/30">
+              <span>9:41</span>
+              <span className={isIos ? "text-[#54C5F8]" : "text-[#3DDC84]"}>
+                {isIos ? "iOS" : "Android"}
+              </span>
+            </div>
 
-          <div className="text-[11px] font-medium tracking-[0.04em] text-white/80">Flutter App</div>
-          <div className="mb-1 text-[8px] tracking-[0.04em] text-white/28">SHARED · DART WIDGET</div>
+            <div className="text-[11px] font-medium tracking-[0.04em] text-white/80">Flutter App</div>
+            <div className="mb-1 text-[8px] tracking-[0.04em] text-white/28">SHARED · DART WIDGET</div>
 
-          <div className="mb-1 grid grid-cols-2 gap-1">
-            {[
-              { n: "3.2k", l: "Users" },
-              { n: "4.9★", l: "Rating" },
-            ].map((s) => (
-              <div
-                key={s.l}
-                className={[
-                  "rounded-[5px] border px-1 py-[5px] text-center",
-                  isIos
-                    ? "border-[rgba(84,197,248,0.15)] bg-[rgba(84,197,248,0.07)]"
-                    : "border-[rgba(255,153,51,0.18)] bg-[rgba(255,153,51,0.07)]",
-                ].join(" ")}
-              >
-                <span
+            <div className="mb-1 grid grid-cols-2 gap-1">
+              {[
+                { n: "3.2k", l: "Users" },
+                { n: "4.9★", l: "Rating" },
+              ].map((s) => (
+                <div
+                  key={s.l}
                   className={[
-                    "block text-[14px] leading-[1.2]",
-                    isIos ? "text-[#54C5F8]" : "text-[#FF9933]",
+                    "rounded-[5px] border px-1 py-[5px] text-center",
+                    isIos
+                      ? "border-[rgba(84,197,248,0.15)] bg-[rgba(84,197,248,0.07)]"
+                      : "border-[rgba(255,153,51,0.18)] bg-[rgba(255,153,51,0.07)]",
                   ].join(" ")}
                 >
-                  {s.n}
-                </span>
-                <span className="block text-[8px] tracking-[0.04em] text-white/28">{s.l}</span>
+                  <span
+                    className={[
+                      "block text-[14px] leading-[1.2]",
+                      isIos ? "text-[#54C5F8]" : "text-[#FF9933]",
+                    ].join(" ")}
+                  >
+                    {s.n}
+                  </span>
+                  <span className="block text-[8px] tracking-[0.04em] text-white/28">{s.l}</span>
+                </div>
+              ))}
+            </div>
+
+            {[
+              { t: "Session Time", v: "8m 24s" },
+              { t: "Retention", v: "94%" },
+            ].map((r) => (
+              <div
+                key={r.t}
+                className="flex items-center justify-between rounded-[5px] border border-[rgba(255,153,51,0.14)] bg-[rgba(255,153,51,0.06)] px-[7px] py-[5px]"
+              >
+                <span className="text-[9px] tracking-[0.04em] text-white/55">{r.t}</span>
+                <span className="text-[9px] text-[#FF9933]">{r.v}</span>
               </div>
             ))}
-          </div>
 
-          {[
-            { t: "Session Time", v: "8m 24s" },
-            { t: "Retention", v: "94%" },
-          ].map((r) => (
-            <div
-              key={r.t}
-              className="flex items-center justify-between rounded-[5px] border border-[rgba(255,153,51,0.14)] bg-[rgba(255,153,51,0.06)] px-[7px] py-[5px]"
-            >
-              <span className="text-[9px] tracking-[0.04em] text-white/55">{r.t}</span>
-              <span className="text-[9px] text-[#FF9933]">{r.v}</span>
+            <div className="mt-2">
+              <div className="text-[8px] tracking-[0.06em] text-white/25">FRAME RATE</div>
+              <div className="mt-[4px] h-[4px] overflow-hidden rounded-[2px] bg-white/7">
+                <div
+                  className="h-full rounded-[2px]"
+                  style={{
+                    background: isIos
+                      ? "linear-gradient(90deg, #54C5F8, #00B4AB)"
+                      : "linear-gradient(90deg, #FF9933, #3DDC84)",
+                    animation: "flutterPfill 3.5s ease-in-out infinite alternate",
+                    animationDelay: isIos ? "0ms" : "500ms",
+                  }}
+                />
+              </div>
             </div>
-          ))}
 
-          <div className="mt-2">
-            <div className="text-[8px] tracking-[0.06em] text-white/25">FRAME RATE</div>
-            <div className="mt-[4px] h-[4px] overflow-hidden rounded-[2px] bg-white/7">
-              <div
-                className="h-full rounded-[2px]"
-                style={{
-                  background: isIos
-                    ? "linear-gradient(90deg, #54C5F8, #00B4AB)"
-                    : "linear-gradient(90deg, #FF9933, #3DDC84)",
-                  animation: "flutterPfill 3.5s ease-in-out infinite alternate",
-                  animationDelay: isIos ? "0ms" : "500ms",
-                }}
-              />
+            <div className={["mt-[2px] text-[8px] tracking-[0.06em]", isIos ? "text-[#54C5F8]" : "text-[#3DDC84]"].join(" ")}>
+              60 fps ●
             </div>
-          </div>
 
-          <div className={["mt-[2px] text-[8px] tracking-[0.06em]", isIos ? "text-[#54C5F8]" : "text-[#3DDC84]"].join(" ")}>
-            60 fps ●
-          </div>
-
-          <div className="mt-auto flex justify-around border-t border-white/6 pt-[6px]">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className={[
-                  "h-[14px] w-[14px] rounded-[3px] bg-white/7",
-                  i === 0
-                    ? isIos
-                      ? "bg-[rgba(84,197,248,0.2)]"
-                      : "bg-[rgba(255,153,51,0.2)]"
-                    : "",
-                ].join(" ")}
-              />
-            ))}
+            <div className="mt-auto flex justify-around border-t border-white/6 pt-[6px]">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div
+                  key={i}
+                  className={[
+                    "h-[14px] w-[14px] rounded-[3px] bg-white/7",
+                    i === 0
+                      ? isIos
+                        ? "bg-[rgba(84,197,248,0.2)]"
+                        : "bg-[rgba(255,153,51,0.2)]"
+                      : "",
+                  ].join(" ")}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -147,7 +151,7 @@ export function FlutterHeroRight({ chipTopLeft, chipBottomRight }: Props) {
   }, []);
 
   return (
-    <div className="relative z-10 flex items-center">
+    <div className="relative z-10 mx-auto w-full min-w-0 max-w-full px-0">
       <style jsx>{`
         @keyframes flutterPfill {
           0% {
@@ -164,37 +168,51 @@ export function FlutterHeroRight({ chipTopLeft, chipBottomRight }: Props) {
         }
       `}</style>
 
-      <div className="absolute top-[-10px] left-[-60px] z-[4] whitespace-nowrap rounded-[4px] border border-[rgba(84,197,248,0.25)] bg-[rgba(10,27,51,0.92)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-white/65">
-        {chipTopLeft}
-      </div>
-      <div className="absolute bottom-[30px] right-[-65px] z-[4] whitespace-nowrap rounded-[4px] border border-[rgba(84,197,248,0.25)] bg-[rgba(10,27,51,0.92)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-white/65">
-        {chipBottomRight}
+      <div className="mb-4 flex flex-wrap justify-center gap-2 lg:mb-0 lg:hidden">
+        <div className="whitespace-nowrap rounded-[4px] border border-[rgba(84,197,248,0.25)] bg-[rgba(10,27,51,0.92)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-white/65">
+          {chipTopLeft}
+        </div>
+        <div className="whitespace-nowrap rounded-[4px] border border-[rgba(84,197,248,0.25)] bg-[rgba(10,27,51,0.92)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-white/65">
+          {chipBottomRight}
+        </div>
       </div>
 
-      <PhoneFrame variant="ios" />
+      <div className="relative flex w-full min-w-0 flex-col items-center justify-center gap-6 lg:flex-row lg:gap-0">
+        <div className="pointer-events-none absolute top-[-10px] left-[-60px] z-[4] hidden whitespace-nowrap rounded-[4px] border border-[rgba(84,197,248,0.25)] bg-[rgba(10,27,51,0.92)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-white/65 lg:block">
+          {chipTopLeft}
+        </div>
+        <div className="pointer-events-none absolute bottom-[30px] right-[-65px] z-[4] hidden whitespace-nowrap rounded-[4px] border border-[rgba(84,197,248,0.25)] bg-[rgba(10,27,51,0.92)] px-[10px] py-[5px] font-mono text-[7px] tracking-[0.1em] text-white/65 lg:block">
+          {chipBottomRight}
+        </div>
 
-      <div className="relative z-[3] flex flex-col items-center gap-[6px] px-[14px]">
-        <div className="relative flex size-[44px] items-center justify-center rounded-full border-[1.5px] border-[rgba(84,197,248,0.3)]">
+        <PhoneFrame variant="ios" />
+
+        <div className="relative z-[3] flex shrink-0 flex-col items-center gap-[6px] px-2 sm:px-[10px] lg:px-[14px]">
+          <div className="relative flex size-9 items-center justify-center rounded-full border-[1.5px] border-[rgba(84,197,248,0.3)] sm:size-10 lg:size-[44px]">
+            <div
+              className="absolute inset-[-4px] rounded-full border border-dashed border-[rgba(255,153,51,0.25)]"
+              style={{ animation: "hrspin 6s linear infinite" }}
+              aria-hidden
+            />
+            <span className="text-[15px] motion-safe:animate-pulse sm:text-[16px] lg:text-[18px]" aria-hidden>
+              🔥
+            </span>
+          </div>
+          <div className="text-center font-mono text-[7px] tracking-[0.1em] text-[rgba(84,197,248,0.6)] uppercase leading-tight">
+            Hot
+            <br />
+            Reload
+          </div>
           <div
-            className="absolute inset-[-4px] rounded-full border border-dashed border-[rgba(255,153,51,0.25)]"
-            style={{ animation: "hrspin 6s linear infinite" }}
-            aria-hidden
-          />
-          <span className="text-[18px] motion-safe:animate-pulse" aria-hidden>
-            🔥
-          </span>
+            className="font-mono text-[8px] tracking-[0.05em] text-orange-400"
+            style={{ opacity: msOpacity, transition: "opacity .2s" }}
+          >
+            {ms}
+          </div>
         </div>
-        <div className="text-center font-mono text-[7px] tracking-[0.1em] text-[rgba(84,197,248,0.6)] uppercase leading-tight">
-          Hot
-          <br />
-          Reload
-        </div>
-        <div className="font-mono text-[8px] tracking-[0.05em] text-orange-400" style={{ opacity: msOpacity, transition: "opacity .2s" }}>
-          {ms}
-        </div>
-      </div>
 
-      <PhoneFrame variant="android" />
+        <PhoneFrame variant="android" />
+      </div>
     </div>
   );
 }
