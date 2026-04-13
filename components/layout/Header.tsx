@@ -54,10 +54,7 @@ const sectionItems: Record<string, SectionNavItem[]> = {
       ],
     }
   ],
-  "Work Portfolio": [
-    { label: "Mobile App Specialised" },
-    { label: "Sustainable SEO" },
-  ],
+  "Work Portfolio": [],
   "Case Studies": [],
   "About Us": [],
   "Contact US": [],
@@ -65,6 +62,7 @@ const sectionItems: Record<string, SectionNavItem[]> = {
 
 /** When a section has no items in `sectionItems`, the menu navigates here instead of listing sub-items. */
 const sectionHrefWhenEmpty: Partial<Record<string, string>> = {
+  "Work Portfolio": "/work-portfolio",
   "Case Studies": "/case-studies",
   "About Us": "/about-us",
   "Contact US": "/contact-us",
