@@ -28,6 +28,7 @@ export function WorkPortfolioPreviewCanvas({ previewType, c1, c2, height = DEFAU
     let raf = 0;
 
     function resize() {
+      if (!canvas) return;
       const parent = canvas.parentElement;
       if (!parent) return;
       const rct = parent.getBoundingClientRect();
@@ -40,6 +41,7 @@ export function WorkPortfolioPreviewCanvas({ previewType, c1, c2, height = DEFAU
     }
 
     function frame() {
+      if (!canvas) return;
       const W = canvas.offsetWidth;
       drawPortfolioPreview(ctx, W, height, t, previewType, c1, c2);
       t++;
