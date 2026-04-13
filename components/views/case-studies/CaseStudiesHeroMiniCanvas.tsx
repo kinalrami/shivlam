@@ -36,6 +36,7 @@ export function CaseStudiesHeroMiniCanvas({ variant }: { variant: Variant }) {
     let raf = 0;
 
     function resize() {
+      if (!canvas) return;
       const parent = canvas.parentElement;
       if (!parent) return;
       const rct = parent.getBoundingClientRect();
@@ -48,6 +49,7 @@ export function CaseStudiesHeroMiniCanvas({ variant }: { variant: Variant }) {
     }
 
     function drawIos() {
+      if (!canvas) return;
       const W = canvas.offsetWidth;
       ctx.fillStyle = "#0a1020";
       ctx.fillRect(0, 0, W, H);
@@ -96,6 +98,7 @@ export function CaseStudiesHeroMiniCanvas({ variant }: { variant: Variant }) {
     }
 
     function drawGame() {
+      if (!canvas) return;
       const W = canvas.offsetWidth;
       ctx.fillStyle = "#08080f";
       ctx.fillRect(0, 0, W, H);
@@ -133,6 +136,7 @@ export function CaseStudiesHeroMiniCanvas({ variant }: { variant: Variant }) {
     }
 
     function drawWeb() {
+      if (!canvas) return;
       const W = canvas.offsetWidth;
       ctx.fillStyle = "#0a1020";
       ctx.fillRect(0, 0, W, H);
