@@ -1,5 +1,12 @@
 import type { PortfolioMobileTab, PortfolioShellSidebarConfig } from "@/lib/portfolio-shell/sidebar-types";
-import { SIDEBAR_CATEGORIES } from "@/lib/work-portfolio/filters";
+import { SIDEBAR_CATEGORIES, type SidebarCategoryRow } from "@/lib/work-portfolio/filters";
+import type { PortfolioCatKey } from "@/lib/work-portfolio/types";
+
+function isServiceSidebarRow(
+  r: SidebarCategoryRow,
+): r is SidebarCategoryRow & { key: Exclude<PortfolioCatKey, "all"> } {
+  return r.key !== "all";
+}
 
 export const WORK_PORTFOLIO_MOBILE_TABS: readonly PortfolioMobileTab[] = [
   { key: "all", label: "All Work", dotClass: "bg-orange-400" },
@@ -15,7 +22,7 @@ function buildWorkPortfolioSidebarConfig(): PortfolioShellSidebarConfig {
     allLabel: allRow.nameLine1,
     allDotClass: allRow.dotClass,
     allTrailing: { kind: "count", value: allRow.count },
-    rows: serviceRows.map((r) => ({
+    rows: serviceRows.filter(isServiceSidebarRow).map((r) => ({
       key: r.key,
       dotClass: r.dotClass,
       line1: r.nameLine1,
