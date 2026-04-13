@@ -9,7 +9,7 @@ import Technologies from "@/components/views/home/Technologies";
 import ProcessRoadmap from "@/components/views/home/ProcessRoadmap";
 import Feedback from "@/components/views/home/Feedback";
 import WorkPortfolio from "@/components/views/home/WorkPortfolio";
-import InsightsTrends from "@/components/views/home/InsightsTrends";
+import { HomeInsightsTrendsSection } from "@/components/shared/InsightsTrendsSection";
 import ContactForm from "@/components/views/home/ContactForm";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
       <ProcessRoadmap />
       <Feedback />
       <WorkPortfolio />
-      <InsightsTrends />
+      <HomeInsightsTrendsSection />
       <ContactForm />
     </>
   );

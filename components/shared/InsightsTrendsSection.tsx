@@ -3,6 +3,20 @@
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { insightThumbSrc } from "@/lib/illustration-src";
 import {
+  BLOG_INSIGHT_FILTERS,
+  BLOG_INSIGHT_POSTS,
+  HOME_INSIGHT_FILTERS,
+  HOME_INSIGHT_POSTS,
+  INSIGHTS_NOW,
+} from "@/lib/insights-data";
+import type {
+  CodeLine,
+  InsightCatStyle,
+  InsightFilterCat,
+  InsightFilterOption,
+  InsightPost,
+} from "@/lib/insights-types";
+import {
   FilterRailSeparator,
   SectionIntro,
 } from "@/components/shared/section-chrome";
@@ -13,112 +27,11 @@ import {
   useMemo,
   useRef,
   useState,
+  type CSSProperties,
   type KeyboardEvent,
 } from "react";
 
-const INS_FILTER_OPTS = [
-  { key: "all" as const, label: "[ ALL ]" },
-  { key: "strategy" as const, label: "STRATEGY" },
-  { key: "immersive" as const, label: "IMMERSIVE" },
-  { key: "identity" as const, label: "IDENTITY" },
-];
-
-type CodeLineType = "kw" | "fn" | "cm" | "plain";
-
-type CodeLine = { type: CodeLineType; text: string };
-
-type CatKey = "strategy" | "immersive" | "identity";
-
-type InsightPost = {
-  id: string;
-  cat: string;
-  catKey: CatKey;
-  title: string;
-  date: string;
-  dateLabel: string;
-  read: string;
-  excerpt: string;
-  code: { lines: CodeLine[] };
-  color: string;
-  svgType: "circuit" | "blueprint" | "pulse";
-};
-
-const POSTS: InsightPost[] = [
-  {
-    id: "POST-001",
-    cat: "STRATEGY",
-    catKey: "strategy",
-    title: "Scaling Complex Web Ecosystems with Next.js 16.",
-    date: "2026-04-02",
-    dateLabel: "02 APR 2026",
-    read: "6 min read",
-    excerpt:
-      "Modern web ecosystems demand more than a framework — they demand an architecture. Next.js 16 changes the rules on server components, streaming, and edge-first delivery.",
-    code: {
-      lines: [
-        { type: "kw", text: "export async" },
-        { type: "plain", text: " function " },
-        { type: "fn", text: "getStaticProps" },
-        { type: "plain", text: "() {" },
-        { type: "cm", text: "  // SSG — runs at build time" },
-        { type: "kw", text: "  const" },
-        { type: "plain", text: " data = await fetchEdge()" },
-      ],
-    },
-    color: "#f58a0b",
-    svgType: "circuit",
-  },
-  {
-    id: "POST-002",
-    cat: "IMMERSIVE",
-    catKey: "immersive",
-    title: "The Future of On-site Construction: AR & BIM Integration.",
-    date: "2026-03-28",
-    dateLabel: "28 MAR 2026",
-    read: "8 min read",
-    excerpt:
-      "Overlaying 4D BIM data onto a live construction site via LiDAR and ARKit is no longer a research paper — it is production software. Here is how we built it.",
-    code: {
-      lines: [
-        { type: "fn", text: "ARSession" },
-        { type: "plain", text: ".run(config: " },
-        { type: "kw", text: "BIMConfig" },
-        { type: "plain", text: "())" },
-        { type: "cm", text: "  // LiDAR mesh + BIM overlay" },
-        { type: "fn", text: "renderBlueprintLayer" },
-        { type: "plain", text: "(mesh)" },
-      ],
-    },
-    color: "#1dcfcf",
-    svgType: "blueprint",
-  },
-  {
-    id: "POST-003",
-    cat: "IDENTITY",
-    catKey: "identity",
-    title: "Why Brand Building is the Hardest Code to Crack in 2026.",
-    date: "2026-03-15",
-    dateLabel: "15 MAR 2026",
-    read: "5 min read",
-    excerpt:
-      "A brand is a distributed system. It has states, transitions, and failure modes just like any codebase. Most agencies debug symptoms; we debug the architecture.",
-    code: {
-      lines: [
-        { type: "kw", text: "interface" },
-        { type: "plain", text: " " },
-        { type: "fn", text: "BrandSystem" },
-        { type: "plain", text: " {" },
-        { type: "plain", text: "  identity: " },
-        { type: "kw", text: "DesignToken" },
-        { type: "plain", text: "[]" },
-        { type: "plain", text: "  voice: " },
-        { type: "fn", text: "ToneMap" },
-      ],
-    },
-    color: "#f58a0b",
-    svgType: "pulse",
-  },
-];
+export type { InsightPost, InsightFilterOption } from "@/lib/insights-types";
 
 function codeLinesToHtml(lines: CodeLine[]): string {
   return (
@@ -136,22 +49,71 @@ function codeLinesToHtml(lines: CodeLine[]): string {
   );
 }
 
-type FilterCat = "all" | CatKey;
+function catBadgeStyle(catStyle: InsightCatStyle): CSSProperties {
+  const map: Record<InsightCatStyle, CSSProperties> = {
+    amber: {
+      borderColor: "rgb(245 138 11 / 0.35)",
+      color: "var(--ins-amber)",
+      background: "rgb(6 8 16 / 0.72)",
+    },
+    cyan: {
+      borderColor: "rgb(29 207 207 / 0.35)",
+      color: "var(--ins-cyan)",
+      background: "rgb(6 8 16 / 0.72)",
+    },
+    purple: {
+      borderColor: "rgb(170 170 255 / 0.35)",
+      color: "rgb(170 170 255 / 0.95)",
+      background: "rgb(6 8 16 / 0.72)",
+    },
+    green: {
+      borderColor: "rgb(34 197 94 / 0.35)",
+      color: "rgb(34 197 94 / 0.95)",
+      background: "rgb(6 8 16 / 0.72)",
+    },
+  };
+  return map[catStyle];
+}
 
-/** Reference “today” for NEW badges — matches editorial dates (avoids SSR/client clock skew). */
-const INSIGHTS_NOW = new Date("2026-04-03T12:00:00");
+export type InsightsTrendsSectionProps = {
+  posts: readonly InsightPost[];
+  filterOptions: readonly InsightFilterOption[];
+  sectionId?: string;
+  headingId?: string;
+  /** Set false on /blogs — {@link BlogHero} already introduces the page. */
+  showSectionIntro?: boolean;
+  eyebrow?: string;
+  lead?: string;
+  /** Set false on /blogs to hide monospace code teasers under each title. */
+  showCodePreview?: boolean;
+  /** Reference date for “NEW” badges (avoids SSR/client clock skew) */
+  insightsNow?: Date;
+  showLoadMore?: boolean;
+};
 
-export default function InsightsTrends() {
-  const [filter, setFilter] = useState<FilterCat>("all");
+export function InsightsTrendsSection({
+  posts,
+  filterOptions,
+  sectionId = "insights-trends",
+  headingId = "insights-heading",
+  showSectionIntro = true,
+  eyebrow,
+  lead,
+  showCodePreview = true,
+  insightsNow = INSIGHTS_NOW,
+  showLoadMore = false,
+}: InsightsTrendsSectionProps) {
+  const [filter, setFilter] = useState<InsightFilterCat>("all");
+  const [loadMoreDone, setLoadMoreDone] = useState(false);
   const reduceMotion = usePrefersReducedMotion();
   const gridRef = useRef<HTMLDivElement>(null);
 
   const sorted = useMemo(
     () =>
-      [...POSTS].sort(
+      [...posts].sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
       ),
-    [],
+    [posts],
   );
 
   const filtered = useMemo(() => {
@@ -198,22 +160,23 @@ export default function InsightsTrends() {
     }
   };
 
+  const totalForIndex = filtered.length;
+
   return (
     <section
-      id="insights-trends"
-      aria-labelledby="insights-heading"
+      id={sectionId}
+      aria-labelledby={showSectionIntro ? headingId : undefined}
+      aria-label={showSectionIntro ? undefined : "Technical journals"}
       className="relative scroll-mt-24 pb-12 md:pb-20"
     >
       <div className="mx-auto max-w-325 px-5 md:px-12">
-        <SectionIntro
-          id="insights-heading"
-          eyebrow="Insights & trends"
-          lead="Technical journals covering how we think about engineering — architecture, immersive systems, and brand as code."
-        />
+        {showSectionIntro && eyebrow != null && lead != null ? (
+          <SectionIntro id={headingId} eyebrow={eyebrow} lead={lead} />
+        ) : null}
 
         <div id="ins-root" className="relative w-full">
           <div className="mb-8 flex flex-wrap items-center gap-2.5 font-mono">
-            {INS_FILTER_OPTS.map(({ key, label }, idx) => (
+            {filterOptions.map(({ key, label }, idx) => (
               <Fragment key={key}>
                 {idx === 1 ? <FilterRailSeparator /> : null}
                 <button
@@ -237,10 +200,10 @@ export default function InsightsTrends() {
           <div id="ins-grid" ref={gridRef}>
             {filtered.map((p, i) => {
               const diffDays = Math.floor(
-                (INSIGHTS_NOW.getTime() - new Date(p.date).getTime()) / 86400000,
+                (insightsNow.getTime() - new Date(p.date).getTime()) / 86400000,
               );
               const isNew = diffDays <= 2;
-              const codeHtml = codeLinesToHtml(p.code.lines);
+              const codeHtml = showCodePreview ? codeLinesToHtml(p.code.lines) : "";
               const thumbSrc = insightThumbSrc(p.svgType, p.color);
 
               return (
@@ -279,7 +242,9 @@ export default function InsightsTrends() {
                       />
                     </div>
                     <div className="card-grain" aria-hidden />
-                    <div className="card-cat">{p.cat}</div>
+                    <div className="card-cat" style={catBadgeStyle(p.catStyle)}>
+                      {p.cat}
+                    </div>
                     {isNew ? (
                       <div className="card-new">
                         <div className="new-dot" />
@@ -301,16 +266,18 @@ export default function InsightsTrends() {
                       <span className="card-meta-id">{p.id}</span>
                     </div>
                     <div className="card-title">{p.title}</div>
-                    <div
-                      className="card-code"
-                      dangerouslySetInnerHTML={{ __html: codeHtml }}
-                    />
+                    {showCodePreview ? (
+                      <div
+                        className="card-code"
+                        dangerouslySetInnerHTML={{ __html: codeHtml }}
+                      />
+                    ) : null}
                     <div className="card-excerpt">{p.excerpt}</div>
                     <div className="card-footer">
                       <span className="card-read-btn">READ JOURNAL</span>
                       <span className="card-idx">
                         [ {String(i + 1).padStart(2, "0")} /{" "}
-                        {String(filtered.length).padStart(2, "0")} ]
+                        {String(totalForIndex).padStart(2, "0")} ]
                       </span>
                     </div>
                   </div>
@@ -318,8 +285,51 @@ export default function InsightsTrends() {
               );
             })}
           </div>
+
+          {showLoadMore ? (
+            <div className="mt-12 flex flex-wrap items-center gap-6">
+              <button
+                type="button"
+                disabled={loadMoreDone}
+                onClick={() => setLoadMoreDone(true)}
+                className="rounded-sm border border-white/20 bg-transparent px-7 py-3 font-mono text-[10px] tracking-[0.18em] text-white/50 uppercase transition-colors hover:border-sl-saffron hover:text-sl-saffron disabled:cursor-default disabled:opacity-40"
+              >
+                {loadMoreDone ? "All Journals Loaded" : "Load More Journals"}
+              </button>
+              <span className="font-mono text-[9px] tracking-[0.14em] text-white/25 uppercase">
+                Showing {posts.length} of {posts.length} · More coming soon
+              </span>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
+  );
+}
+
+/** Home page — three journals, four filters (no engineering). */
+export function HomeInsightsTrendsSection() {
+  return (
+    <InsightsTrendsSection
+      posts={HOME_INSIGHT_POSTS}
+      filterOptions={HOME_INSIGHT_FILTERS}
+      eyebrow="Insights & trends"
+      lead="Technical journals covering how we think about engineering — architecture, immersive systems, and brand as code."
+    />
+  );
+}
+
+/** Dedicated /blogs page — six journals + engineering filter + load-more stub. */
+export function BlogInsightsTrendsSection() {
+  return (
+    <InsightsTrendsSection
+      posts={BLOG_INSIGHT_POSTS}
+      filterOptions={BLOG_INSIGHT_FILTERS}
+      sectionId="blog-journals"
+      headingId="blog-journals-heading"
+      showSectionIntro={false}
+      showCodePreview={false}
+      showLoadMore
+    />
   );
 }
