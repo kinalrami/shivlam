@@ -46,17 +46,23 @@ export function Hero({ serviceKey, content }: Props) {
       />
       <canvas ref={heroBgRef} className="absolute inset-0 z-1 h-full w-full" />
 
-      <div className="relative z-10 mx-auto grid max-w-325 items-center gap-16 px-5 pt-[clamp(4.5rem,10vh,6.5rem)] pb-16 md:grid-cols-2 md:gap-16 md:px-12">
-        <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-orange-400/35 bg-orange-400/[0.07] px-3 py-1.5 font-mono text-[9px] tracking-[0.22em] text-orange-400 uppercase">
+      <div
+        className={
+          serviceKey === "flutter"
+            ? "relative z-10 mx-auto grid w-full min-w-0 max-w-325 grid-cols-1 items-center gap-10 px-5 pt-[clamp(4.5rem,10vh,6.5rem)] pb-16 lg:grid-cols-2 lg:gap-16 lg:px-12"
+            : "relative z-10 mx-auto grid w-full min-w-0 max-w-325 grid-cols-1 items-center gap-16 px-5 pt-[clamp(4.5rem,10vh,6.5rem)] pb-16 md:grid-cols-2 md:gap-16 md:px-12"
+        }
+      >
+        <div className="min-w-0 max-w-full">
+          <div className="mb-6 inline-flex max-w-full min-w-0 items-center gap-2 overflow-x-auto rounded-sm border border-orange-400/35 bg-orange-400/[0.07] py-1.5 pl-2.5 pr-3 font-mono text-[8px] tracking-[0.14em] text-orange-400 uppercase [-ms-overflow-style:none] [scrollbar-width:none] sm:text-[9px] sm:tracking-[0.2em] sm:pl-3 sm:pr-3.5 md:tracking-[0.22em] [&::-webkit-scrollbar]:hidden">
             <span
-              className="size-1.5 rounded-full bg-orange-400 shadow-[0_0_8px_var(--orange-400)] animate-[arbim-landing-bpulse_1.6s_ease-in-out_infinite]"
+              className="size-1.5 shrink-0 rounded-full bg-orange-400 shadow-[0_0_8px_var(--orange-400)] animate-[arbim-landing-bpulse_1.6s_ease-in-out_infinite]"
               aria-hidden
             />
-            {content.heroTagline}
+            <span className="whitespace-nowrap">{content.heroTagline}</span>
           </div>
 
-          <h1 className="mb-5 font-sans text-[clamp(2.25rem,4.5vw,4rem)] leading-[0.96] font-extrabold tracking-[-0.035em] text-white">
+          <h1 className="mb-5 max-w-full break-words font-sans text-[clamp(1.75rem,4.5vw,4rem)] leading-[0.96] font-extrabold tracking-[-0.035em] text-white sm:text-[clamp(2.25rem,4.5vw,4rem)]">
             Hire Leading
             <br />
             <span className="text-orange-400">{content.heroHighlight}</span>
@@ -64,7 +70,7 @@ export function Hero({ serviceKey, content }: Props) {
             {content.heroTitleTail}
           </h1>
 
-          <p className="mb-9 max-w-115 text-[15px] leading-[1.78] font-light text-white/48">
+          <p className="mb-9 max-w-full text-[15px] leading-[1.78] font-light text-white/48 sm:max-w-115">
             {content.heroDescription}
           </p>
 
@@ -98,8 +104,10 @@ export function Hero({ serviceKey, content }: Props) {
           </div>
         </div>
         {/* Right Side */}
-        <div className="relative flex items-center justify-center">
-          <div className="relative">
+        <div
+          className={`relative flex min-w-0 max-w-full items-center justify-center ${serviceKey === "flutter" ? "overflow-x-hidden pt-2 lg:overflow-visible" : ""}`}
+        >
+          <div className="relative w-full min-w-0 max-w-full">
             {serviceKey === "flutter" ? (
               <FlutterHeroRight
                 chipTopLeft={content.heroPhoneTopLeft}
