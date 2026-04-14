@@ -387,8 +387,8 @@ export const WEB_DEVELOPMENT_CONTENT: WebDevContent = {
     sectionId: "more",
     headingId: "more-heading",
     eyebrow: "EXPLORE MORE SERVICES",
-    title: { before: "Need More Than a ", highlight: "Website", after: "?" },
-    lead: "Explore adjacent services that help you build and grow digital products.",
+    title: { before: "Need More Than a ", highlight: "Website?", after: "" },
+    lead: "",
     items: [
       {
         tag: "MOBILE",

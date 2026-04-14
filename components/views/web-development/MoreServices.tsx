@@ -22,12 +22,12 @@ export function MoreServices({ content }: Props) {
           eyebrowStyle="dash"
           title={
             <>
-              {content.title.before}
+              {content.title.before}<br />
               <span className="text-sl-saffron">{content.title.highlight}</span>
               {content.title.after ?? null}
             </>
           }
-          lead={content.lead}
+          lead={content.lead ? content.lead : undefined}
         />
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

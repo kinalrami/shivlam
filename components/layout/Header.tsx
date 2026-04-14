@@ -65,6 +65,7 @@ const itemHref: Partial<Record<string, string>> = {
   "AR VR Solution": "/services/ar-vr-solution",
   "Web Development": "/services/web-development",
   "Game Development": "/services/game-development",
+  "Brand Building": "/services/brand-building",
 };
 
 export function Header() {
