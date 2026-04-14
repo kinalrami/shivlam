@@ -550,7 +550,7 @@ export const GAME_DEVELOPMENT_CONTENT: Record<"game", GameDevContent> = {
       sectionId: "more",
       headingId: "more-heading",
       eyebrow: "EXPLORE MORE SERVICES",
-      title: { before: "Building More Than ", highlight: "Games", after: "?" },
+      title: { before: "Building More Than ", highlight: "Games?", after: "" },
       lead: "",
       items: [
         {

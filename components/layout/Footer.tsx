@@ -12,6 +12,7 @@ const optionHref: Partial<Record<string, string>> = {
   "Mobile App Development": "/services/iphone-app-development",
   "Website Development": "/services/web-development",
   "Game Development": "/services/game-development",
+  "Brand Building": "/services/brand-building",
   "Contact Us": "/contact-us",
 };
 
