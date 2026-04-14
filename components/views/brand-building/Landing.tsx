@@ -16,6 +16,8 @@ import { StrategyFunnel } from "@/components/views/brand-building/StrategyFunnel
 import { SocialPaidMedia } from "@/components/views/brand-building/SocialPaidMedia";
 import { AsoDeepDive } from "@/components/views/brand-building/AsoDeepDive";
 import { SeoDeepDive } from "@/components/views/brand-building/SeoDeepDive";
+import { MidCtaSection } from "@/components/shared/MidCtaSection";
+import { ServicesGridSection } from "@/components/shared/ServicesGridSection";
 
 type Props = {
   content: BrandBuildingContent;
@@ -27,6 +29,8 @@ export default function Landing({ content }: Props) {
       <Hero content={content.hero} />
       <Marquee items={content.marquee} />
       <StatsStrip items={content.statsStrip} />
+      <ServicesGridSection content={content.coreServices} />
+      <MidCtaSection sectionId="brand-mid-cta" content={content.midCta} />
       <SeoDeepDive content={content.seoDeepDive} />
       <AsoDeepDive content={content.asoDeepDive} />
       <SocialPaidMedia content={content.socialPaidMedia} />

@@ -11,6 +11,14 @@ export type BrandBuildingContent = {
   };
   marquee: readonly string[];
   statsStrip: readonly { value: string; label: string }[];
+  coreServices: import("@/components/shared/ServicesGridSection").ServicesGridSectionContent;
+  midCta: {
+    titleBefore: string;
+    titleHighlight: string;
+    lead: string;
+    primaryCta: { label: string; href: string };
+    secondaryCta: { label: string; href: string };
+  };
   seoDeepDive: {
     sectionId: string;
     headingId: string;
@@ -164,6 +172,76 @@ export const BRAND_BUILDING_CONTENT: BrandBuildingContent = {
     { value: "5+", label: "COUNTRIES SERVED" },
     { value: "99%", label: "SATISFACTION RATE" },
   ],
+  coreServices: {
+    sectionId: "core-services",
+    headingId: "core-services-heading",
+    eyebrow: "CORE SERVICES",
+    title: { before: "Six Channels. ", highlight: "One Cohesive Brand.", after: "" },
+    lead: "The most important services in brand building work together — each channel reinforces the others, compounding your authority over time.",
+    cards: [
+      {
+        key: "seo",
+        tag: "#1 PRIORITY",
+        title: "Search Engine Optimisation (SEO)",
+        desc: "Organic search is the highest-ROI brand channel. Technical SEO, on-page optimisation, Core Web Vitals, structured data, and ethical link building to rank for keywords that bring buyers — not just visitors.",
+        pills: ["Technical SEO", "On-Page", "Link Building", "Core Web Vitals", "Local SEO", "eCommerce SEO"],
+        accent: "orange",
+        icon: { kind: "key", key: "seo" },
+      },
+      {
+        key: "aso",
+        tag: "APP GROWTH",
+        title: "App Store Optimisation (ASO)",
+        desc: "SEO for the App Store and Play Store. Keyword research, title and description optimisation, screenshot A/B testing, rating management, and conversion rate optimisation to maximise organic downloads.",
+        pills: ["App Store", "Play Store", "Keyword Research", "A/B Testing", "Rating Strategy"],
+        accent: "cyan",
+        icon: { kind: "key", key: "aso" },
+      },
+      {
+        key: "social",
+        tag: "SOCIAL",
+        title: "Social Media Marketing",
+        desc: "Supercharge your brand with platform-native content strategies for Instagram, LinkedIn, YouTube, and X. Community management, influencer partnerships, UGC campaigns, and social commerce integration.",
+        pills: ["Instagram", "LinkedIn", "YouTube", "Influencer", "UGC", "Social Commerce"],
+        accent: "orange",
+        icon: { kind: "key", key: "social" },
+      },
+      {
+        key: "ads",
+        tag: "PAID MEDIA",
+        title: "Google Ads & PPC",
+        desc: "Drive results with performance-first Google Ads campaigns — Search, Display, Performance Max, and Shopping. Budget planning, audience optimisation, ad rank tuning, and continuous ROI-focused refinement.",
+        pills: ["Search Ads", "Performance Max", "Shopping Ads", "Retargeting", "Budget Planning"],
+        accent: "cyan",
+        icon: { kind: "key", key: "ads" },
+      },
+      {
+        key: "content",
+        tag: "CONTENT",
+        title: "Content Marketing",
+        desc: "From SEO blog posts and case studies to whitepapers, YouTube scripts, and email sequences — we create content that educates your audience, builds authority, and converts at every stage of the funnel.",
+        pills: ["Blog & SEO Content", "Case Studies", "Email Sequences", "Video Scripts"],
+        accent: "orange",
+        icon: { kind: "key", key: "content" },
+      },
+      {
+        key: "influencer",
+        tag: "INFLUENCE",
+        title: "Influencer & Creator Marketing",
+        desc: "Empower your brand through strategic influencer partnerships. Micro and macro creator campaigns, affiliate marketing, UGC (User Generated Content), and creator economy programmes for authentic reach.",
+        pills: ["Micro-Influencers", "UGC Campaigns", "Affiliate Programs", "Creator Economy"],
+        accent: "cyan",
+        icon: { kind: "key", key: "influencer" },
+      },
+    ],
+  },
+  midCta: {
+    titleBefore: "From a Business to a Brand.",
+    titleHighlight: "Let's Start That Journey.",
+    lead: "Tell us about your business, your audience, and your goals — we'll map out a brand-building strategy across the channels that will move the needle most for you.",
+    primaryCta: { label: "Get a Free Strategy Call →", href: "https://shivlam.com/contact-us/" },
+    secondaryCta: { label: "hi@shivlam.com", href: "mailto:hi@shivlam.com" },
+  },
   seoDeepDive: {
     sectionId: "seo",
     headingId: "seo-heading",
