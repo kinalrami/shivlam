@@ -19,6 +19,21 @@ export type BrandBuildingContent = {
     lead: string;
     cards: readonly { badge?: "new"; tag: string; title: string; desc: string }[];
   };
+  socialPaidMedia: {
+    sectionId: string;
+    headingId: string;
+    eyebrow: string;
+    title: { before: string; highlight: string; after?: string };
+    lead: string;
+    features: readonly {
+      tag: string;
+      tagTone: string;
+      title: string;
+      desc: string;
+    }[];
+    primaryCta: { label: string; href: string };
+    secondaryCta: { label: string; href: string };
+  };
   strategyFunnel: {
     sectionId: string;
     leftLabel: string;
@@ -175,6 +190,41 @@ export const BRAND_BUILDING_CONTENT: BrandBuildingContent = {
         desc: "Post-cookie tracking with GA4, first-party data collection, server-side tagging, and consent management — so you keep clear attribution data as privacy rules tighten.",
       },
     ],
+  },
+  socialPaidMedia: {
+    sectionId: "social-paid",
+    headingId: "social-paid-heading",
+    eyebrow: "SOCIAL & PAID MEDIA",
+    title: { before: "Amplify Your Brand Across", highlight: "Every Channel, Every Day.", after: "" },
+    lead: "Social media builds daily trust. Google Ads drives immediate targeted reach. Together they compound your brand's authority — organic credibility backed by precision-paid amplification.",
+    features: [
+      {
+        tag: "SOCIAL STRATEGY",
+        tagTone: "text-orange-400/70",
+        title: "Community Building",
+        desc: "Platform-native content, engagement strategy, and community management across Instagram, LinkedIn, and YouTube.",
+      },
+      {
+        tag: "PAID SOCIAL",
+        tagTone: "text-[rgba(29,207,207,.70)]",
+        title: "Social Advertising",
+        desc: "Meta Ads, LinkedIn Ads, and YouTube pre-roll campaigns with precise audience targeting and creative A/B testing.",
+      },
+      {
+        tag: "GOOGLE ADS",
+        tagTone: "text-orange-400/70",
+        title: "Performance Max",
+        desc: "Search, Display, and Performance Max campaigns with budget planning, ad rank optimisation, and ROAS-first reporting.",
+      },
+      {
+        tag: "RETARGETING",
+        tagTone: "text-[rgba(34,197,94,.75)]",
+        title: "Funnel Retargeting",
+        desc: "Pixel-based retargeting sequences that bring back visitors who didn't convert — across Google, Meta, and YouTube.",
+      },
+    ],
+    primaryCta: { label: "Digital Marketing Services →", href: "https://shivlam.com/digital-marketing-solutions/" },
+    secondaryCta: { label: "Get a Campaign Quote", href: "https://shivlam.com/contact-us/" },
   },
   strategyFunnel: {
     sectionId: "strategy",

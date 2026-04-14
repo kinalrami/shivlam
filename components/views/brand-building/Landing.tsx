@@ -13,6 +13,7 @@ import { BrandPortfolioCta } from "@/components/views/brand-building/BrandPortfo
 import { SpecialisedMarketing } from "@/components/views/brand-building/SpecialisedMarketing";
 import { LatestChannels } from "@/components/views/brand-building/LatestChannels";
 import { StrategyFunnel } from "@/components/views/brand-building/StrategyFunnel";
+import { SocialPaidMedia } from "@/components/views/brand-building/SocialPaidMedia";
 
 type Props = {
   content: BrandBuildingContent;
@@ -24,6 +25,7 @@ export default function Landing({ content }: Props) {
       <Hero content={content.hero} />
       <Marquee items={content.marquee} />
       <StatsStrip items={content.statsStrip} />
+      <SocialPaidMedia content={content.socialPaidMedia} />
       <StrategyFunnel content={content.strategyFunnel} />
       <LatestChannels content={content.latestChannels} />
       <SpecialisedMarketing content={content.specialisedMarketing} />
