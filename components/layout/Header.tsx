@@ -40,10 +40,6 @@ const sectionItems: Record<string, SectionNavItem[]> = {
     { label: "Web Development" },
     {
       label: "Game Development",
-      submenu: [
-        { label: "Unity Mobile Game Development" },
-        { label: "Vision Pro Game Development Company" },
-      ],
     },
     {
       label: "Brand Building",

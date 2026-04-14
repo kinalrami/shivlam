@@ -14,11 +14,11 @@ export function PortfolioCta({ content }: Props) {
       sectionId={content.sectionId}
       headingId={content.headingId}
       sectionClassName="bg-[#060606]"
-      containerClassName="mx-auto max-w-325 px-5 py-12 text-center md:px-12 md:py-20"
+      containerClassName="mx-auto max-w-325 px-5 pb-12 text-center md:px-12 md:pb-20"
       eyebrow={content.eyebrow}
       title={
         <>
-          {content.titleBefore} <span className="text-orange-400">{content.titleHighlight}</span>
+          {content.titleBefore}<br /> <span className="text-orange-400">{content.titleHighlight}</span>
         </>
       }
       lead={content.lead}

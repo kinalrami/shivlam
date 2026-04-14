@@ -1,9 +1,15 @@
 import { SectionIntro } from "@/components/shared/section-chrome";
-import type { WebDevContent } from "./content";
 
-type Props = {
-  content: WebDevContent["process"];
+export type ProcessContent = {
+  sectionId: string;
+  headingId: string;
+  eyebrow: string;
+  title: { before: string; highlight: string; after?: string };
+  lead: string;
+  steps: readonly { num: string; tag: string; title: string; desc: string }[];
 };
+
+type Props = { content: ProcessContent };
 
 export function Process({ content }: Props) {
   return (
@@ -16,7 +22,7 @@ export function Process({ content }: Props) {
           eyebrowStyle="dash"
           title={
             <>
-              {content.title.before}
+              {content.title.before}<br />
               <span className="text-sl-saffron">{content.title.highlight}</span>
               {content.title.after ?? null}
             </>

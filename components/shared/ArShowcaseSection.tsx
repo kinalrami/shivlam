@@ -43,13 +43,20 @@ function pillClass(v: "cyan" | "orange" | "green" | "muted" | "purple"): string 
   }
 }
 
-export type ArShowcaseFeatureItem = {
-  key: string;
-  title: string;
-  desc: string;
-  icon: ReactNode;
-  iconWrapClass: string;
-};
+export type ArShowcaseFeatureItem =
+  | {
+      key: string;
+      title: string;
+      desc: string;
+      digit: string;
+    }
+  | {
+      key: string;
+      title: string;
+      desc: string;
+      icon: ReactNode;
+      iconWrapClass: string;
+    };
 
 export type ArShowcaseCompareCard = {
   variant: "green" | "orange";
@@ -79,6 +86,16 @@ export type ArShowcaseSectionProps = {
   secondaryCta: { label: string; href: string };
   /** SectionIntro extra classes (lead/title tweaks) */
   introClassName?: string;
+  /** Background grid / overlay (absolute, pointer-events none) */
+  decoration?: ReactNode;
+  /** Overrides default `bg-[#060606] pb-12 md:pb-20` */
+  sectionClassName?: string;
+  /** Where to render the pills row; default matches existing sections (before CTAs). */
+  pillsPlacement?: "after-intro" | "before-ctas";
+  /** Feature list row styling (light = cream paper section) */
+  featureTheme?: "dark" | "light";
+  primaryCtaClassName?: string;
+  secondaryCtaClassName?: string;
 };
 
 /**
@@ -100,6 +117,12 @@ export function ArShowcaseSection({
   primaryCta,
   secondaryCta,
   introClassName = "mb-6 [&_p]:text-sm [&_p]:leading-[1.72]",
+  decoration,
+  sectionClassName,
+  pillsPlacement = "before-ctas",
+  featureTheme = "dark",
+  primaryCtaClassName,
+  secondaryCtaClassName,
 }: ArShowcaseSectionProps) {
   const titleNode = (
     <>
@@ -115,8 +138,41 @@ export function ArShowcaseSection({
     </>
   );
 
+  const featureLiClass =
+    featureTheme === "light"
+      ? "flex gap-3.5 rounded-lg border border-[rgba(16,43,77,.08)] bg-[rgba(16,43,77,.04)] p-3.5 transition-[border-color] duration-300 hover:border-[rgba(255,107,107,.25)]"
+      : "flex gap-3.5 rounded-lg border border-white/[0.07] bg-white/[0.04] p-3.5 transition-[border-color] duration-300 hover:border-white/20";
+
+  const featureTitleClass =
+    featureTheme === "light" ? "mb-1 font-sans text-sm font-semibold text-[#0a1b33]" : "mb-1 font-sans text-sm font-semibold text-white";
+
+  const featureDescClass =
+    featureTheme === "light"
+      ? "text-xs leading-[1.58] text-[rgba(16,43,77,.5)]"
+      : "text-xs leading-[1.58] text-white/[0.38]";
+
+  const pillsEl =
+    pills.length > 0 ? (
+      <div className="mb-7 flex flex-wrap gap-2">
+        {pills.map((p) => (
+          <span
+            key={p.label}
+            className={`rounded px-2.5 py-1 font-mono text-[8px] tracking-[0.09em] uppercase ${pillClass(p.variant)}`}
+          >
+            {p.label}
+          </span>
+        ))}
+      </div>
+    ) : null;
+
+  /** Text first in DOM so mobile stacks copy above canvas; `order` swaps columns at md when visual is on the left. */
+  const textColOrder =
+    visualPosition === "start" ? "order-1 md:order-2" : "order-1 md:order-1";
+  const visualColOrder =
+    visualPosition === "start" ? "order-2 md:order-1" : "order-2 md:order-2";
+
   const textColumn = (
-    <div>
+    <div className={`min-w-0 ${textColOrder}`}>
       <SectionIntro
         id={headingId}
         eyebrow={eyebrow}
@@ -129,21 +185,24 @@ export function ArShowcaseSection({
 
       {afterIntro}
 
+      {pillsPlacement === "after-intro" ? pillsEl : null}
+
       {features.length > 0 ? (
         <ul className="mb-6 flex flex-col gap-3">
           {features.map((f) => (
-            <li
-              key={f.key}
-              className="flex gap-3.5 rounded-lg border border-white/[0.07] bg-white/[0.04] p-3.5 transition-[border-color] duration-300 hover:border-white/20"
-            >
-              <div
-                className={`flex size-9 shrink-0 items-center justify-center rounded-lg border ${f.iconWrapClass}`}
-              >
-                {f.icon}
-              </div>
+            <li key={f.key} className={featureLiClass}>
+              {"digit" in f ? (
+                <div className="shrink-0 pt-0.5 font-mono text-sm font-bold tabular-nums text-[#FF6B6B]">{f.digit}</div>
+              ) : (
+                <div
+                  className={`flex size-9 shrink-0 items-center justify-center rounded-lg border ${f.iconWrapClass}`}
+                >
+                  {f.icon}
+                </div>
+              )}
               <div>
-                <p className="mb-1 font-sans text-sm font-semibold text-white">{f.title}</p>
-                <p className="text-xs leading-[1.58] text-white/[0.38]">{f.desc}</p>
+                <p className={featureTitleClass}>{f.title}</p>
+                <p className={featureDescClass}>{f.desc}</p>
               </div>
             </li>
           ))}
@@ -199,27 +258,24 @@ export function ArShowcaseSection({
         </>
       ) : null}
 
-      <div className="mb-7 flex flex-wrap gap-2">
-        {pills.map((p) => (
-          <span
-            key={p.label}
-            className={`rounded px-2.5 py-1 font-mono text-[8px] tracking-[0.09em] uppercase ${pillClass(p.variant)}`}
-          >
-            {p.label}
-          </span>
-        ))}
-      </div>
+      {pillsPlacement === "before-ctas" ? pillsEl : null}
 
       <div className="flex flex-wrap gap-3">
         <CtaLink
           href={primaryCta.href}
-          className="inline-flex items-center gap-2 rounded-[5px] bg-sl-saffron px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.07em] text-white uppercase shadow-[0_0_24px_rgba(255,153,51,.28)] transition-colors hover:bg-[#E68A1F]"
+          className={
+            primaryCtaClassName ??
+            "inline-flex items-center gap-2 rounded-[5px] bg-sl-saffron px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.07em] text-white uppercase shadow-[0_0_24px_rgba(255,153,51,.28)] transition-colors hover:bg-[#E68A1F]"
+          }
         >
           {primaryCta.label}
         </CtaLink>
         <CtaLink
           href={secondaryCta.href}
-          className="inline-flex items-center gap-2 rounded-[5px] border border-white/25 bg-transparent px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.07em] text-white/80 uppercase transition-all hover:border-sl-saffron hover:bg-[rgba(255,153,51,.06)] hover:text-sl-saffron"
+          className={
+            secondaryCtaClassName ??
+            "inline-flex items-center gap-2 rounded-[5px] border border-white/25 bg-transparent px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.07em] text-white/80 uppercase transition-all hover:border-sl-saffron hover:bg-[rgba(255,153,51,.06)] hover:text-sl-saffron"
+          }
         >
           {secondaryCta.label}
         </CtaLink>
@@ -227,27 +283,21 @@ export function ArShowcaseSection({
     </div>
   );
 
-  const visualColumn = <div>{visual}</div>;
+  const visualColumn = (
+    <div className={`min-w-0 w-full max-w-full ${visualColOrder}`}>{visual}</div>
+  );
 
   return (
     <section
       id={sectionId}
       aria-labelledby={headingId}
-      className="relative scroll-mt-14 overflow-hidden bg-[#060606] pb-12 md:pb-20"
+      className={sectionClassName ?? "relative scroll-mt-14 overflow-x-hidden bg-[#060606] pb-12 md:pb-20"}
     >
+      {decoration}
 
-      <div className="relative mx-auto grid max-w-325 items-center gap-12 px-5 md:grid-cols-2 md:gap-[72px] md:px-12">
-        {visualPosition === "start" ? (
-          <>
-            {visualColumn}
-            {textColumn}
-          </>
-        ) : (
-          <>
-            {textColumn}
-            {visualColumn}
-          </>
-        )}
+      <div className="relative z-[1] mx-auto grid w-full min-w-0 max-w-325 items-center gap-12 px-5 md:grid-cols-2 md:gap-[72px] md:px-12">
+        {textColumn}
+        {visualColumn}
       </div>
     </section>
   );

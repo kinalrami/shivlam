@@ -1,7 +1,7 @@
-import type { WebDevStatsItem } from "./content";
+export type StatsStripItem = { value: string; label: string };
 
 type Props = {
-  items: readonly WebDevStatsItem[];
+  items: readonly StatsStripItem[];
 };
 
 export function StatsStrip({ items }: Props) {
