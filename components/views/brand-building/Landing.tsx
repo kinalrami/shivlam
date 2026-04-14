@@ -15,6 +15,7 @@ import { LatestChannels } from "@/components/views/brand-building/LatestChannels
 import { StrategyFunnel } from "@/components/views/brand-building/StrategyFunnel";
 import { SocialPaidMedia } from "@/components/views/brand-building/SocialPaidMedia";
 import { AsoDeepDive } from "@/components/views/brand-building/AsoDeepDive";
+import { SeoDeepDive } from "@/components/views/brand-building/SeoDeepDive";
 
 type Props = {
   content: BrandBuildingContent;
@@ -26,6 +27,7 @@ export default function Landing({ content }: Props) {
       <Hero content={content.hero} />
       <Marquee items={content.marquee} />
       <StatsStrip items={content.statsStrip} />
+      <SeoDeepDive content={content.seoDeepDive} />
       <AsoDeepDive content={content.asoDeepDive} />
       <SocialPaidMedia content={content.socialPaidMedia} />
       <StrategyFunnel content={content.strategyFunnel} />

@@ -45,18 +45,18 @@ function pillClass(v: "cyan" | "orange" | "green" | "muted" | "purple"): string 
 
 export type ArShowcaseFeatureItem =
   | {
-      key: string;
-      title: string;
-      desc: string;
-      digit: string;
-    }
+    key: string;
+    title: string;
+    desc: string;
+    digit: string;
+  }
   | {
-      key: string;
-      title: string;
-      desc: string;
-      icon: ReactNode;
-      iconWrapClass: string;
-    };
+    key: string;
+    title: string;
+    desc: string;
+    icon: ReactNode;
+    iconWrapClass: string;
+  };
 
 export type ArShowcaseCompareCard = {
   variant: "green" | "orange";
@@ -92,6 +92,8 @@ export type ArShowcaseSectionProps = {
   sectionClassName?: string;
   /** Where to render the pills row; default matches existing sections (before CTAs). */
   pillsPlacement?: "after-intro" | "before-ctas";
+  /** Optional label above the pills row. */
+  pillsLabel?: ReactNode;
   /** Feature list row styling (light = cream paper section) */
   featureTheme?: "dark" | "light";
   primaryCtaClassName?: string;
@@ -120,6 +122,7 @@ export function ArShowcaseSection({
   decoration,
   sectionClassName,
   pillsPlacement = "before-ctas",
+  pillsLabel,
   featureTheme = "dark",
   primaryCtaClassName,
   secondaryCtaClassName,
@@ -153,15 +156,18 @@ export function ArShowcaseSection({
 
   const pillsEl =
     pills.length > 0 ? (
-      <div className="mb-7 flex flex-wrap gap-2">
-        {pills.map((p) => (
-          <span
-            key={p.label}
-            className={`rounded px-2.5 py-1 font-mono text-[8px] tracking-[0.09em] uppercase ${pillClass(p.variant)}`}
-          >
-            {p.label}
-          </span>
-        ))}
+      <div className="mb-7">
+        {pillsLabel ? <div className="mb-2">{pillsLabel}</div> : null}
+        <div className="flex flex-wrap gap-2">
+          {pills.map((p) => (
+            <span
+              key={p.label}
+              className={`rounded px-2.5 py-1 font-mono text-[8px] tracking-[0.09em] uppercase ${pillClass(p.variant)}`}
+            >
+              {p.label}
+            </span>
+          ))}
+        </div>
       </div>
     ) : null;
 

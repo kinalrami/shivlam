@@ -11,6 +11,18 @@ export type BrandBuildingContent = {
   };
   marquee: readonly string[];
   statsStrip: readonly { value: string; label: string }[];
+  seoDeepDive: {
+    sectionId: string;
+    headingId: string;
+    eyebrow: string;
+    title: { before: string; highlight: string; after?: string };
+    lead: string;
+    features: readonly { tone: "orange" | "cyan" | "green"; title: string; desc: string }[];
+    pills: readonly string[];
+    primaryCta: { label: string; href: string };
+    secondaryCta: { label: string; href: string };
+    visualPosition: "start" | "end";
+  };
   asoDeepDive: {
     sectionId: string;
     headingId: string;
@@ -152,6 +164,42 @@ export const BRAND_BUILDING_CONTENT: BrandBuildingContent = {
     { value: "5+", label: "COUNTRIES SERVED" },
     { value: "99%", label: "SATISFACTION RATE" },
   ],
+  seoDeepDive: {
+    sectionId: "seo",
+    headingId: "seo-heading",
+    eyebrow: "SEO — PRIORITY #1",
+    title: { before: "Organic Search Is Your Brand's ", highlight: "Biggest Asset.", after: "" },
+    lead: "We practice structured, ethical SEO that builds authority over time. Keyword research, technical fixes, on-page optimisation, and a link strategy that doesn't risk your rankings.",
+    features: [
+      {
+        tone: "orange",
+        title: "Structured SEO Architecture",
+        desc: "Site structure designed around your business and location — how Google categorises and trusts your domain.",
+      },
+      {
+        tone: "cyan",
+        title: "Technical SEO & Core Web Vitals",
+        desc: "Indexing, crawlability, LCP, CLS, FID — following Google's latest guidelines for fast, mobile-first, indexable sites.",
+      },
+      {
+        tone: "green",
+        title: "Transparent Reporting",
+        desc: "Monthly keyword ranking reports, traffic growth, and conversion data. SEO is a long-term process — we show you every step.",
+      },
+    ],
+    pills: [
+      "IT Services SEO",
+      "eCommerce SEO",
+      "Shopify SEO",
+      "Amazon SEO",
+      "Local SEO",
+      "Squarespace SEO",
+      "HubSpot SEO",
+    ],
+    primaryCta: { label: "SEO Services →", href: "https://shivlam.com/affordable-seo-service/" },
+    secondaryCta: { label: "Get SEO Audit", href: "https://shivlam.com/contact-us/" },
+    visualPosition: "start",
+  },
   asoDeepDive: {
     sectionId: "aso",
     headingId: "aso-heading",
