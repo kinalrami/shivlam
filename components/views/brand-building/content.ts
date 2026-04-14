@@ -11,6 +11,18 @@ export type BrandBuildingContent = {
   };
   marquee: readonly string[];
   statsStrip: readonly { value: string; label: string }[];
+  asoDeepDive: {
+    sectionId: string;
+    headingId: string;
+    eyebrow: string;
+    title: { before: string; highlight: string; after?: string };
+    lead: string;
+    features: readonly { tone: "orange" | "cyan" | "green"; title: string; desc: string }[];
+    pills: readonly string[];
+    primaryCta: { label: string; href: string };
+    secondaryCta: { label: string; href: string };
+    visualPosition: "start" | "end";
+  };
   latestChannels: {
     sectionId: string;
     headingId: string;
@@ -140,6 +152,37 @@ export const BRAND_BUILDING_CONTENT: BrandBuildingContent = {
     { value: "5+", label: "COUNTRIES SERVED" },
     { value: "99%", label: "SATISFACTION RATE" },
   ],
+  asoDeepDive: {
+    sectionId: "aso",
+    headingId: "aso-heading",
+    eyebrow: "ASO — APP STORE GROWTH",
+    title: { before: "Your App Needs to Be", highlight: "Found Organically.", after: "" },
+    lead: "Over 65% of app downloads come from direct search in the App Store and Play Store. ASO is SEO for your app — and most developers ignore it. We don't.",
+    features: [
+      {
+        tone: "orange",
+        title: "Keyword Research & Title Optimisation",
+        desc: "Finding high-volume, low-competition keywords and weaving them into your title, subtitle, and keyword field for maximum visibility.",
+      },
+      {
+        tone: "cyan",
+        title: "Screenshot & Preview A/B Testing",
+        desc: "Your store visuals are your first impression. We test screenshot styles, captions, and preview videos to maximise install conversion rate.",
+      },
+      {
+        tone: "green",
+        title: "Rating & Review Strategy",
+        desc: "A systematic in-app rating prompt strategy, response templates for reviews, and recovery plans for negative rating clusters.",
+      },
+    ],
+    pills: ["App Store (iOS)", "Play Store (Android)", "Game ASO", "App Retargeting"],
+    primaryCta: { label: "Get ASO Audit →", href: "https://shivlam.com/contact-us/" },
+    secondaryCta: {
+      label: "Game Marketing",
+      href: "https://shivlam.com/top-mobile-game-marketing-services-for-boosting-downloads/",
+    },
+    visualPosition: "end",
+  },
   latestChannels: {
     sectionId: "latest-channels",
     headingId: "latest-channels-heading",
