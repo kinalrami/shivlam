@@ -85,3 +85,36 @@ export type IphoneVisionOsShowcaseContent = {
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
 };
+
+/** Game development landing — AR deep dive feature row icons */
+export type GameArDeepDiveFeatureIcon = "plus" | "target" | "check";
+
+export type GameArDeepDiveFeatureContent = {
+  icon: GameArDeepDiveFeatureIcon;
+  title: string;
+  desc: string;
+};
+
+export type GameArDeepDiveContent = {
+  sectionId: string;
+  headingId: string;
+  eyebrow: string;
+  titleLines: readonly (readonly ArShowcaseTitlePart[])[];
+  description: string;
+  features: readonly GameArDeepDiveFeatureContent[];
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+};
+
+/** Game development landing — Vision Pro deep dive (navy section, badges + 2×2 cards) */
+export type GameVisionProDeepDiveContent = {
+  sectionId: string;
+  headingId: string;
+  eyebrow: string;
+  titleLines: readonly (readonly ArShowcaseTitlePart[])[];
+  description: string;
+  pills: readonly { label: string; variant: "purple" | "cyan" | "orange" }[];
+  cardGrid: readonly { tag: string; title: string; desc: string }[];
+  primaryCta: { label: string; href: string };
+  secondaryCta: { label: string; href: string };
+};

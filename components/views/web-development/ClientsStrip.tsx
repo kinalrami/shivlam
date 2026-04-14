@@ -1,9 +1,15 @@
 import { SectionIntro } from "@/components/shared/section-chrome";
-import type { WebDevContent } from "./content";
 
-type Props = {
-  content: WebDevContent["clients"];
+export type ClientsStripContent = {
+  sectionId: string;
+  headingId: string;
+  eyebrow: string;
+  title: { before: string; highlight: string; after?: string };
+  lead: string;
+  line: string;
 };
+
+type Props = { content: ClientsStripContent };
 
 function splitLine(line: string) {
   return line
@@ -37,12 +43,13 @@ export function ClientsStrip({ content }: Props) {
         <div className="mt-8 overflow-hidden rounded-xl border border-white/6 bg-white/[0.02]">
           <div className="flex w-max animate-[arbim-dev-marquee_28s_linear_infinite] py-4">
             {track.map((t, i) => (
-              <div
+              <span
                 key={`${t}-${i}`}
-                className="flex items-center whitespace-nowrap px-6 font-mono text-[11px] tracking-[0.14em] text-white/30 uppercase"
+                className="whitespace-nowrap px-6 font-mono text-[11px] tracking-[0.14em] text-white/30"
               >
-                {t} <span className="px-3 text-orange-400/50">·</span>
-              </div>
+                <span className="cname">{t}</span>
+                <span className="csep text-orange-400/50"> {" · "}</span>
+              </span>
             ))}
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Heart,
@@ -185,6 +186,8 @@ export type WhyHireProps = {
   editorVariant?: "mobile" | "web";
   /** Web editor snippets when `editorVariant="web"`. */
   webEditorSnippets?: readonly WebEditorSnippet[];
+  /** Optional custom left-side visual. When provided, default left UI is skipped. */
+  leftSlot?: ReactNode;
   /** Hide the bottom 3-column stats bar (useful for Web). */
   showBottomStats?: boolean;
 };
@@ -296,6 +299,7 @@ export function WhyHire({
   showPhoneCanvas = true,
   editorVariant = "mobile",
   webEditorSnippets,
+  leftSlot,
   showBottomStats = true,
 }: WhyHireProps) {
   const w = why;
@@ -575,211 +579,219 @@ export function WhyHire({
   return (
     <section id={w.sectionId} className="relative overflow-hidden bg-[#060606] scroll-mt-14">
       <div className="mx-auto max-w-325 px-5 py-12 md:py-20 md:px-12">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+        <div className="grid items-center gap-8 lg:gap-14 lg:grid-cols-2">
           {/* LEFT */}
-          <div className="relative order-2 flex min-h-[520px] flex-col items-center justify-center gap-0 overflow-hidden px-6 pt-2 pb-4 md:min-h-[600px] lg:order-1">
-            {editorVariant === "web" && webEditorSnippets?.length ? (
+          <div className="relative order-2 flex flex-col items-center justify-center gap-0 overflow-hidden lg:px-6 lg:pt-2 lg:pb-4 lg:min-h-[600px] lg:order-1">
+            {leftSlot ? (
               <div className="relative z-[3] w-full">
-                <WebCodeEditor snippets={webEditorSnippets} />
+                {leftSlot}
               </div>
-            ) : null}
+            ) : (
+              <>
+                {editorVariant === "web" && webEditorSnippets?.length ? (
+                  <div className="relative z-[3] w-full">
+                    <WebCodeEditor snippets={webEditorSnippets} />
+                  </div>
+                ) : null}
 
-            {editorVariant === "web"
-              ? null
-              : serviceKey === "android" ? (
-              // Keep full Android view (unchanged)
-              <div className="relative z-[3] w-full max-w-[540px] shrink-0 overflow-hidden rounded-[10px] border border-orange-400/15 bg-[#1e1e1e] shadow-[0_24px_60px_rgb(0_0_0/0.5)]">
-                <div className="flex items-center gap-2 border-b border-white/5 bg-[#2b2b2b] px-[14px] py-[10px]">
-                  <span className="size-[10px] rounded-full bg-[#ff5f57]" aria-hidden />
-                  <span className="size-[10px] rounded-full bg-[#febc2e]" aria-hidden />
-                  <span className="size-[10px] rounded-full bg-[#3ddc84]" aria-hidden />
-                  <span className="ml-2 font-mono text-[9px] text-white/45">{w.codeFilename}</span>
-                  <span className="ml-auto font-mono text-[9px] text-[#3ddc84]">{w.codeLangLabel}</span>
-                </div>
-                <div className="px-4 pt-4 h-[140px] font-mono text-[11px] leading-[1.8]">
-                  {renderedLines.map((line, li2) => (
-                    <div key={`line-${li2}`} className="flex items-start gap-3 whitespace-pre">
-                      {line.map((tok, ti) => (
-                        <span key={`${li2}-${ti}`} className={tokenClassAndroid(tok.t)}>
-                          {tok.v}
-                        </span>
-                      ))}
-                      {showCodeCursor && li2 === renderedLines.length - 1 ? (
-                        <span className="ml-0.5 inline-block h-3 w-[2px] align-middle bg-orange-400 motion-safe:animate-pulse" />
-                      ) : null}
-                    </div>
-                  ))}
-                  {renderedLines.length === 0 ? (
-                    <div className="flex items-start gap-3 whitespace-pre">
-                      <span className="inline-block h-3 w-[2px] bg-orange-400 motion-safe:animate-pulse" />
-                    </div>
-                  ) : null}
-                </div>
-                <div className="mt-[14px] flex items-center gap-2 border-t border-white/5 bg-[#2b2b2b] px-[14px] py-[6px] font-mono text-[8px]">
-                  <span
-                    className="size-[6px] rounded-full"
-                    style={{
-                      background: buildPct >= 100 ? "rgba(61,220,132,0.95)" : "rgba(255,153,51,0.8)",
-                    }}
-                    aria-hidden
-                  />
-                  <span className="tracking-[0.1em] text-white/50" style={{ color: buildTxtColor }}>
-                    {buildTxt}
-                  </span>
-                  <span className="ml-auto tracking-[0.08em]" style={{ color: buildTxtColor }}>
-                    ✓ {buildPct}%
-                  </span>
-                </div>
-              </div>
-            ) : serviceKey === "flutter" ? (
-              // Keep full Flutter view (unchanged)
-              <div className="relative z-[3] w-full max-w-[640px]">
-                <div className="flex flex-col gap-[14px]">
-                  <div className="overflow-hidden rounded-[10px] border border-[rgba(84,197,248,0.15)] bg-[#1e1e1e] shadow-[0_24px_60px_rgb(0_0_0/0.5)]">
-                    <div className="flex items-center gap-2 border-b border-white/5 bg-[#323233] px-[14px] py-[10px]">
-                      <span className="size-[10px] rounded-full bg-[#ff5f57]" aria-hidden />
-                      <span className="size-[10px] rounded-full bg-[#febc2e]" aria-hidden />
-                      <span className="size-[10px] rounded-full bg-[#2aca44]" aria-hidden />
-                      <div className="ml-3 flex flex-1 items-center">
-                        {[
-                          { t: "home_screen.dart", active: true },
-                          { t: "app_widget.dart", active: false },
-                          { t: "pubspec.yaml", active: false },
-                        ].map((tab) => (
-                          <div
-                            key={tab.t}
-                            className={[
-                              "border-r border-white/7 px-3 py-1 font-mono text-[8px] text-white/35",
-                              tab.active ? "bg-white/5 text-white/80 border-b border-b-[#54C5F8]" : "",
-                            ].join(" ")}
-                          >
-                            {tab.t}
-                          </div>
-                        ))}
+                {editorVariant === "web"
+                  ? null
+                  : serviceKey === "android" ? (
+                    // Keep full Android view (unchanged)
+                    <div className="relative z-[3] w-full max-w-[540px] shrink-0 overflow-hidden rounded-[10px] border border-orange-400/15 bg-[#1e1e1e] shadow-[0_24px_60px_rgb(0_0_0/0.5)]">
+                      <div className="flex items-center gap-2 border-b border-white/5 bg-[#2b2b2b] px-[14px] py-[10px]">
+                        <span className="size-[10px] rounded-full bg-[#ff5f57]" aria-hidden />
+                        <span className="size-[10px] rounded-full bg-[#febc2e]" aria-hidden />
+                        <span className="size-[10px] rounded-full bg-[#3ddc84]" aria-hidden />
+                        <span className="ml-2 font-mono text-[9px] text-white/45">{w.codeFilename}</span>
+                        <span className="ml-auto font-mono text-[9px] text-[#3ddc84]">{w.codeLangLabel}</span>
                       </div>
-                      <span className="ml-auto font-mono text-[8px] text-[#54C5F8]">Dart 3.3</span>
-                    </div>
-                    <div className="flex">
-                      <div className="min-w-[32px] border-r border-white/5 bg-[#1e1e1e] px-[6px] pt-[14px] pb-[14px] pr-[6px] pl-[10px]">
-                        {Array.from({ length: 12 }).map((_, i) => (
-                          <span
-                            key={i}
-                            className="block text-right font-mono text-[9px] leading-[1.78] text-white/18"
-                          >
-                            {i + 1}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex-1 overflow-hidden px-4 pt-[14px] pb-[14px] font-mono text-[10.5px] leading-[1.78]">
+                      <div className="px-4 pt-4 h-[140px] font-mono text-[11px] leading-[1.8]">
                         {renderedLines.map((line, li2) => (
-                          <div key={`line-${li2}`} className="whitespace-pre">
+                          <div key={`line-${li2}`} className="flex items-start gap-3 whitespace-pre">
                             {line.map((tok, ti) => (
                               <span key={`${li2}-${ti}`} className={tokenClassAndroid(tok.t)}>
                                 {tok.v}
                               </span>
                             ))}
                             {showCodeCursor && li2 === renderedLines.length - 1 ? (
-                              <span className="ml-0.5 inline-block h-[11px] w-[2px] bg-orange-400 align-middle animate-[why-hire-cursor-blink_0.85s_step-end_infinite]" />
+                              <span className="ml-0.5 inline-block h-3 w-[2px] align-middle bg-orange-400 motion-safe:animate-pulse" />
                             ) : null}
                           </div>
                         ))}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 bg-[#007acc] px-[14px] py-1 font-mono text-[7px] tracking-[0.08em] text-white/70">
-                      <div className="flex items-center gap-2">
-                        <span className="size-[6px] rounded-full" style={{ background: flutterDotColor }} aria-hidden />
-                        <span>{flutterStatusText}</span>
-                      </div>
-                      <div className="ml-auto flex items-center gap-3">
-                        <span>Dart 3.3.0</span>
-                        <span>{flutterDevice}</span>
-                      </div>
-                    </div>
-                    <div className="max-h-[70px] overflow-hidden border-t border-white/5 bg-black/30 px-[14px] py-2 font-mono text-[8px]">
-                      {flutterHrLines.map((l, idx) => (
-                        <div
-                          key={idx}
-                          className={[
-                            "leading-[1.7] tracking-[0.04em]",
-                            l.kind === "ok"
-                              ? "text-[#54C5F8]"
-                              : l.kind === "warn"
-                                ? "text-orange-400"
-                                : "text-white/35",
-                          ].join(" ")}
-                        >
-                          {l.text}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              // iPhone / simple mode (also used for Web via `showPhoneCanvas={false}`)
-              <>
-                <>
-                  <div
-                    className="relative z-[3] flex w-full max-w-[340px] items-center gap-2 rounded-t-[10px] border border-orange-400/12 border-b-0 bg-[#161d2e] px-3.5 py-2.5"
-                    aria-hidden
-                  >
-                    <span className="size-2 rounded-full bg-[#ff5f57]" />
-                    <span className="size-2 rounded-full bg-[#febc2e]" />
-                    <span className="size-2 rounded-full bg-[#28c840]" />
-                    <span className="ml-2 font-mono text-[9px] tracking-[0.1em] text-white/30">
-                      {w.codeFilename}
-                    </span>
-                    <span className="ml-auto font-mono text-[8px] tracking-[0.1em] text-[#ff9933]/70">
-                      {w.codeLangLabel}
-                    </span>
-                  </div>
-                  <div className="relative z-[3] h-[140px] w-full max-w-[340px] overflow-hidden border border-orange-400/10 border-t-0 bg-[#131928] px-3.5 py-3 font-mono text-[9.5px] leading-[1.75]">
-                    {renderedLines.map((line, li2) => (
-                      <div key={`line-${li2}`} className="flex items-baseline gap-0 whitespace-pre">
-                        {line.map((tok, ti) => (
-                          <span key={`${li2}-${ti}`} className={tokenClass(tok.t)}>
-                            {tok.v}
-                          </span>
-                        ))}
-                        {showCodeCursor && li2 === renderedLines.length - 1 ? (
-                          <span className="ml-0.5 inline-block h-3 w-[7px] animate-[why-hire-cursor-blink_0.85s_step-end_infinite] align-text-bottom bg-[#FF9933]/85" />
+                        {renderedLines.length === 0 ? (
+                          <div className="flex items-start gap-3 whitespace-pre">
+                            <span className="inline-block h-3 w-[2px] bg-orange-400 motion-safe:animate-pulse" />
+                          </div>
                         ) : null}
                       </div>
-                    ))}
-                  </div>
-                  <div className="relative z-[3] flex w-full max-w-[340px] items-center gap-2 border border-orange-400/10 border-t border-t-orange-400/[0.06] bg-[#0f1621] px-3.5 py-2 font-mono text-[8px] tracking-[0.1em]">
-                    <span className="size-[5px] shrink-0 rounded-full bg-[#22c55e] shadow-[0_0_6px_#22c55e] motion-safe:animate-[arbim-landing-bpulse_1.4s_ease-in-out_infinite]" />
-                    <span style={{ color: buildTxtColor }}>{buildTxt}</span>
-                    <span className="ml-auto text-[#ff9933]/70">{buildPct}%</span>
-                  </div>
-                  <div className="relative z-[3] h-0.5 w-full max-w-[340px] border-x border-orange-400/10 bg-white/5">
-                    <div
-                      className="h-full rounded-r-sm bg-gradient-to-r from-[#ff9933] to-[#ffcc66] transition-[width] duration-75"
-                      style={{ width: `${buildPct}%` }}
-                    />
-                  </div>
-                </>
-
-                {showPhoneCanvas && serviceKey === "iphone" ? (
-                  <div className="relative z-[3] mt-4 flex justify-center">
-                    <div className="relative">
-                      <div className="relative h-[300px] w-[150px] overflow-hidden rounded-[26px] border-2 border-orange-400/30 bg-[#070d1a] shadow-[0_0_40px_rgb(255_153_51/0.1),0_20px_50px_rgb(0_0_0/0.6),inset_0_0_0_1px_rgb(255_255_255/0.04)]">
-                        <div className="absolute left-1/2 top-0 z-10 h-4 w-[50px] -translate-x-1/2 rounded-b-[10px] bg-[#060c18]" />
-                        <canvas ref={phoneCvRef} className="block h-full w-full rounded-[24px]" />
-                      </div>
-                      <div className="mx-auto mt-1.5 h-1 w-9 rounded-sm bg-white/12" aria-hidden />
-                      <div className="motion-safe:animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] absolute -left-2.5 top-[20%] z-[4] whitespace-nowrap rounded border border-orange-400/28 bg-[rgb(13_27_51/0.95)] px-2 py-1 font-mono text-[7px] tracking-[0.1em] text-[#ff9933] shadow-[0_3px_12px_rgb(0_0_0/0.4)]">
-                        {w.phoneChip1}
-                      </div>
-                      <div className="motion-safe:animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] [animation-delay:0.9s] absolute -right-2 top-[38%] z-[4] whitespace-nowrap rounded border border-orange-400/28 bg-[rgb(13_27_51/0.95)] px-2 py-1 font-mono text-[7px] tracking-[0.1em] text-[#ff9933] shadow-[0_3px_12px_rgb(0_0_0/0.4)]">
-                        {w.phoneChip2}
-                      </div>
-                      <div className="motion-safe:animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] [animation-delay:1.8s] absolute bottom-[22%] left-0.5 z-[4] whitespace-nowrap rounded border border-orange-400/28 bg-[rgb(13_27_51/0.95)] px-2 py-1 font-mono text-[7px] tracking-[0.1em] text-[#ff9933] shadow-[0_3px_12px_rgb(0_0_0/0.4)]">
-                        {w.phoneChip3}
+                      <div className="mt-[14px] flex items-center gap-2 border-t border-white/5 bg-[#2b2b2b] px-[14px] py-[6px] font-mono text-[8px]">
+                        <span
+                          className="size-[6px] rounded-full"
+                          style={{
+                            background: buildPct >= 100 ? "rgba(61,220,132,0.95)" : "rgba(255,153,51,0.8)",
+                          }}
+                          aria-hidden
+                        />
+                        <span className="tracking-[0.1em] text-white/50" style={{ color: buildTxtColor }}>
+                          {buildTxt}
+                        </span>
+                        <span className="ml-auto tracking-[0.08em]" style={{ color: buildTxtColor }}>
+                          ✓ {buildPct}%
+                        </span>
                       </div>
                     </div>
-                  </div>
-                ) : null}
+                  ) : serviceKey === "flutter" ? (
+                    // Keep full Flutter view (unchanged)
+                    <div className="relative z-[3] w-full max-w-[640px]">
+                      <div className="flex flex-col gap-[14px]">
+                        <div className="overflow-hidden rounded-[10px] border border-[rgba(84,197,248,0.15)] bg-[#1e1e1e] shadow-[0_24px_60px_rgb(0_0_0/0.5)]">
+                          <div className="flex items-center gap-2 border-b border-white/5 bg-[#323233] px-[14px] py-[10px]">
+                            <span className="size-[10px] rounded-full bg-[#ff5f57]" aria-hidden />
+                            <span className="size-[10px] rounded-full bg-[#febc2e]" aria-hidden />
+                            <span className="size-[10px] rounded-full bg-[#2aca44]" aria-hidden />
+                            <div className="ml-3 flex flex-1 items-center">
+                              {[
+                                { t: "home_screen.dart", active: true },
+                                { t: "app_widget.dart", active: false },
+                                { t: "pubspec.yaml", active: false },
+                              ].map((tab) => (
+                                <div
+                                  key={tab.t}
+                                  className={[
+                                    "border-r border-white/7 px-3 py-1 font-mono text-[8px] text-white/35",
+                                    tab.active ? "bg-white/5 text-white/80 border-b border-b-[#54C5F8]" : "",
+                                  ].join(" ")}
+                                >
+                                  {tab.t}
+                                </div>
+                              ))}
+                            </div>
+                            <span className="ml-auto font-mono text-[8px] text-[#54C5F8]">Dart 3.3</span>
+                          </div>
+                          <div className="flex">
+                            <div className="min-w-[32px] border-r border-white/5 bg-[#1e1e1e] px-[6px] pt-[14px] pb-[14px] pr-[6px] pl-[10px]">
+                              {Array.from({ length: 12 }).map((_, i) => (
+                                <span
+                                  key={i}
+                                  className="block text-right font-mono text-[9px] leading-[1.78] text-white/18"
+                                >
+                                  {i + 1}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="flex-1 overflow-hidden px-4 pt-[14px] pb-[14px] font-mono text-[10.5px] leading-[1.78]">
+                              {renderedLines.map((line, li2) => (
+                                <div key={`line-${li2}`} className="whitespace-pre">
+                                  {line.map((tok, ti) => (
+                                    <span key={`${li2}-${ti}`} className={tokenClassAndroid(tok.t)}>
+                                      {tok.v}
+                                    </span>
+                                  ))}
+                                  {showCodeCursor && li2 === renderedLines.length - 1 ? (
+                                    <span className="ml-0.5 inline-block h-[11px] w-[2px] bg-orange-400 align-middle animate-[why-hire-cursor-blink_0.85s_step-end_infinite]" />
+                                  ) : null}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 bg-[#007acc] px-[14px] py-1 font-mono text-[7px] tracking-[0.08em] text-white/70">
+                            <div className="flex items-center gap-2">
+                              <span className="size-[6px] rounded-full" style={{ background: flutterDotColor }} aria-hidden />
+                              <span>{flutterStatusText}</span>
+                            </div>
+                            <div className="ml-auto flex items-center gap-3">
+                              <span>Dart 3.3.0</span>
+                              <span>{flutterDevice}</span>
+                            </div>
+                          </div>
+                          <div className="max-h-[70px] overflow-hidden border-t border-white/5 bg-black/30 px-[14px] py-2 font-mono text-[8px]">
+                            {flutterHrLines.map((l, idx) => (
+                              <div
+                                key={idx}
+                                className={[
+                                  "leading-[1.7] tracking-[0.04em]",
+                                  l.kind === "ok"
+                                    ? "text-[#54C5F8]"
+                                    : l.kind === "warn"
+                                      ? "text-orange-400"
+                                      : "text-white/35",
+                                ].join(" ")}
+                              >
+                                {l.text}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    // iPhone / simple mode (also used for Web via `showPhoneCanvas={false}`)
+                    <>
+                      <>
+                        <div
+                          className="relative z-[3] flex w-full max-w-[340px] items-center gap-2 rounded-t-[10px] border border-orange-400/12 border-b-0 bg-[#161d2e] px-3.5 py-2.5"
+                          aria-hidden
+                        >
+                          <span className="size-2 rounded-full bg-[#ff5f57]" />
+                          <span className="size-2 rounded-full bg-[#febc2e]" />
+                          <span className="size-2 rounded-full bg-[#28c840]" />
+                          <span className="ml-2 font-mono text-[9px] tracking-[0.1em] text-white/30">
+                            {w.codeFilename}
+                          </span>
+                          <span className="ml-auto font-mono text-[8px] tracking-[0.1em] text-[#ff9933]/70">
+                            {w.codeLangLabel}
+                          </span>
+                        </div>
+                        <div className="relative z-[3] h-[140px] w-full max-w-[340px] overflow-hidden border border-orange-400/10 border-t-0 bg-[#131928] px-3.5 py-3 font-mono text-[9.5px] leading-[1.75]">
+                          {renderedLines.map((line, li2) => (
+                            <div key={`line-${li2}`} className="flex items-baseline gap-0 whitespace-pre">
+                              {line.map((tok, ti) => (
+                                <span key={`${li2}-${ti}`} className={tokenClass(tok.t)}>
+                                  {tok.v}
+                                </span>
+                              ))}
+                              {showCodeCursor && li2 === renderedLines.length - 1 ? (
+                                <span className="ml-0.5 inline-block h-3 w-[7px] animate-[why-hire-cursor-blink_0.85s_step-end_infinite] align-text-bottom bg-[#FF9933]/85" />
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                        <div className="relative z-[3] flex w-full max-w-[340px] items-center gap-2 border border-orange-400/10 border-t border-t-orange-400/[0.06] bg-[#0f1621] px-3.5 py-2 font-mono text-[8px] tracking-[0.1em]">
+                          <span className="size-[5px] shrink-0 rounded-full bg-[#22c55e] shadow-[0_0_6px_#22c55e] motion-safe:animate-[arbim-landing-bpulse_1.4s_ease-in-out_infinite]" />
+                          <span style={{ color: buildTxtColor }}>{buildTxt}</span>
+                          <span className="ml-auto text-[#ff9933]/70">{buildPct}%</span>
+                        </div>
+                        <div className="relative z-[3] h-0.5 w-full max-w-[340px] border-x border-orange-400/10 bg-white/5">
+                          <div
+                            className="h-full rounded-r-sm bg-gradient-to-r from-[#ff9933] to-[#ffcc66] transition-[width] duration-75"
+                            style={{ width: `${buildPct}%` }}
+                          />
+                        </div>
+                      </>
+
+                      {showPhoneCanvas && serviceKey === "iphone" ? (
+                        <div className="relative z-[3] mt-4 flex justify-center">
+                          <div className="relative">
+                            <div className="relative h-[300px] w-[150px] overflow-hidden rounded-[26px] border-2 border-orange-400/30 bg-[#070d1a] shadow-[0_0_40px_rgb(255_153_51/0.1),0_20px_50px_rgb(0_0_0/0.6),inset_0_0_0_1px_rgb(255_255_255/0.04)]">
+                              <div className="absolute left-1/2 top-0 z-10 h-4 w-[50px] -translate-x-1/2 rounded-b-[10px] bg-[#060c18]" />
+                              <canvas ref={phoneCvRef} className="block h-full w-full rounded-[24px]" />
+                            </div>
+                            <div className="mx-auto mt-1.5 h-1 w-9 rounded-sm bg-white/12" aria-hidden />
+                            <div className="motion-safe:animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] absolute -left-2.5 top-[20%] z-[4] whitespace-nowrap rounded border border-orange-400/28 bg-[rgb(13_27_51/0.95)] px-2 py-1 font-mono text-[7px] tracking-[0.1em] text-[#ff9933] shadow-[0_3px_12px_rgb(0_0_0/0.4)]">
+                              {w.phoneChip1}
+                            </div>
+                            <div className="motion-safe:animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] [animation-delay:0.9s] absolute -right-2 top-[38%] z-[4] whitespace-nowrap rounded border border-orange-400/28 bg-[rgb(13_27_51/0.95)] px-2 py-1 font-mono text-[7px] tracking-[0.1em] text-[#ff9933] shadow-[0_3px_12px_rgb(0_0_0/0.4)]">
+                              {w.phoneChip2}
+                            </div>
+                            <div className="motion-safe:animate-[arbim-landing-chip-float_3s_ease-in-out_infinite] [animation-delay:1.8s] absolute bottom-[22%] left-0.5 z-[4] whitespace-nowrap rounded border border-orange-400/28 bg-[rgb(13_27_51/0.95)] px-2 py-1 font-mono text-[7px] tracking-[0.1em] text-[#ff9933] shadow-[0_3px_12px_rgb(0_0_0/0.4)]">
+                              {w.phoneChip3}
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </>
+                  )}
               </>
             )}
 
@@ -826,14 +838,26 @@ export function WhyHire({
                     : c.accent === "flutter"
                       ? "border-[#54C5F8]/25 bg-[#54C5F8]/10 text-[#54C5F8]"
                       : "border-orange-400/25 bg-orange-400/10 text-orange-400";
+                const digitTextClasses =
+                  c.accent === "cyan"
+                    ? "text-cyan-300"
+                    : c.accent === "flutter"
+                      ? "text-[#54C5F8]"
+                      : "text-orange-400";
                 return (
                   <div
                     key={c.title}
                     className="rounded-2xl border border-white/10 bg-white/3 p-6 backdrop-blur-2xl transition-transform duration-200 hover:-translate-y-1"
                   >
-                    <div className={`mb-4 inline-flex size-10 items-center justify-center rounded-xl border ${accentClasses}`}>
-                      <Icon className="size-5" aria-hidden />
-                    </div>
+                    {c.digit ? (
+                      <div className={`mb-4 font-mono text-[13px] font-bold tabular-nums leading-none ${digitTextClasses}`}>
+                        {c.digit}
+                      </div>
+                    ) : (
+                      <div className={`mb-4 inline-flex size-10 items-center justify-center rounded-xl border font-mono text-[13px] font-bold tabular-nums leading-none ${accentClasses}`}>
+                        <Icon className="size-5" aria-hidden />
+                      </div>
+                    )}
                     <h3 className="text-base font-bold text-white">{c.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-white/45">{c.desc}</p>
                   </div>

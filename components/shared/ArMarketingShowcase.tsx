@@ -1,6 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useEffect, useRef } from "react";
+import { Check, Crosshair, SquarePlus } from "lucide-react";
 import { AndroidArcoreCanvas } from "@/components/shared/AndroidArcoreCanvas";
 import { ArFoundationCanvas } from "@/components/shared/ArFoundationCanvas";
 import { IphoneArVrCanvas } from "@/components/shared/IphoneArVrCanvas";
@@ -9,6 +11,8 @@ import {
   ArShowcaseSection,
   type ArShowcaseFeatureItem,
 } from "@/components/shared/ArShowcaseSection";
+import { attachArGameDeepDiveCanvas } from "@/components/shared/arGameDeepDiveCanvas";
+import { attachVisionProDeepDiveCanvas } from "@/components/shared/visionProDeepDiveCanvas";
 import type {
   ArFoundationFeatureContent,
   ArFoundationFeatureIcon,
@@ -18,6 +22,9 @@ import type {
   AndroidArFeatureContent,
   AndroidArFeatureIcon,
   AndroidArShowcaseContent,
+  GameArDeepDiveContent,
+  GameArDeepDiveFeatureIcon,
+  GameVisionProDeepDiveContent,
   IphoneArVrFeatureIcon,
   IphoneArVrShowcaseContent,
   IphoneVisionOsShowcaseContent,
@@ -212,6 +219,66 @@ function mapIphoneArVrFeatures(
   }));
 }
 
+const GAME_AR_FEATURE_ICON_WRAP = "border-sl-saffron/20 bg-sl-saffron/10";
+
+const gameArLucideIconClass = "size-4 text-sl-saffron";
+
+function GameArDeepDiveFeatureIconLucide({ name }: { name: GameArDeepDiveFeatureIcon }) {
+  switch (name) {
+    case "plus":
+      return <SquarePlus className={gameArLucideIconClass} aria-hidden strokeWidth={1.5} />;
+    case "target":
+      return <Crosshair className={gameArLucideIconClass} aria-hidden strokeWidth={1.5} />;
+    case "check":
+      return <Check className={gameArLucideIconClass} aria-hidden strokeWidth={1.5} />;
+    default:
+      return null;
+  }
+}
+
+function mapGameArFeatures(items: GameArDeepDiveContent["features"]): ArShowcaseFeatureItem[] {
+  return items.map((f) => ({
+    key: f.title,
+    title: f.title,
+    desc: f.desc,
+    icon: <GameArDeepDiveFeatureIconLucide name={f.icon} />,
+    iconWrapClass: GAME_AR_FEATURE_ICON_WRAP,
+  }));
+}
+
+/** Shared section shell for game AR + Vision Pro deep dives (same bg + grid). */
+const GAME_DEEP_DIVE_SECTION_CLASS =
+  "relative w-full min-w-0 scroll-mt-14 overflow-x-hidden bg-[#060606] pb-12 md:pb-20";
+const GAME_DEEP_DIVE_DECORATION = (
+  <div
+    className="pointer-events-none absolute inset-0 z-0"
+    aria-hidden
+  />
+);
+
+const GAME_DEEP_DIVE_INTRO_CLASS =
+  "mb-6 [&_h3]:font-serif [&_h3]:text-[clamp(1.25rem,3vw,2.25rem)] [&_h3]:font-extrabold [&_h3]:text-white [&_h3]:leading-[1.15] [&_p]:text-sm [&_p]:leading-[1.72] [&_p]:text-white/45";
+
+function GameArDeepDiveCanvasHost() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    return attachArGameDeepDiveCanvas(el);
+  }, []);
+  return <canvas ref={ref} className="block h-[360px] w-full min-w-0 max-w-full" />;
+}
+
+function VisionProDeepDiveCanvasHost() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    return attachVisionProDeepDiveCanvas(el);
+  }, []);
+  return <canvas ref={ref} className="block h-[360px] w-full min-w-0 max-w-full" />;
+}
+
 /** Default Dart snippet for Flutter AR Foundation sections */
 export function ArFoundationFlutterDartSnippet() {
   return (
@@ -258,22 +325,30 @@ export function ArFoundationFlutterDartSnippet() {
 
 export type ArMarketingShowcaseProps =
   | {
-      variant: "flutter";
-      content: ArFoundationSectionContent;
-      codeSnippet?: ReactNode;
-    }
+    variant: "flutter";
+    content: ArFoundationSectionContent;
+    codeSnippet?: ReactNode;
+  }
   | {
-      variant: "android";
-      content: AndroidArShowcaseContent;
-    }
+    variant: "android";
+    content: AndroidArShowcaseContent;
+  }
   | {
-      variant: "iphone-arvr";
-      content: IphoneArVrShowcaseContent;
-    }
+    variant: "iphone-arvr";
+    content: IphoneArVrShowcaseContent;
+  }
   | {
-      variant: "iphone-visionos";
-      content: IphoneVisionOsShowcaseContent;
-    };
+    variant: "iphone-visionos";
+    content: IphoneVisionOsShowcaseContent;
+  }
+  | {
+    variant: "game-ar";
+    content: GameArDeepDiveContent;
+  }
+  | {
+    variant: "game-visionpro";
+    content: GameVisionProDeepDiveContent;
+  };
 
 /**
  * Single entry for Flutter AR Foundation + Android ARCore marketing blocks.
@@ -378,6 +453,71 @@ export function ArMarketingShowcase(props: ArMarketingShowcaseProps) {
         }))}
         primaryCta={c.primaryCta}
         secondaryCta={c.secondaryCta}
+      />
+    );
+  }
+
+  if (props.variant === "game-ar") {
+    const c = props.content;
+    const visual = (
+      <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[10px] border border-[rgba(255,107,107,.2)] bg-[#1a1410] shadow-[0_24px_60px_rgb(0_0_0/0.12)]">
+        <GameArDeepDiveCanvasHost />
+      </div>
+    );
+
+    return (
+      <ArShowcaseSection
+        sectionId={c.sectionId}
+        headingId={c.headingId}
+        eyebrow={c.eyebrow}
+        titleLines={c.titleLines}
+        description={c.description}
+        visual={visual}
+        visualPosition="start"
+        features={mapGameArFeatures(c.features)}
+        pills={[]}
+        featureTheme="dark"
+        pillsPlacement="before-ctas"
+        sectionClassName={GAME_DEEP_DIVE_SECTION_CLASS}
+        decoration={GAME_DEEP_DIVE_DECORATION}
+        introClassName={GAME_DEEP_DIVE_INTRO_CLASS}
+        primaryCta={c.primaryCta}
+        secondaryCta={c.secondaryCta}
+        secondaryCtaClassName="inline-flex items-center gap-2 rounded-[5px] border border-white/25 bg-transparent px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.07em] text-white/85 uppercase transition-all hover:border-white/50 hover:bg-white/[0.06]"
+      />
+    );
+  }
+
+  if (props.variant === "game-visionpro") {
+    const c = props.content;
+    const visual = (
+      <div className="w-full min-w-0 max-w-full overflow-hidden rounded-[10px] border border-[rgba(192,132,252,.2)] bg-[#08081a] shadow-[0_24px_60px_rgb(0_0_0/0.4)]">
+        <VisionProDeepDiveCanvasHost />
+      </div>
+    );
+
+    return (
+      <ArShowcaseSection
+        sectionId={c.sectionId}
+        headingId={c.headingId}
+        eyebrow={c.eyebrow}
+        titleLines={c.titleLines}
+        description={c.description}
+        visual={visual}
+        visualPosition="end"
+        features={[]}
+        cardGrid={c.cardGrid}
+        pills={c.pills.map((p) => ({
+          label: p.label,
+          variant: p.variant === "cyan" ? "cyan" : p.variant === "orange" ? "orange" : "purple",
+        }))}
+        pillsPlacement="after-intro"
+        sectionClassName={GAME_DEEP_DIVE_SECTION_CLASS}
+        decoration={GAME_DEEP_DIVE_DECORATION}
+        introClassName={GAME_DEEP_DIVE_INTRO_CLASS}
+        primaryCta={c.primaryCta}
+        secondaryCta={c.secondaryCta}
+        secondaryCtaClassName="inline-flex items-center gap-2 rounded-[5px] border border-white/25 bg-transparent px-8 py-3.5 font-sans text-xs font-semibold tracking-[0.07em] text-white/85 uppercase transition-all hover:border-white/50 hover:bg-white/[0.06]"
       />
     );
   }

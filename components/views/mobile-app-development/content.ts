@@ -16,6 +16,8 @@ export type WhyHireCardAccent = "orange" | "cyan" | "flutter";
 
 export type WhyHireCardContent = {
   icon: WhyHireCardIconKey;
+  /** When set, shown in the card header instead of the icon (e.g. "01"). */
+  digit?: string;
   accent?: WhyHireCardAccent;
   title: string;
   desc: string;
