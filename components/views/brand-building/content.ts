@@ -10,6 +10,25 @@ export type BrandBuildingContent = {
     meta: readonly string[];
   };
   marquee: readonly string[];
+  definition: {
+    sectionId: string;
+    left: {
+      headingId: string;
+      eyebrow: string;
+      definitionLabel: string;
+      definition: { before: string; emphasis1: string; mid: string; emphasis2: string; after: string };
+      attribution: string;
+      whyLabel: string;
+      whyBody: string;
+    };
+    right: {
+      headingId: string;
+      eyebrow: string;
+      title: { before: string; highlight: string };
+      lead: string;
+      pillars: readonly { num: string; tag: string; title: string; desc: string }[];
+    };
+  };
   statsStrip: readonly { value: string; label: string }[];
   coreServices: import("@/components/shared/ServicesGridSection").ServicesGridSectionContent;
   midCta: {
@@ -166,6 +185,57 @@ export const BRAND_BUILDING_CONTENT: BrandBuildingContent = {
     "GAME MARKETING",
     "SHIVLAM.COM",
   ],
+  definition: {
+    sectionId: "definition",
+    left: {
+      headingId: "brand-building-definition",
+      eyebrow: "WHAT IS BRAND BUILDING",
+      definitionLabel: "DEFINITION · BRAND BUILDING",
+      definition: {
+        before: "Brand Building focuses on the ",
+        emphasis1: "ongoing process",
+        mid: " — the active, daily work of promoting that identity to earn ",
+        emphasis2: "long-term trust and recognition",
+        after: " in the minds of your customers and market.",
+      },
+      attribution: "— Shivlam Brand Building Framework",
+      whyLabel: "WHY IT MATTERS FOR SMALL BUSINESSES",
+      whyBody:
+        "A small business becomes a brand when customers choose you by name — not just by search. That shift from anonymous supplier to trusted brand is built daily through consistent presence, clear identity, and sustained digital marketing across SEO, social, and paid channels.",
+    },
+    right: {
+      headingId: "brand-building-pillars",
+      eyebrow: "STRATEGIC KEYWORDS",
+      title: { before: "Four Pillars of", highlight: "Brand Authority." },
+      lead: "Every brand we build rests on these foundational strategic pillars — from identity to long-term equity.",
+      pillars: [
+        {
+          num: "01",
+          tag: "STRATEGIC",
+          title: "Brand Positioning",
+          desc: "Defining the unique space your brand occupies in the customer's mind — distinct from every competitor.",
+        },
+        {
+          num: "02",
+          tag: "VISUAL",
+          title: "Brand Identity Design",
+          desc: "Creating the visual and verbal representation — logo, colours, voice, and tone that make you recognisable.",
+        },
+        {
+          num: "03",
+          tag: "MASTER PLAN",
+          title: "Brand Strategy",
+          desc: "Developing a master plan to make your brand memorable, trusted, and preferred across every touchpoint.",
+        },
+        {
+          num: "04",
+          tag: "LONG-TERM",
+          title: "Brand Development",
+          desc: "A comprehensive term for building equity and authority over time — the cumulative effect of consistent marketing.",
+        },
+      ],
+    },
+  },
   statsStrip: [
     { value: "25+", label: "BRANDS BUILT" },
     { value: "15+", label: "HAPPY CLIENTS" },

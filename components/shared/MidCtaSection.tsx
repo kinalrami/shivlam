@@ -17,7 +17,7 @@ export function MidCtaSection({ sectionId, content }: Props) {
 
   return (
     <section id={sectionId} className="relative overflow-hidden bg-[#060606] scroll-mt-14">
-      <div className="relative mx-auto max-w-325 px-5 md:px-12">
+      <div className="relative mx-auto max-w-325 px-5 md:px-12 pb-12 md:pb-0">
         <div className="grid items-center gap-10 md:grid-cols-[1fr_auto] md:gap-12">
           <div className="min-w-0">
             <div className="font-sans text-[clamp(1.8rem,3.4vw,2.6rem)] font-extrabold leading-tight tracking-tight text-white">
