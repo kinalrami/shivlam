@@ -1,9 +1,15 @@
 import { SectionIntro } from "@/components/shared/section-chrome";
-import type { WebDevContent } from "./content";
 
-type Props = {
-  content: WebDevContent["more"];
+export type MoreServicesContent = {
+  sectionId: string;
+  headingId: string;
+  eyebrow: string;
+  title: { before: string; highlight: string; after?: string };
+  lead: string;
+  items: readonly { tag: string; title: string; desc: string; href: string }[];
 };
+
+type Props = { content: MoreServicesContent };
 
 export function MoreServices({ content }: Props) {
   return (
