@@ -18,6 +18,7 @@ const sections = [
   "Services",
   "Work Portfolio",
   "Case Studies",
+  "Insights & trends",
   "About Us",
   "Contact US",
 ];
@@ -47,6 +48,7 @@ const sectionItems: Record<string, SectionNavItem[]> = {
   ],
   "Work Portfolio": [],
   "Case Studies": [],
+  "Insights & trends": [],
   "About Us": [],
   "Contact US": [],
 };
@@ -55,6 +57,7 @@ const sectionItems: Record<string, SectionNavItem[]> = {
 const sectionHrefWhenEmpty: Partial<Record<string, string>> = {
   "Work Portfolio": "/work-portfolio",
   "Case Studies": "/case-studies",
+  "Insights & trends": "/blogs",
   "About Us": "/about-us",
   "Contact US": "/contact-us",
 };
