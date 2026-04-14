@@ -13,6 +13,7 @@ const optionHref: Partial<Record<string, string>> = {
   "Website Development": "/services/web-development",
   "Game Development": "/services/game-development",
   "Brand Building": "/services/brand-building",
+  "Legal": "/legal",
   "Contact Us": "/contact-us",
 };
 
@@ -35,9 +36,9 @@ export function Footer() {
       options: ["Mobile App Development", "Website Development", "Game Development", "Brand Building"],
     },
     {
-      id: "case-studies",
-      title: "Case Studies",
-      options: ["AR App Development", "Website Development", "Brand Building"],
+      id: "Policies",
+      title: "Policies",
+      options: ["Legal"],
     },
     {
       id: "contact",
