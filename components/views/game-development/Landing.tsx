@@ -4,7 +4,6 @@ import { Marquee } from "@/components/shared/Marquee";
 import ContactForm from "@/components/views/home/ContactForm";
 import type { GameDevContent } from "./content";
 import { Hero } from "./Hero";
-// import { Services } from "./GameServices";
 import { PortfolioCta } from "./PortfolioCta";
 import { MoreServices } from "@/components/views/web-development/MoreServices";
 import { ClientsStrip } from "@/components/views/web-development/ClientsStrip";
@@ -42,7 +41,6 @@ export default function Landing({ content }: Props) {
       <ArMarketingShowcase variant="game-visionpro" content={content.visionProDeepDive} />
       <GameWhyAdvantages content={content.whyAdvantages} />
       <PortfolioGridSection content={content.portfolioGrid} />
-      {/* <Services content={content.services} /> */}
       <PortfolioCta content={content.portfolioCta} />
       <Process content={content.process} />
       <ClientsStrip content={content.clients} />
