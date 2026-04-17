@@ -16,7 +16,17 @@ export default function Canvas() {
     let W = mount.clientWidth;
     let H = mount.clientHeight;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    // Guard: WebGL may be unavailable (mobile GPU limits, privacy mode, etc.)
+    let renderer: THREE.WebGLRenderer | null = null;
+    try {
+      const test = document.createElement("canvas");
+      const gl = test.getContext("webgl2") ?? test.getContext("webgl");
+      if (!gl) return;
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    } catch {
+      return;
+    }
+
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(W, H);
     mount.appendChild(renderer.domElement);
@@ -121,7 +131,7 @@ export default function Canvas() {
       H = mount.clientHeight;
       camera.aspect = W / H;
       camera.updateProjectionMatrix();
-      renderer.setSize(W, H);
+      renderer?.setSize(W, H);
     };
     window.addEventListener("resize", onResize);
 
@@ -132,7 +142,7 @@ export default function Canvas() {
       t += 0.01;
       group.rotation.y = mouse.x * 0.4 + t * 0.15;
       camera.position.y = 3 + mouse.y * 0.5;
-      renderer.render(scene, camera);
+      renderer?.render(scene, camera);
     };
     animate();
 
@@ -141,8 +151,10 @@ export default function Canvas() {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("resize", onResize);
-      mount.removeChild(renderer.domElement);
-      renderer.dispose();
+      if (renderer) {
+        mount.removeChild(renderer.domElement);
+        renderer.dispose();
+      }
     };
   }, []);
 

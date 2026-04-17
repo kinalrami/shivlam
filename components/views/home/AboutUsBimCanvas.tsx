@@ -165,11 +165,20 @@ export default function AboutUsBimCanvas({
     const BG = readSlBgHex();
     const clearHex = BG;
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      antialias: true,
-      alpha: isArbim,
-    });
+    // Guard: WebGL may be unavailable on some devices/browsers.
+    let renderer: THREE.WebGLRenderer | null = null;
+    try {
+      const test = document.createElement("canvas");
+      const gl = test.getContext("webgl2") ?? test.getContext("webgl");
+      if (!gl) return;
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: isArbim,
+      });
+    } catch {
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     if (isArbim) {
       renderer.setClearColor(0x000000, 0);
@@ -435,7 +444,7 @@ export default function AboutUsBimCanvas({
       if (auto) rotY += 0.004;
       mg.rotation.y = rotY;
       mg.rotation.x = rotX;
-      renderer.render(scene, camera);
+      renderer?.render(scene, camera);
     }
     animate();
 
@@ -443,7 +452,7 @@ export default function AboutUsBimCanvas({
       ({ w, h } = sizeCanvas());
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h, false);
+      renderer?.setSize(w, h, false);
     };
     window.addEventListener("resize", onResize);
 
@@ -462,7 +471,7 @@ export default function AboutUsBimCanvas({
       window.removeEventListener("touchmove", tm);
       canvas.removeEventListener("mousedown", md);
       canvas.removeEventListener("touchstart", ts);
-      renderer.dispose();
+      renderer?.dispose();
       scene.traverse((obj) => {
         if (obj instanceof THREE.Sprite) {
           const m = obj.material;

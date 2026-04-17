@@ -18,10 +18,10 @@ export function Design({ content }: Props) {
   }, []);
 
   return (
-    <section id={content.sectionId} className="bg-[#060606] scroll-mt-14">
+    <section id={content.sectionId} className="bg-[#060606] scroll-mt-14 overflow-x-hidden">
       <div className="mx-auto max-w-325 px-5 md:px-12">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
+          <div className="min-w-0">
             <SectionIntro
               id={content.headingId}
               eyebrow={content.eyebrow}
@@ -67,9 +67,9 @@ export function Design({ content }: Props) {
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
-            <div className="overflow-hidden rounded-xl border border-orange-400/15 bg-[#0a1a2e]">
-              <canvas ref={canvasRef} className="block h-[340px] w-full" />
+          <div className="flex min-w-0 w-full items-center justify-center">
+            <div className="min-w-0 w-full max-w-full overflow-hidden rounded-xl border border-orange-400/15 bg-[#0a1a2e]">
+              <canvas ref={canvasRef} className="block h-[340px] w-full min-w-0 max-w-full" />
             </div>
           </div>
         </div>
