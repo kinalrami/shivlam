@@ -15,7 +15,16 @@ export default function ProductThreeCanvas() {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Guard: WebGL may be unavailable on some devices/browsers.
+    let renderer: THREE.WebGLRenderer | null = null;
+    try {
+      const test = document.createElement("canvas");
+      const gl = test.getContext("webgl2") ?? test.getContext("webgl");
+      if (!gl) return;
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    } catch {
+      return;
+    }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x000000, 0);
@@ -47,7 +56,7 @@ export default function ProductThreeCanvas() {
       camera.position.set(0, 0, z);
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
-      renderer.setSize(W, H, false);
+      renderer?.setSize(W, H, false);
       canvas.style.width = "100%";
       canvas.style.height = "100%";
     };
@@ -98,7 +107,7 @@ export default function ProductThreeCanvas() {
       pointCloud.rotation.y += 0.005;
       constructionGroup.rotation.y -= 0.01;
       constructionGroup.rotation.z += 0.005;
-      renderer.render(scene, camera);
+      renderer?.render(scene, camera);
     };
     animate();
 
@@ -108,7 +117,7 @@ export default function ProductThreeCanvas() {
       if (canvas.parentNode === mount) {
         mount.removeChild(canvas);
       }
-      renderer.dispose();
+      renderer?.dispose();
       partGeo.dispose();
       partMat.dispose();
       ringGeo.dispose();

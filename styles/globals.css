@@ -26,8 +26,9 @@ html {
   --orange-400: #f58a0b;
   --surface: #0c0c0c;
   --default: #060606;
-  --background: #ffffff;
-  --foreground: #171717;
+  /* App default background is dark */
+  --background: var(--default);
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -91,6 +92,133 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+/* -------------------------------------------------------------------------- */
+/* HubSpot live chat launcher (hide default bubble; use our UI)               */
+/* -------------------------------------------------------------------------- */
+html:not(.hs-chat-open) #hubspot-messages-iframe-container {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* HubSpot form skin (match our ContactForm design)                            */
+/* -------------------------------------------------------------------------- */
+.hs-skin-shivlam .hs-form {
+  display: block;
+}
+
+.hs-skin-shivlam fieldset {
+  max-width: none !important;
+}
+
+.hs-skin-shivlam .hs-form-field {
+  margin-bottom: 14px;
+}
+
+.hs-skin-shivlam label,
+.hs-skin-shivlam .hs-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(209, 213, 219, 1); /* gray-300 */
+}
+
+.hs-skin-shivlam .hs-input,
+.hs-skin-shivlam input[type="text"],
+.hs-skin-shivlam input[type="email"],
+.hs-skin-shivlam input[type="tel"],
+.hs-skin-shivlam input[type="url"],
+.hs-skin-shivlam textarea,
+.hs-skin-shivlam select {
+  width: 100% !important;
+  height: 44px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  padding: 0 16px !important;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1) !important;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.hs-skin-shivlam textarea,
+.hs-skin-shivlam textarea.hs-input {
+  height: auto !important;
+  min-height: 140px !important;
+  padding: 12px 16px !important;
+  border-radius: 16px;
+  resize: none;
+}
+
+.hs-skin-shivlam .hs-input:focus,
+.hs-skin-shivlam input:focus,
+.hs-skin-shivlam textarea:focus,
+.hs-skin-shivlam select:focus {
+  border-color: rgba(245, 138, 11, 0.6) !important;
+  box-shadow: 0 0 0 2px rgba(245, 138, 11, 0.35) !important;
+}
+
+.hs-skin-shivlam .hs-error-msg,
+.hs-skin-shivlam .hs-error-msgs label {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(248, 113, 113, 0.95); /* red-400 */
+}
+
+.hs-skin-shivlam .hs_submit {
+  margin-top: 18px;
+}
+
+.hs-skin-shivlam input[type="submit"],
+.hs-skin-shivlam .hs-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 12px;
+  border: 1px solid var(--sl-saffron);
+  background: transparent;
+  padding: 12px 24px;
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sl-saffron);
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease, opacity 0.15s ease;
+}
+
+.hs-skin-shivlam input[type="submit"]:hover,
+.hs-skin-shivlam .hs-button:hover {
+  filter: brightness(1.1);
+}
+
+.hs-skin-shivlam input[type="submit"]:active,
+.hs-skin-shivlam .hs-button:active {
+  transform: translateY(1px);
+}
+
+/* HubSpot sometimes injects layout tables/columns */
+.hs-skin-shivlam .hs-form .hs-form-field .input,
+.hs-skin-shivlam .hs-form .hs-form-field .hs-input {
+  width: 100% !important;
+}
+
+/* Final overrides (HubSpot injects its own CSS later) */
+body .hs-skin-shivlam .hs-form input.hs-input,
+body .hs-skin-shivlam .hs-form textarea.hs-input,
+body .hs-skin-shivlam .hs-form select.hs-input,
+body .hs-skin-shivlam .hs-form input,
+body .hs-skin-shivlam .hs-form textarea,
+body .hs-skin-shivlam .hs-form select {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* AR BIM development page — keyframes for hero scan / pulse, etc. */
