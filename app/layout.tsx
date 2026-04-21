@@ -3,7 +3,7 @@ import { DM_Sans, Space_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ChatAssistant } from "@/components/layout/ChatAssistant";
-import { GlobalCursor } from "@/components/layout/GlobalCursor";
+// import { GlobalCursor } from "@/components/layout/GlobalCursor";
 import "@/styles/globals.css";
 
 const dmSans = DM_Sans({
@@ -21,6 +21,11 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Shivlam",
   description: "Scalable tech services for everyone",
+  icons: {
+    icon: "/shivlam.svg",
+    shortcut: "/shivlam.svg",
+    apple: "/shivlam.svg",
+  },
 };
 
 export default function RootLayout({
@@ -36,7 +41,7 @@ export default function RootLayout({
       <body
         className={`${dmSans.className} min-h-full flex flex-col font-sans font-normal`}
       >
-        <GlobalCursor />
+        {/* <GlobalCursor /> */}
         <Header />
         {children}
         <Footer />
