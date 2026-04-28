@@ -1,10 +1,11 @@
-import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
-const SHIVLAM_SYSTEM = `You are a helpful assistant for Shivlam, a technology services company.
-You represent Shivlam professionally. Services include: web development, mobile apps (iPhone, Android, Flutter), game development (Unity, Vision Pro), digital marketing, and SEO.
-Be concise and friendly. If someone needs pricing, contracts, or detailed project scoping, invite them to use the contact form on the site or email hi@shivlam.com.
-Do not invent specific prices, delivery dates, or client names. If unsure, suggest contacting the team.`;
+// HubSpot chat logging (no UI changes).
+// NOTE: this uses HubSpot Forms API, so the HubSpot form must have Captcha disabled.
+const HUBSPOT_PORTAL_ID = "24198079";
+const HUBSPOT_REGION = "na1";
+// Create a HubSpot form with a multiline field internal name "message".
+const HUBSPOT_CHAT_FORM_GUID = "9367aac3-017b-497f-bc6a-6ea02e2a6b9c";
 
 type ClientMessage = { role: "user" | "assistant"; content: string };
 
@@ -25,15 +26,52 @@ function sanitizeMessages(raw: unknown): ClientMessage[] | null {
   return out.length ? out : null;
 }
 
-export async function POST(request: Request) {
-  const key = process.env.OPENAI_API_KEY;
-  if (!key) {
-    return NextResponse.json(
-      { error: "OpenAI is not configured. Set OPENAI_API_KEY in your environment." },
-      { status: 503 }
-    );
-  }
+async function submitChatToHubSpot(args: {
+  portalId: string;
+  formGuid: string;
+  region?: string;
+  referer?: string;
+  ipAddress?: string;
+  hutk?: string;
+  transcript: string;
+}) {
+  const { portalId, formGuid, region, referer, ipAddress, hutk, transcript } = args;
 
+  const host =
+    region && region.trim()
+      ? `https://api-${encodeURIComponent(region.trim())}.hsforms.com`
+      : "https://api.hsforms.com";
+
+  const body = {
+    fields: [{ name: "message", value: transcript }],
+    context: {
+      ...(hutk ? { hutk } : {}),
+      ...(referer ? { pageUri: referer, pageName: "Chat assistant" } : {}),
+      ...(ipAddress ? { ipAddress } : {}),
+    },
+  };
+
+  // Best-effort: don't block chat response if HubSpot is slow/down.
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 1500);
+  try {
+    await fetch(
+      `${host}/submissions/v3/integration/submit/${encodeURIComponent(
+        portalId
+      )}/${encodeURIComponent(formGuid)}`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+        signal: controller.signal,
+      }
+    );
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+export async function POST(request: Request) {
   let body: unknown;
   try {
     body = await request.json();
@@ -53,24 +91,47 @@ export async function POST(request: Request) {
     );
   }
 
-  const openai = new OpenAI({ apiKey: key });
-
   try {
-    const completion = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL ?? "gpt-4o-mini",
-      messages: [{ role: "system", content: SHIVLAM_SYSTEM }, ...clientMessages],
-      max_tokens: 1024,
-      temperature: 0.7,
-    });
-
-    const text = completion.choices[0]?.message?.content?.trim();
-    if (!text) {
-      return NextResponse.json({ error: "Empty model response." }, { status: 502 });
+    if (!HUBSPOT_CHAT_FORM_GUID) {
+      return NextResponse.json(
+        {
+          error:
+            "Chat is not configured. Set HUBSPOT_CHAT_FORM_GUID in app/api/chat/route.ts.",
+        },
+        { status: 503 }
+      );
     }
 
-    return NextResponse.json({ message: text });
+    const cookieHeader = request.headers.get("cookie") ?? "";
+    const hutk = cookieHeader.match(/(?:^|;\s*)hubspotutk=([^;]+)/)?.[1];
+    const referer = request.headers.get("referer") ?? "";
+    const xff = request.headers.get("x-forwarded-for") ?? "";
+    const ipAddress = xff.split(",")[0]?.trim() || undefined;
+
+    const lastUser = [...clientMessages].reverse().find((m) => m.role === "user")?.content ?? "";
+
+    const transcript = clientMessages
+      .map((m) => `${m.role.toUpperCase()}: ${m.content}`)
+      .join("\n\n")
+      .slice(0, 12000);
+
+    // Send the message to HubSpot (best-effort, but we await once to confirm receipt).
+    await submitChatToHubSpot({
+      portalId: HUBSPOT_PORTAL_ID,
+      formGuid: HUBSPOT_CHAT_FORM_GUID,
+      region: HUBSPOT_REGION,
+      referer,
+      ipAddress,
+      hutk,
+      transcript: `${transcript}\n\nLATEST_USER_MESSAGE: ${lastUser}`.slice(0, 12000),
+    });
+
+    return NextResponse.json({
+      message:
+        "Thanks — we’ve received your message. Our team will get back to you shortly. If it’s urgent, email hi@shivlam.com.",
+    });
   } catch (e) {
-    const message = e instanceof Error ? e.message : "OpenAI request failed.";
+    const message = e instanceof Error ? e.message : "HubSpot request failed.";
     return NextResponse.json({ error: message }, { status: 502 });
   }
 }
