@@ -21,6 +21,7 @@ import {
   SectionIntro,
 } from "@/components/shared/section-chrome";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Fragment,
   useEffect,
@@ -28,7 +29,6 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type KeyboardEvent,
 } from "react";
 
 export type { InsightPost, InsightFilterOption } from "@/lib/insights-types";
@@ -154,13 +154,13 @@ export function InsightsTrendsSection({
 
   const countLabel = `${filtered.length} JOURNAL${filtered.length !== 1 ? "S" : ""} LOADED`;
 
-  const onCardKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-    }
-  };
-
   const totalForIndex = filtered.length;
+
+  const slugify = (input: string) =>
+    input
+      .toLowerCase()
+      .replaceAll(/[^a-z0-9]+/g, "-")
+      .replaceAll(/(^-|-$)/g, "");
 
   return (
     <section
@@ -207,14 +207,12 @@ export function InsightsTrendsSection({
               const thumbSrc = insightThumbSrc(p.svgType, p.color);
 
               return (
-                <div
+                <Link
                   key={p.id}
+                  href={`/blogs/${slugify(p.title)}`}
                   className="ins-card group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 px-6 py-7 shadow-none backdrop-blur-2xl transition-[transform,box-shadow,border-color,opacity] duration-200 will-change-transform hover:-translate-y-1.5 hover:shadow-2xl group-hover:border-white/20 motion-reduce:transition-opacity motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:hover:shadow-none"
                   data-cat={p.catKey}
                   data-idx={i}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={onCardKeyDown}
                 >
                   <div
                     className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
@@ -281,7 +279,7 @@ export function InsightsTrendsSection({
                       </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

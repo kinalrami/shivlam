@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { SectionIntro } from "@/components/shared/section-chrome";
 
-/**
- * Editorial hero for /blogs — same shell as the home {@link Hero} (Canvas sits above in the page).
- */
 export function BlogHero() {
   return (
     <main className="relative z-10 flex-1">
@@ -44,7 +41,7 @@ export function BlogHero() {
                 </>
               }
               lead="How we think about iOS architecture, immersive AR systems, Unity game development, web engineering, and brand as code — written by the team that ships it."
-              className="!mb-0 max-w-225 [&_h3]:max-w-225 [&_h3]:text-4xl [&_h3]:!font-light [&_h3]:leading-tight [&_h3]:text-sl-text sm:[&_h3]:text-5xl md:[&_h3]:text-6xl"
+              className="mb-0! max-w-225 [&_h3]:max-w-225 [&_h3]:text-4xl [&_h3]:font-light! [&_h3]:leading-tight [&_h3]:text-sl-text sm:[&_h3]:text-5xl md:[&_h3]:text-6xl"
             />
           </div>
         </div>

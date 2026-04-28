@@ -19,7 +19,7 @@ export function BlogNewsletter() {
       className="relative scroll-mt-24 overflow-hidden border-t-2 border-sl-saffron py-12 md:py-20"
       aria-labelledby="blog-newsletter-heading"
     >
-      <div className="relative z-[1] mx-auto grid max-w-325 grid-cols-1 gap-10 px-5 md:grid-cols-2 md:gap-16 md:px-12">
+      <div className="relative z-1 mx-auto grid max-w-325 grid-cols-1 gap-10 px-5 md:grid-cols-2 md:gap-16 md:px-12">
         <div>
           <SectionIntro
             id="blog-newsletter-heading"
@@ -33,7 +33,7 @@ export function BlogNewsletter() {
               </>
             }
             lead="One email when we publish. No marketing — just the raw engineering and strategy thinking from the Shivlam team."
-            className="!mb-0 [&_h2]:text-sl-saffron/90 [&_h3]:text-3xl [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:text-white md:[&_h3]:text-[32px] [&_p]:!max-w-md [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-white/45"
+            className="mb-0! [&_h2]:text-sl-saffron/90 [&_h3]:text-3xl [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:text-white md:[&_h3]:text-[32px] [&_p]:max-w-md! [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-white/45"
           />
         </div>
 
